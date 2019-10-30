@@ -184,3 +184,4 @@ _deps
 # SFML dependencies
 
 lib/SFML/**
+SFML.cmake
