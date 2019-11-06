@@ -1,7 +1,6 @@
 #ifndef GOLD_HACK_LEVEL_H
 #define GOLD_HACK_LEVEL_H
 
-
 #include "Tile.h"
 
 template<int X_SIZE, int Y_SIZE>
