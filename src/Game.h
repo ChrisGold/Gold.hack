@@ -2,7 +2,7 @@
 #define GOLD_HACK_GAME_H
 
 #include <vector>
-#include "Level.h"
+#include "level/Level.h"
 #include <SFML/Window.hpp>
 #include <variant>
 
