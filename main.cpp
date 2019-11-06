@@ -1,8 +1,11 @@
 #include <iostream>
 #include "src/Level.h"
+#include "src/Game.h"
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
-    Level<10, 10> lvl{};
+int main()
+{
+    Game g;
+    g.init();
+    g.loop();    
     return 0;
 }

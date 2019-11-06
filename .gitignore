@@ -186,3 +186,6 @@ _deps
 lib/**
 build/**
 SFML.cmake
+
+#VSCode
+.vscode/**
