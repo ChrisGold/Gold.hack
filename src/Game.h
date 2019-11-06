@@ -1,5 +1,4 @@
-#ifndef GOLD_HACK_GAME_H
-#define GOLD_HACK_GAME_H
+#pragma once
 
 #include <vector>
 #include "level/Level.h"
@@ -24,5 +23,3 @@ private:
 };
 
 std::string stage_name(GameStage stage);
-
-#endif //GOLD_HACK_LEVEL_H

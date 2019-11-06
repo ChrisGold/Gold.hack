@@ -1,5 +1,4 @@
-#ifndef GOLD_HACK_LEVEL_H
-#define GOLD_HACK_LEVEL_H
+#pragma once
 
 #include "LevelTile.h"
 
@@ -9,7 +8,3 @@ class Level {
 public:
     Level() = default;
 };
-
-
-
-#endif //GOLD_HACK_LEVEL_H

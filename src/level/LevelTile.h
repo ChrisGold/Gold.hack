@@ -1,5 +1,4 @@
-#ifndef GOLD_HACK_LEVEL_TILE_H
-#define GOLD_HACK_LEVEL_TILE_H
+#pragma once
 #include "../resources/Tile.h"
 
 struct LevelTile {
@@ -8,4 +7,3 @@ struct LevelTile {
     Tile * tile = nullptr;
 };
 
-#endif //GOLD_HACK_TILE_H
