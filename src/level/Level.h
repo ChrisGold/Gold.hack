@@ -4,7 +4,7 @@
 
 template<int X_SIZE, int Y_SIZE>
 class Level {
-    Tile tiles[X_SIZE][Y_SIZE];
+    LevelTile tiles[X_SIZE][Y_SIZE];
 public:
     Level() = default;
 };

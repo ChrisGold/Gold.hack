@@ -1,9 +1,11 @@
 #pragma once
 
 #include <vector>
-#include "level/Level.h"
-#include <SFML/Window.hpp>
 #include <variant>
+#include <SFML/Window.hpp>
+
+#include "level/Level.h"
+#include "resources/TileSet.h"
 
 typedef std::variant<int, std::monostate> GameStage;
 const GameStage MENU = std::monostate();
@@ -13,6 +15,7 @@ class Game
     std::vector<Level<10, 10>> levels;
     sf::Window window;
     GameStage stage = MENU;
+    TileSet tileSet;
 
 public:
     void init();

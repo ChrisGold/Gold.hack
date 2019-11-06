@@ -1,13 +1,15 @@
 #pragma once
 
+#include <memory>
 #include <string>
 #include "Tile.h"
 
 class TileSet
 {
-    std::vector<Tile> textures;
+    std::vector<std::shared_ptr<Tile>> textures;
 
 public:
-    const Tile &getById(int id);
-    const Tile &getByName(std::string &name);
+    const std::shared_ptr<Tile> &getById(int id);
+    const std::shared_ptr<Tile> &getByName(std::string &name);
+    void load(std::vector<std::string> files);
 };
