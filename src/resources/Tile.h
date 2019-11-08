@@ -3,11 +3,11 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 
-class Tile {
+struct Tile {
     sf::Texture texture;
     sf::Sprite sprite;
     std::string name;
     int id;
     public:
-    Tile() = default;
+    Tile(sf::Texture texture, sf::Sprite sprite, std::string name, int id);
 };

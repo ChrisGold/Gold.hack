@@ -1,20 +1,26 @@
+#include <iostream>
 #include "TileSet.h"
+#include <algorithm>
 
-const std::shared_ptr<Tile> TileSet::getById(int id){
-    //TODO
-    return std::make_shared<Tile>();
+void TileSet::load(std::string &file){
+    std::string path = file + ".png";
+    std::cout << "Loading: " << path << std::endl;
+    sf::Texture tex;
+    tex.loadFromFile(path);
+    sf::Sprite spr;
+    spr.setTexture(tex);
+    int id = tiles.size();
+    auto ptr = std::make_shared<Tile>(tex, spr, file, id);
+    tiles.push_back(ptr);
 }
 
-const std::shared_ptr<Tile> TileSet::getByName(std::string &name){
-    //TODO
-    return std::make_shared<Tile>();
-}
-
-void TileSet::load(std::vector<std::string> files){
-    //TODO
+void TileSet::load(std::vector<std::string> &files){
+    for(std::string &file : files) load(file);
 }
 
 TileSet TileSet::init(){
-    //TODO
-    return TileSet();
+    TileSet ts{};
+    std::vector<std::string> names = {"wood", "stone", "void"};
+    ts.load(names);
+    return ts;
 }

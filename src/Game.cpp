@@ -7,6 +7,7 @@ void Game::init()
 {
     window.create(sf::VideoMode(800, 600), "Gold.hack");
     change_stage(0);
+    tileSet = TileSet::init();
 }
 
 void Game::loop()
