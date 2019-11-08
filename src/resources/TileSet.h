@@ -2,6 +2,8 @@
 
 #include <memory>
 #include <string>
+#include <SFML/Graphics/Sprite.hpp>
+
 #include "Tile.h"
 
 class TileSet
@@ -11,5 +13,6 @@ class TileSet
 public:
     const std::shared_ptr<Tile> getById(int id);
     void load(std::vector<std::string> &files);
+    sf::Sprite make_sprite(int id);
     static TileSet init();
 };

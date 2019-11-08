@@ -10,7 +10,7 @@ void Game::init()
     window.create(sf::VideoMode(800, 600), "Gold.hack");
     change_stage(0);
     tileSet = TileSet::init();
-    auto levels = Level::make(); 
+    levels = Level::make(); 
 }
 
 void Game::loop()

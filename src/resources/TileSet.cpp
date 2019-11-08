@@ -1,5 +1,6 @@
 #include <iostream>
 #include "TileSet.h"
+#include "../Constants.h"
 #include <algorithm>
 
 const std::shared_ptr<Tile> TileSet::getById(int id){
@@ -25,4 +26,16 @@ TileSet TileSet::init(){
     std::vector<std::string> names = {"void", "wood", "stone"};
     ts.load(names);
     return ts;
+}
+
+sf::Sprite TileSet::make_sprite(int id){
+    sf::Sprite sprite;
+    auto tile = getById(id);
+    sprite.setTexture(tile->texture);
+
+    sprite.setScale(
+        TILE_X_SIZE / sprite.getLocalBounds().width, 
+        TILE_Y_SIZE / sprite.getLocalBounds().height
+    );
+    return sprite;
 }
