@@ -36,7 +36,7 @@ void Game::loop()
 void Game::draw_level(){
     int stage_id = std::get<int>(stage);
     Level& level = levels[std::get<int>(stage)];
-    level.draw(window);
+    level.draw(window, tileSet);
 }
 
 void Game::change_stage(GameStage gs){

@@ -1,8 +1,8 @@
 #include "Level.h"
 
-void Level::draw(sf::RenderTarget &target)
+void Level::draw(sf::RenderTarget &target, TileSet& tileset)
 {
-    //TODO
+    
 }
 
 Level::Level()
