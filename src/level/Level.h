@@ -1,10 +1,10 @@
 #pragma once
 
 #include "LevelTile.h"
+#include "../Constants.h"
 
-template<int X_SIZE, int Y_SIZE>
 class Level {
-    LevelTile tiles[X_SIZE][Y_SIZE];
+    LevelTile tiles[LEVEL_X_SIZE][LEVEL_Y_SIZE];
 public:
     Level() = default;
 };

@@ -12,7 +12,7 @@ const GameStage MENU = std::monostate();
 
 class Game
 {
-    std::vector<Level<10, 10>> levels;
+    std::vector<Level> levels;
     sf::RenderWindow window;
     GameStage stage = MENU;
     TileSet tileSet;
