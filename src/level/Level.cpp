@@ -3,5 +3,8 @@
 //
 
 #include "Level.h"
-
+void Level::draw(sf::RenderTarget& target){
+    //TODO
+    
+}
 
