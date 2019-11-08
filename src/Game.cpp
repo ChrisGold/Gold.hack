@@ -1,4 +1,5 @@
 #include <sstream>
+#include <iostream>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics/Color.hpp>
 
@@ -17,7 +18,10 @@ void Game::loop()
     while (window.isOpen())
     {
         window.clear(sf::Color::White);
-        
+        if(stage != MENU){
+            draw_level();
+        }
+
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -30,11 +34,14 @@ void Game::loop()
 }
 
 void Game::draw_level(){
+    int stage_id = std::get<int>(stage);
     Level& level = levels[std::get<int>(stage)];
+    level.draw(window);
 }
 
 void Game::change_stage(GameStage gs){
     window.setTitle(stage_name(gs));
+    stage = gs;
 }
 
 std::string stage_name(GameStage stage)
