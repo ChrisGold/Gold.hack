@@ -11,10 +11,8 @@ void TileSet::load(std::string &file){
     std::cout << "Loading: " << path << std::endl;
     sf::Texture tex;
     tex.loadFromFile(path);
-    sf::Sprite spr;
-    spr.setTexture(tex);
     int id = tiles.size();
-    auto ptr = std::make_shared<Tile>(tex, spr, file, id);
+    auto ptr = std::make_shared<Tile>(tex, file, id);
     tiles.push_back(ptr);
 }
 
@@ -24,7 +22,7 @@ void TileSet::load(std::vector<std::string> &files){
 
 TileSet TileSet::init(){
     TileSet ts{};
-    std::vector<std::string> names = {"wood", "stone", "void"};
+    std::vector<std::string> names = {"void", "wood", "stone"};
     ts.load(names);
     return ts;
 }

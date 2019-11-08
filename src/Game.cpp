@@ -8,6 +8,7 @@ void Game::init()
     window.create(sf::VideoMode(800, 600), "Gold.hack");
     change_stage(0);
     tileSet = TileSet::init();
+    auto levels = Level::make(); 
 }
 
 void Game::loop()
@@ -25,6 +26,10 @@ void Game::loop()
         }
         window.display();
     }
+}
+
+void Game::draw_level(){
+    Level& level = levels[std::get<int>(stage)];
 }
 
 void Game::change_stage(GameStage gs){
