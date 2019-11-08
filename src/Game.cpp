@@ -1,18 +1,19 @@
-#include "Game.h"
-#include <SFML/Window.hpp>
 #include <sstream>
+#include <SFML/Window.hpp>
+
+#include "Game.h"
 
 void Game::init()
 {
     window.create(sf::VideoMode(800, 600), "Gold.hack");
-    stage = 0;
+    change_stage(0);
 }
 
 void Game::loop()
 {
-    change_stage(0);
     while (window.isOpen())
     {
+        window.clear();
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
         while (window.pollEvent(event))
@@ -21,6 +22,7 @@ void Game::loop()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
+        window.display();
     }
 }
 

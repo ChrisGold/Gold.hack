@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <variant>
-#include <SFML/Window.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 #include "level/Level.h"
 #include "resources/TileSet.h"
@@ -13,7 +13,7 @@ const GameStage MENU = std::monostate();
 class Game
 {
     std::vector<Level<10, 10>> levels;
-    sf::Window window;
+    sf::RenderWindow window;
     GameStage stage = MENU;
     TileSet tileSet;
 
