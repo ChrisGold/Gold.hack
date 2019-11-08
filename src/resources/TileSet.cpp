@@ -2,6 +2,10 @@
 #include "TileSet.h"
 #include <algorithm>
 
+const std::shared_ptr<Tile> TileSet::getById(int id){
+    return tiles[id];
+}
+
 void TileSet::load(std::string &file){
     std::string path = file + ".png";
     std::cout << "Loading: " << path << std::endl;

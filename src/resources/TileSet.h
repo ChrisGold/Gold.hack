@@ -10,7 +10,6 @@ class TileSet
     void load(std::string& file);
 public:
     const std::shared_ptr<Tile> getById(int id);
-    const std::shared_ptr<Tile> getByName(std::string &name);
     void load(std::vector<std::string> &files);
     static TileSet init();
 };
