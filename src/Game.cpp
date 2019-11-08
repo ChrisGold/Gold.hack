@@ -1,5 +1,6 @@
 #include <sstream>
 #include <SFML/Window.hpp>
+#include <SFML/Graphics/Color.hpp>
 
 #include "Game.h"
 
@@ -15,8 +16,8 @@ void Game::loop()
 {
     while (window.isOpen())
     {
-        window.clear();
-        // check all the window's events that were triggered since the last iteration of the loop
+        window.clear(sf::Color::White);
+        
         sf::Event event;
         while (window.pollEvent(event))
         {
