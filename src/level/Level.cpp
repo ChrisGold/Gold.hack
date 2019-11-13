@@ -15,9 +15,10 @@ Level::Level() {
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
             LevelTile &t = tiles[x][y];
-            t.pass_east = true;
-            t.pass_north = true;
-            t.tile_id = 0;
+            t.pass_east = false;
+            t.pass_north = false;
+            t.floor_tile = 0;
+            t.wall_tile = 0;
         }
     }
 }

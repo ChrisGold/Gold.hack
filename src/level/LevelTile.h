@@ -6,6 +6,7 @@
 struct LevelTile {
     bool pass_north = true;
     bool pass_east = true;
-    int tile_id = 0;
+    int floor_tile = 0;
+    int wall_tile = 0;
 };
 
