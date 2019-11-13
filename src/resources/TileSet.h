@@ -5,6 +5,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 
 #include "Tile.h"
+#include "../level/LevelTile.h"
 
 class TileSet
 {
@@ -13,6 +14,7 @@ class TileSet
 public:
     std::shared_ptr<const Tile> getById(int id);
     void load(std::vector<std::string> &files);
-    sf::Sprite make_sprite(int id);
+
+    void render(sf::RenderTarget &target, const LevelTile &levelTile);
     static TileSet init();
 };

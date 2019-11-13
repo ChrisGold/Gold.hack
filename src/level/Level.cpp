@@ -1,4 +1,5 @@
 #include "Level.h"
+#include <SFML/Graphics/RenderTexture.hpp>
 
 void Level::draw(sf::RenderTarget &target, TileSet& tileset)
 {
@@ -8,8 +9,13 @@ void Level::draw(sf::RenderTarget &target, TileSet& tileset)
         {
             LevelTile t = tiles[x][y];
             auto id = t.tile_id;
-            auto sprite = tileset.make_sprite(id);
-            sprite.setPosition(static_cast<float>(x * TILE_X_SIZE), static_cast<float>(y * TILE_Y_SIZE));
+            sf::RenderTexture texture;
+            texture.create(TILE_X_SIZE, TILE_Y_SIZE);
+            tileset.render(texture, t);
+            texture.display();
+            sf::Sprite sprite;
+            sprite.setTexture(texture.getTexture());
+            sprite.setPosition(x * TILE_X_SIZE, y * TILE_Y_SIZE);
             target.draw(sprite);
         }
     }
