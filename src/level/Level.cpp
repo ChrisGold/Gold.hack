@@ -1,4 +1,5 @@
 #include "Level.h"
+#include "../worldgen/LevelGenerator.h"
 #include <SFML/Graphics/RenderTexture.hpp>
 
 void Level::draw(sf::RenderTarget &target, TileSet &tileset) {
@@ -23,9 +24,24 @@ Level::Level() {
     }
 }
 
+Level::Level(LevelTile data[LEVEL_X_SIZE][LEVEL_Y_SIZE]) {
+    for (int x = 0; x < LEVEL_X_SIZE; x++) {
+        for (int y = 0; y < LEVEL_Y_SIZE; y++) {
+            LevelTile thisTile = tiles[x][y];
+            LevelTile thatTile = data[x][y];
+            thisTile.pass_east = thatTile.pass_east;
+            thisTile.pass_north = thatTile.pass_north;
+            thisTile.floor_tile = thatTile.floor_tile;
+            thisTile.wall_tile = thatTile.wall_tile;
+        }
+    }
+}
+
 std::vector<Level> Level::make() {
     std::vector<Level> levels;
-    Level l{};
+    LevelGenerator lg = LevelGenerator();
+    lg.generate();
+    Level l = lg.export_level();
     levels.push_back(l);
     return levels;
 }

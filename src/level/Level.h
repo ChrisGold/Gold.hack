@@ -1,4 +1,5 @@
 #pragma once
+
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <vector>
 
@@ -10,6 +11,10 @@ class Level {
     LevelTile tiles[LEVEL_X_SIZE][LEVEL_Y_SIZE];
 public:
     Level();
-    void draw(sf::RenderTarget& target, TileSet& tileset);
+
+    Level(LevelTile[LEVEL_X_SIZE][LEVEL_Y_SIZE]);
+
+    void draw(sf::RenderTarget &target, TileSet &tileset);
+
     static std::vector<Level> make();
 };
