@@ -23,7 +23,7 @@ void TileSet::load(std::vector<std::string> &files) {
 
 TileSet TileSet::init() {
     TileSet ts{};
-    std::vector<std::string> names = {"void", "wood", "stone"};
+    std::vector<std::string> names = {"void", "wood", "stone", "halo"};
     ts.load(names);
     return ts;
 }
@@ -38,14 +38,14 @@ void TileSet::render(sf::RenderTarget &target, const LevelTile &levelTile) {
     auto height = size.y;
 
     north.setTextureRect(sf::IntRect(0, 0, width, height / 10));
-    north.setTexture(getById(1)->texture);
-    north.setPosition(0, height / 10.0f);
+    north.setTexture(getById(2)->texture);
+    north.setPosition(0, 0);
 
     east.setTextureRect(sf::IntRect(0, 0, width / 10, height));
     east.setTexture(getById(1)->texture);
-    east.setPosition((width / 10.0f) * 9, 0);
+    east.setPosition(width - (width / 10.f), 0);
 
-    floor.setTexture(getById(2)->texture);
+    floor.setTexture(getById(levelTile.tile_id)->texture);
     floor.setPosition(0.0f, 0.0f);
     floor.setScale(
             TILE_X_SIZE / floor.getLocalBounds().width,

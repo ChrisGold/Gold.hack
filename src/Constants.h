@@ -1,7 +1,7 @@
 #pragma once
 
-const int LEVEL_X_SIZE = 3;
-const int LEVEL_Y_SIZE = 3;
+const int LEVEL_X_SIZE = 10;
+const int LEVEL_Y_SIZE = 10;
 
 const int TILE_X_SIZE = 200;
 const int TILE_Y_SIZE = 200;
