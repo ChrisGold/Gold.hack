@@ -1,9 +1,8 @@
 #include <iostream>
 #include "TileSet.h"
 #include "../Constants.h"
-#include <algorithm>
 
-const std::shared_ptr<Tile> TileSet::getById(int id){
+std::shared_ptr<const Tile> TileSet::getById(int id) {
     return tiles[id];
 }
 

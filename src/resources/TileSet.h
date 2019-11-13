@@ -11,7 +11,7 @@ class TileSet
     std::vector<std::shared_ptr<Tile>> tiles;
     void load(std::string& file);
 public:
-    const std::shared_ptr<Tile> getById(int id);
+    std::shared_ptr<const Tile> getById(int id);
     void load(std::vector<std::string> &files);
     sf::Sprite make_sprite(int id);
     static TileSet init();

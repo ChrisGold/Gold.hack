@@ -22,7 +22,7 @@ void Game::loop()
             draw_level();
         }
 
-        sf::Event event;
+        sf::Event event{};
         while (window.pollEvent(event))
         {
             // "close requested" event: we close the window
@@ -35,16 +35,16 @@ void Game::loop()
 
 void Game::draw_level(){
     int stage_id = std::get<int>(stage);
-    Level& level = levels[std::get<int>(stage)];
+    Level &level = levels[stage_id];
     level.draw(window, tileSet);
 }
 
-void Game::change_stage(GameStage gs){
+void Game::change_stage(const GameStage &gs) {
     window.setTitle(stage_name(gs));
     stage = gs;
 }
 
-std::string stage_name(GameStage stage)
+std::string stage_name(const GameStage &stage)
 {
     if (stage == MENU)
     {

@@ -22,8 +22,8 @@ public:
     void loop();
     
 private:
-    void change_stage(GameStage stage);
+    void change_stage(const GameStage &stage);
     void draw_level();
 };
 
-std::string stage_name(GameStage stage);
+std::string stage_name(const GameStage &stage);
