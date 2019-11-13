@@ -17,7 +17,7 @@ Level::Level() {
             LevelTile &t = tiles[x][y];
             t.pass_east = true;
             t.pass_north = true;
-            t.tile_id = (x + y) % 3;
+            t.tile_id = 0;
         }
     }
 }
