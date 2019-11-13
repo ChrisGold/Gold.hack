@@ -34,25 +34,25 @@ TileSet TileSet::init() {
     return ts;
 }
 
-void TileSet::render(sf::RenderTarget &target, const LevelTile &levelTile) {
+void TileSet::render(sf::RenderTarget &target, const sf::FloatRect &rect, const LevelTile &levelTile) {
     sf::Sprite north;
     sf::Sprite east;
     sf::Sprite floor;
 
-    auto size = target.getSize();
+    auto size = rect.getSize();
     auto width = size.x;
     auto height = size.y;
 
     north.setTextureRect(sf::IntRect(0, 0, width, height / 10));
     north.setTexture(getById(2)->floor);
-    north.setPosition(0, 0);
+    north.setPosition(rect.left, rect.top);
 
     east.setTextureRect(sf::IntRect(0, 0, width / 10, height));
     east.setTexture(getById(1)->floor);
-    east.setPosition(width - (width / 10.f), 0);
+    east.setPosition(rect.left + width - (width / 10.f), rect.top);
 
     floor.setTexture(getById(levelTile.tile_id)->floor);
-    floor.setPosition(0.0f, 0.0f);
+    floor.setPosition(rect.left, rect.top);
     floor.setScale(
             TILE_X_SIZE / floor.getLocalBounds().width,
             TILE_Y_SIZE / floor.getLocalBounds().height
