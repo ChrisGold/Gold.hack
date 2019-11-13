@@ -35,31 +35,32 @@ TileSet TileSet::init() {
 }
 
 void TileSet::render(sf::RenderTarget &target, const sf::FloatRect &rect, const LevelTile &levelTile) {
-    sf::Sprite north;
-    sf::Sprite east;
-    sf::Sprite floor;
-
     auto size = rect.getSize();
     auto width = size.x;
     auto height = size.y;
 
-    north.setTextureRect(sf::IntRect(0, 0, width, height / 10));
-    north.setTexture(getById(2)->floor);
-    north.setPosition(rect.left, rect.top);
+    if (!levelTile.pass_north) {
+        sf::Sprite north;
+        north.setTextureRect(sf::IntRect(0, 0, width, height / 10));
+        north.setTexture(getById(0)->wall);
+        north.setPosition(rect.left, rect.top);
+        target.draw(north);
+    }
 
-    east.setTextureRect(sf::IntRect(0, 0, width / 10, height));
-    east.setTexture(getById(1)->floor);
-    east.setPosition(rect.left + width - (width / 10.f), rect.top);
+    if (!levelTile.pass_east) {
+        sf::Sprite east;
+        east.setTextureRect(sf::IntRect(0, 0, width / 10, height));
+        east.setTexture(getById(0)->wall);
+        east.setPosition(rect.left + width - (width / 10.f), rect.top);
+        target.draw(east);
+    }
 
+    sf::Sprite floor;
     floor.setTexture(getById(levelTile.tile_id)->floor);
     floor.setPosition(rect.left, rect.top);
     floor.setScale(
             TILE_X_SIZE / floor.getLocalBounds().width,
             TILE_Y_SIZE / floor.getLocalBounds().height
     );
-
     target.draw(floor);
-    target.draw(north);
-    target.draw(east);
-
 }
