@@ -2,7 +2,7 @@
 #include "../worldgen/LevelGenerator.h"
 #include <SFML/Graphics/RenderTexture.hpp>
 
-void Level::draw(sf::RenderTarget &target, TileSet &tileset) {
+void Level::draw(sf::RenderTarget &target, TileSet &tileset, TextureSet &textureset) {
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
             LevelTile t = tiles[x][y];
@@ -10,6 +10,8 @@ void Level::draw(sf::RenderTarget &target, TileSet &tileset) {
             tileset.render(target, rect, t);
         }
     }
+    auto playerrect = sf::FloatRect(playerPos.y * TILE_X_SIZE, playerPos.y * TILE_Y_SIZE, TILE_X_SIZE, TILE_Y_SIZE);
+    textureset.render(target, playerrect, 0);
 }
 
 Level::Level() {

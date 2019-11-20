@@ -6,6 +6,7 @@
 
 #include "level/Level.h"
 #include "resources/TileSet.h"
+#include "resources/TextureSet.h"
 
 typedef std::variant<int, std::monostate> GameStage;
 const GameStage MENU = std::monostate();
@@ -16,6 +17,7 @@ class Game
     sf::RenderWindow window;
     GameStage stage = MENU;
     TileSet tileSet;
+    TextureSet textureSet;
 
 public:
     void init();

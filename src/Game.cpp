@@ -10,7 +10,8 @@ void Game::init()
     window.create(sf::VideoMode(LEVEL_WIDTH, LEVEL_HEIGHT), "Gold.hack");
     change_stage(0);
     tileSet = TileSet::init();
-    levels = Level::make(); 
+    textureSet = TextureSet::init();
+    levels = Level::make();
 }
 
 void Game::loop()
@@ -36,7 +37,7 @@ void Game::loop()
 void Game::draw_level(){
     int stage_id = std::get<int>(stage);
     Level &level = levels[stage_id];
-    level.draw(window, tileSet);
+    level.draw(window, tileSet, textureSet);
 }
 
 void Game::change_stage(const GameStage &gs) {
