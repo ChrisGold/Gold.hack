@@ -1,5 +1,4 @@
 #include "LevelGenerator.h"
-#include <iostream>
 
 void LevelGenerator::room(sf::IntRect rect, int floor_material, int wall_material) {
     for (int x = 0; x < rect.width; ++x) {
@@ -13,20 +12,6 @@ void LevelGenerator::room(sf::IntRect rect, int floor_material, int wall_materia
             }
         }
     }
-    for (int x = 0; x < rect.width; ++x) {
-        if (in_level(rect.left + x, rect.top + rect.height)) {
-            LevelTile &bottom = this->level[rect.left + x][rect.top + rect.height];
-            bottom.pass_north = false;
-            bottom.wall_tile = wall_material;
-        }
-    }
-    for (int y = 0; y < rect.height; ++y) {
-        if (in_level(rect.left - 1, rect.top + y)) {
-            LevelTile &bottom = this->level[rect.left - 1][rect.top + y];
-            bottom.pass_east = false;
-            bottom.wall_tile = wall_material;
-        }
-    }
 }
 
 Level LevelGenerator::export_level() {
@@ -36,6 +21,8 @@ Level LevelGenerator::export_level() {
 void LevelGenerator::generate() {
     room(sf::IntRect(1, 1, 5, 5), 2, 1);
     room(sf::IntRect(7, 1, 5, 5), 1, 2);
+    room(sf::IntRect(6, 3, 1, 1), 2, 2);
+    calculate_walls();
 }
 
 LevelGenerator::LevelGenerator() {
@@ -46,6 +33,22 @@ LevelGenerator::LevelGenerator() {
             t.pass_north = true;
             t.floor_tile = 0;
             t.wall_tile = 0;
+        }
+    }
+}
+
+void LevelGenerator::calculate_walls() {
+    for (int x = 0; x < LEVEL_X_SIZE; x++) {
+        for (int y = 0; y < LEVEL_Y_SIZE; y++) {
+            LevelTile &t = level[x][y];
+            if (in_level(x + 1, y)) {
+                LevelTile &east = level[x + 1][y];
+                t.pass_east = east.floor_tile != 0;
+            }
+            if (in_level(x, y - 1)) {
+                LevelTile &north = level[x][y - 1];
+                t.pass_north = north.floor_tile != 0;
+            }
         }
     }
 }
