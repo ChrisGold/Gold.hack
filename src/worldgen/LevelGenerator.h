@@ -17,3 +17,5 @@ public:
 
     Level export_level();
 };
+
+bool in_level(int x, int y);
