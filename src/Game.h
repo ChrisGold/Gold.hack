@@ -26,6 +26,8 @@ public:
 private:
     void change_stage(const GameStage &stage);
     void draw_level();
+
+    void tick();
 };
 
 std::string stage_name(const GameStage &stage);

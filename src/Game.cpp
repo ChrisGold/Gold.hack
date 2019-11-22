@@ -16,8 +16,13 @@ void Game::init()
 
 void Game::loop()
 {
+    sf::Clock clock;
     while (window.isOpen())
     {
+        if (clock.getElapsedTime().asMilliseconds() > MS_PER_TICK) {
+            tick();
+            clock.restart();
+        }
         window.clear(sf::Color::White);
         if(stage != MENU){
             draw_level();
@@ -43,6 +48,10 @@ void Game::draw_level(){
 void Game::change_stage(const GameStage &gs) {
     window.setTitle(stage_name(gs));
     stage = gs;
+}
+
+void Game::tick() {
+    std::cout << "Tick" << std::endl;
 }
 
 std::string stage_name(const GameStage &stage)

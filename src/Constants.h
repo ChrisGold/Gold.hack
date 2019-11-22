@@ -6,6 +6,9 @@ const int LEVEL_Y_SIZE = 14;
 const int TILE_X_SIZE = 50;
 const int TILE_Y_SIZE = 50;
 
+const int TPS = 4;
+const int MS_PER_TICK = 1000 / TPS;
+
 const int LEVEL_WIDTH = LEVEL_X_SIZE * TILE_X_SIZE;
 const int LEVEL_HEIGHT = LEVEL_Y_SIZE * TILE_Y_SIZE;
 
