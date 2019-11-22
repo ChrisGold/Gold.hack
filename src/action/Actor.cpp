@@ -3,10 +3,11 @@
 void Actor::act() {
     if (!actions.empty()) {
         auto action = actions.back();
+        action->execute(this);
     }
 }
 
-void Actor::enqueue(const std::shared_ptr<const Action> action) {
+void Actor::enqueue(const std::shared_ptr<Action> &action) {
     actions.push(action);
 }
 

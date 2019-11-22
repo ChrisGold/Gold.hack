@@ -8,17 +8,16 @@
 class Actor {
     Game &game;
     Level &level;
-    std::queue<std::shared_ptr<const Action>> actions;
-
+    std::queue<std::shared_ptr<Action>> actions;
     int texture_id;
 public:
+
     Actor(Game &game, Level &level, int textureId,
           const sf::Vector2i &position);
-
-private:
     sf::Vector2i position;
 
+private:
     void act();
 
-    void enqueue(std::shared_ptr<const Action> action);
+    void enqueue(const std::shared_ptr<Action> &action);
 };

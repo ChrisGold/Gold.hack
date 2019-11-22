@@ -2,11 +2,14 @@
 
 #include "../Game.h"
 
+class Actor;
+
 enum Direction : char {
     SELF, NORTH, SOUTH, EAST, WEST
 };
 
 class Action {
+protected:
     Game &game;
     Level &level;
     Direction direction = SELF;
@@ -17,6 +20,5 @@ public:
 
     friend std::ostream &operator<<(std::ostream &out, const Action &action);
 
-private:
-    virtual void execute(sf::Vector2i from) = 0;
+    virtual void execute(Actor *executor) = 0;
 };
