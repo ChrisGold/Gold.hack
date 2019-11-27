@@ -1,12 +1,13 @@
 #pragma once
 
+#include <SFML/Window/Event.hpp>
 #include "../Types.h"
 
 class InputController {
 public:
     explicit InputController(Game *game);
-    ~InputController() = default;
-    virtual void readInput() = 0;
+    virtual ~InputController() = default;
+    virtual void readInput(const sf::Event& event) = 0;
 private:
     GamePtr game;
 };

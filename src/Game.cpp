@@ -40,6 +40,7 @@ void Game::loop()
             // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
                 window.close();
+            inputController->readInput(event);
         }
         window.display();
     }
@@ -57,7 +58,6 @@ void Game::change_stage(const GameStage &gs) {
 }
 
 void Game::tick() {
-    std::cout << "Tick" << std::endl;
 }
 
 std::string stage_name(const GameStage &stage)
