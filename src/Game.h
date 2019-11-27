@@ -7,6 +7,7 @@
 #include "level/Level.h"
 #include "resources/TileSet.h"
 #include "resources/TextureSet.h"
+#include "input/InputController.h"
 
 typedef std::variant<int, std::monostate> GameStage;
 const GameStage MENU = std::monostate();
@@ -18,9 +19,11 @@ class Game
     GameStage stage = MENU;
     TileSet tileSet;
     TextureSet textureSet;
+    InputController* inputController;
 
 public:
-    void init();
+    Game();
+    ~Game();
     void loop();
     
 private:

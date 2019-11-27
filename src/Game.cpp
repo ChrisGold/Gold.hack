@@ -5,13 +5,18 @@
 
 #include "Game.h"
 
-void Game::init()
+Game::Game()
 {
     window.create(sf::VideoMode(LEVEL_WIDTH, LEVEL_HEIGHT), "Gold.hack");
     change_stage(0);
     tileSet = TileSet::init();
     textureSet = TextureSet::init();
     levels = Level::make();
+    inputController = new InputController(this);
+}
+
+Game::~Game() {
+    delete inputController;
 }
 
 void Game::loop()

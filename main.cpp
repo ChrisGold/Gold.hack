@@ -4,7 +4,6 @@
 int main()
 {
     Game g;
-    g.init();
-    g.loop();    
+    g.loop();
     return 0;
 }
