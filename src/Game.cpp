@@ -4,6 +4,7 @@
 #include <SFML/Graphics/Color.hpp>
 
 #include "Game.h"
+#include "input/KeyboardController.h"
 
 Game::Game()
 {
@@ -12,7 +13,7 @@ Game::Game()
     tileSet = TileSet::init();
     textureSet = TextureSet::init();
     levels = Level::make();
-    inputController = new InputController(this);
+    inputController = new KeyboardController(this);
 }
 
 Game::~Game() {
