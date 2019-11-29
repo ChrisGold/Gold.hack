@@ -4,8 +4,9 @@
 
 void Actor::act() {
     if (!actions.empty()) {
-        auto action = actions.back();
+        auto action = actions.front();
         action->execute(this);
+        actions.pop();
     }
 }
 

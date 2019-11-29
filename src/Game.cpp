@@ -41,7 +41,9 @@ void Game::loop()
             if (event.type == sf::Event::Closed)
                 window.close();
             auto action = inputController->readInput(event);
-            currentLevel()->player->enqueue(std::shared_ptr<Action>(action));
+            if (action != nullptr) {
+                currentLevel()->player->enqueue(std::shared_ptr<Action>(action));
+            }
         }
         window.display();
     }
@@ -59,6 +61,7 @@ void Game::change_stage(const GameStage &gs) {
 }
 
 void Game::tick() {
+    currentLevel()->player->act();
 }
 
 LevelPtr Game::currentLevel() {

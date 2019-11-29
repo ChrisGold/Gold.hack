@@ -10,7 +10,7 @@ void Level::draw(sf::RenderTarget &target, TileSet &tileset, TextureSet &texture
             tileset.render(target, rect, t);
         }
     }
-    auto playerrect = sf::FloatRect(player->position.y * TILE_X_SIZE, player->position.y * TILE_Y_SIZE, TILE_X_SIZE,
+    auto playerrect = sf::FloatRect(player->position.x * TILE_X_SIZE, player->position.y * TILE_Y_SIZE, TILE_X_SIZE,
                                     TILE_Y_SIZE);
     textureset.render(target, playerrect, player->texture_id);
 }
