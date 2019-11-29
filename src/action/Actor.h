@@ -20,6 +20,6 @@ public:
 
     void enqueue(const std::shared_ptr<Action> &action);
 
-    void act();
+    bool act();
 
 };

@@ -2,12 +2,13 @@
 
 #include "Actor.h"
 
-void Actor::act() {
+bool Actor::act() {
     if (!actions.empty()) {
         auto action = actions.front();
         action->execute(this);
         actions.pop();
-    }
+        return true;
+    } else return false;
 }
 
 void Actor::enqueue(const std::shared_ptr<Action> &action) {

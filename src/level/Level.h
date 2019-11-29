@@ -18,9 +18,11 @@ public:
 
     Level(GamePtr, LevelTile[LEVEL_X_SIZE][LEVEL_Y_SIZE]);
 
+    Actor *player;
+
     void draw(sf::RenderTarget &target, TileSet &tileset, TextureSet &textureset);
 
-    Actor *player;
+    bool tick();
 
     static std::vector<Level> make(GamePtr gamePtr);
 };

@@ -61,7 +61,7 @@ void Game::change_stage(const GameStage &gs) {
 }
 
 void Game::tick() {
-    currentLevel()->player->act();
+    currentLevel()->tick();
 }
 
 LevelPtr Game::currentLevel() {

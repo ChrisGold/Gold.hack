@@ -51,3 +51,7 @@ std::vector<Level> Level::make(GamePtr gamePtr) {
     levels.push_back(l);
     return levels;
 }
+
+bool Level::tick() {
+    return player->act();
+}
