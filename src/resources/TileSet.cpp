@@ -8,18 +8,13 @@ std::shared_ptr<const Tile> TileSet::getById(int id) {
 }
 
 void TileSet::load(std::string &file) {
-    //Floor
     std::string path = file + ".png";
     std::cout << "Loading: " << path << std::endl;
     sf::Texture tex;
     tex.loadFromFile(path);
 
-    //Wall
-    path = file + ".wall.png";
-    sf::Texture wall;
-    wall.loadFromFile(path);
     int id = tiles.size();
-    auto ptr = std::make_shared<Tile>(tex, wall, file, id);
+    auto ptr = std::make_shared<Tile>(tex, file, id);
     tiles.push_back(ptr);
 }
 
@@ -40,7 +35,7 @@ void TileSet::render(sf::RenderTarget &target, const sf::FloatRect &rect, const 
     auto height = size.y;
 
     sf::Sprite floor;
-    floor.setTexture(getById(levelTile.floor_tile)->floor);
+    floor.setTexture(getById(levelTile.floor_tile)->texture);
     floor.setPosition(rect.left, rect.top);
     floor.setScale(
             TILE_X_SIZE / floor.getLocalBounds().width,
@@ -51,7 +46,7 @@ void TileSet::render(sf::RenderTarget &target, const sf::FloatRect &rect, const 
     if (!levelTile.pass_north) {
         sf::Sprite north;
         north.setTextureRect(sf::IntRect(0, 0, width, height / 10));
-        north.setTexture(getById(levelTile.wall_tile)->wall);
+        north.setTexture(getById(levelTile.wall_tile)->texture);
         north.setPosition(rect.left, rect.top);
         target.draw(north);
     }
@@ -59,7 +54,7 @@ void TileSet::render(sf::RenderTarget &target, const sf::FloatRect &rect, const 
     if (!levelTile.pass_east) {
         sf::Sprite east;
         east.setTextureRect(sf::IntRect(0, 0, width / 10, height));
-        east.setTexture(getById(levelTile.wall_tile)->wall);
+        east.setTexture(getById(levelTile.wall_tile)->texture);
         east.setPosition(rect.left + width - (width / 10.f), rect.top);
         target.draw(east);
     }

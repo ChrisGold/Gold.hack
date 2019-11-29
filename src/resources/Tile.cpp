@@ -1,8 +1,7 @@
 #include "Tile.h"
 
-Tile::Tile(sf::Texture floor, sf::Texture wall, std::string name, int id) {
-    this->floor = floor;
-    this->wall = wall;
+Tile::Tile(sf::Texture floor, std::string name, int id) {
+    this->texture = floor;
     this->name = name;
     this->id = id;
 }
