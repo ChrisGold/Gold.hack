@@ -42,7 +42,7 @@ void Game::loop()
                 window.close();
             auto action = inputController->readInput(event);
             if (action != nullptr) {
-                currentLevel()->player->enqueue(std::shared_ptr<Action>(action));
+                currentLevel()->enqueue(action);
             }
         }
         window.display();

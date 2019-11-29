@@ -52,6 +52,10 @@ std::vector<Level> Level::make(GamePtr gamePtr) {
     return levels;
 }
 
+void Level::enqueue(ActionPtr action) {
+    player->enqueue(std::shared_ptr<Action>(action));
+}
+
 bool Level::tick() {
     return player->act();
 }

@@ -25,4 +25,6 @@ public:
     bool tick();
 
     static std::vector<Level> make(GamePtr gamePtr);
+
+    void enqueue(ActionPtr action);
 };
