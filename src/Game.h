@@ -8,6 +8,7 @@
 #include "resources/TileSet.h"
 #include "resources/TextureSet.h"
 #include "input/InputController.h"
+#include "action/Actor.h"
 
 typedef std::variant<int, std::monostate> GameStage;
 const GameStage MENU = std::monostate();

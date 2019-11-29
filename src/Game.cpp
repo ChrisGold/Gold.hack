@@ -12,7 +12,7 @@ Game::Game()
     change_stage(0);
     tileSet = TileSet::init();
     textureSet = TextureSet::init();
-    levels = Level::make();
+    levels = Level::make(this);
     inputController = new KeyboardController(this);
 }
 
@@ -40,7 +40,8 @@ void Game::loop()
             // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
                 window.close();
-            inputController->readInput(event);
+            auto action = inputController->readInput(event);
+            currentLevel()->player->enqueue(std::shared_ptr<Action>(action));
         }
         window.display();
     }

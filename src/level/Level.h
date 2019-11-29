@@ -3,20 +3,24 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <vector>
 
+#include "../Types.h"
 #include "LevelTile.h"
 #include "../resources/TileSet.h"
 #include "../Constants.h"
 #include "../resources/TextureSet.h"
+#include "../action/Actor.h"
 
 class Level {
+    GamePtr game;
     LevelTile tiles[LEVEL_X_SIZE][LEVEL_Y_SIZE];
-    sf::Vector2i playerPos;
 public:
-    Level();
+    explicit Level(GamePtr);
 
-    Level(LevelTile[LEVEL_X_SIZE][LEVEL_Y_SIZE]);
+    Level(GamePtr, LevelTile[LEVEL_X_SIZE][LEVEL_Y_SIZE]);
 
     void draw(sf::RenderTarget &target, TileSet &tileset, TextureSet &textureset);
 
-    static std::vector<Level> make();
+    Actor *player;
+
+    static std::vector<Level> make(GamePtr gamePtr);
 };
