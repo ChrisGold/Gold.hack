@@ -25,3 +25,12 @@ void Walk::execute(Actor *executor) {
     }
     executor->position += step;
 }
+
+void Walk::write_out(std::ostream &out) const {
+    out << "walk " << direction;
+}
+
+Walk::Walk(Game *game, Level *level, Direction direction) : Action(game, level, direction) {
+
+}
+

@@ -60,6 +60,14 @@ void Game::change_stage(const GameStage &gs) {
 void Game::tick() {
 }
 
+LevelPtr Game::currentLevel() {
+    if (stage == MENU) {
+        return nullptr;
+    } else {
+        return &levels[std::get<int>(stage)];
+    }
+}
+
 std::string stage_name(const GameStage &stage)
 {
     if (stage == MENU)

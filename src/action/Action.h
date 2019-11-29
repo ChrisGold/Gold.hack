@@ -4,17 +4,13 @@
 
 class Actor;
 
-enum Direction : char {
-    SELF, NORTH, SOUTH, EAST, WEST
-};
-
 class Action {
 protected:
-    Game &game;
-    Level &level;
+    GamePtr game;
+    LevelPtr level;
     Direction direction = SELF;
 public:
-    Action(Game &game, Level &level, Direction direction);
+    Action(GamePtr game, LevelPtr level, Direction direction);
 
     virtual void write_out(std::ostream &out) const = 0;
 
