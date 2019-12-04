@@ -3,6 +3,7 @@
 #include "Action.h"
 
 class Walk : public Action {
+    bool can_walk(sf::Vector2i from);
 protected:
     void execute(Actor *executor) override;
 

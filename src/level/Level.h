@@ -12,7 +12,6 @@
 
 class Level {
     GamePtr game;
-    LevelTile tiles[LEVEL_X_SIZE][LEVEL_Y_SIZE];
 public:
     explicit Level(GamePtr);
 
@@ -27,4 +26,6 @@ public:
     static std::vector<Level> make(GamePtr gamePtr);
 
     void enqueue(ActionPtr action);
+
+    LevelTile tiles[LEVEL_X_SIZE][LEVEL_Y_SIZE];
 };

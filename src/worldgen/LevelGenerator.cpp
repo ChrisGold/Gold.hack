@@ -22,6 +22,7 @@ void LevelGenerator::generate() {
     room(sf::IntRect(1, 1, 5, 5), 2, 1);
     room(sf::IntRect(7, 1, 5, 5), 1, 2);
     room(sf::IntRect(6, 3, 1, 1), 2, 2);
+    room(sf::IntRect(0, 0, 1, 8), 1, 2);
     calculate_walls();
 }
 
