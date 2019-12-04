@@ -5,6 +5,7 @@
 #include <iostream>
 #include "KeyboardController.h"
 #include "../action/Walk.h"
+#include "../action/Interact.h"
 
 KeyboardController::KeyboardController(Game *game) : InputController(game) {
 
@@ -30,6 +31,7 @@ ActionPtr KeyboardController::readInput(const sf::Event &event) {
             msg = "ATTACK";
         } else if (event.key.code == INTERACT) {
             msg = "INTERACT";
+            action = new Interact(this->game, this->game->currentLevel(), Direction::SOUTH);
         }
         std::cout << msg << std::endl;
     }
