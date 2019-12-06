@@ -7,10 +7,11 @@
 #include "Walk.h"
 
 void Walk::execute(Actor *executor) {
+    std::cout << executor->name << " walking " << direction;
     if (!can_walk(executor->position)) {
-        std::cout << "boink" << std::endl;
+        std::cout << " ...boink" << std::endl;
         return;
-    }
+    } else std::cout << std::endl;
     sf::Vector2i step{0, 0};
     switch (direction) {
         case SELF:

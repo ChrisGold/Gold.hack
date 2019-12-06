@@ -14,26 +14,18 @@ KeyboardController::KeyboardController(GamePtr game) : InputController(game) {
 ActionPtr KeyboardController::readInput(const sf::Event &event) {
     ActionPtr action = nullptr;
     if (event.type == sf::Event::KeyReleased) {
-        std::string msg;
         if (event.key.code == UP) {
             action = new Walk(this->game, this->game->currentLevel(), Direction::NORTH);
-            msg = "UP";
         } else if (event.key.code == DOWN) {
             action = new Walk(this->game, this->game->currentLevel(), Direction::SOUTH);
-            msg = "DOWN";
         } else if (event.key.code == LEFT) {
             action = new Walk(this->game, this->game->currentLevel(), Direction::WEST);
-            msg = "LEFT";
         } else if (event.key.code == RIGHT) {
             action = new Walk(this->game, this->game->currentLevel(), Direction::EAST);
-            msg = "RIGHT";
         } else if (event.key.code == ATTACK) {
-            msg = "ATTACK";
         } else if (event.key.code == INTERACT) {
-            msg = "INTERACT";
             action = new Interact(this->game, this->game->currentLevel(), Direction::SOUTH);
         }
-        std::cout << msg << std::endl;
     }
     return action;
 }
