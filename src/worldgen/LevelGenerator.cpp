@@ -42,14 +42,26 @@ void LevelGenerator::calculate_walls() {
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
             LevelTile &t = level[x][y];
+            //East
             if (in_level(x + 1, y)) {
                 LevelTile &east = level[x + 1][y];
                 t.pass_east = east.floor_tile != 0;
-            }
+            } else t.pass_east = false;
+            //North
             if (in_level(x, y - 1)) {
                 LevelTile &north = level[x][y - 1];
                 t.pass_north = north.floor_tile != 0;
-            }
+            } else t.pass_north = false;
+            //West
+            if (in_level(x - 1, y)) {
+                LevelTile &west = level[x - 1][y];
+                t.pass_west = west.floor_tile != 0;
+            } else t.pass_west = false;
+            //South
+            if (in_level(x, y + 1)) {
+                LevelTile &south = level[x][y + 1];
+                t.pass_south = south.floor_tile != 0;
+            } else t.pass_south = false;
         }
     }
 }

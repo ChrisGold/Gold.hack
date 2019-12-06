@@ -59,4 +59,20 @@ void TileSet::render(sf::RenderTarget &target, const sf::FloatRect &rect, const 
         target.draw(east);
     }
 
+    if (!levelTile.pass_south) {
+        sf::Sprite south;
+        south.setTextureRect(sf::IntRect(0, 0, width, height / 10));
+        south.setTexture(getById(levelTile.wall_tile)->texture);
+        south.setPosition(rect.left, rect.top + height - (height / 10.f));
+        target.draw(south);
+    }
+
+    if (!levelTile.pass_west) {
+        sf::Sprite west;
+        west.setTextureRect(sf::IntRect(0, 0, width / 10, height));
+        west.setTexture(getById(levelTile.wall_tile)->texture);
+        west.setPosition(rect.left, rect.top);
+        target.draw(west);
+    }
+
 }

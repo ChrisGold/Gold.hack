@@ -33,12 +33,7 @@ Level::Level(GamePtr gamePtr, LevelTile data[LEVEL_X_SIZE][LEVEL_Y_SIZE]) : play
     this->game = gamePtr;
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
-            LevelTile &thisTile = tiles[x][y];
-            LevelTile &thatTile = data[x][y];
-            thisTile.pass_east = thatTile.pass_east;
-            thisTile.pass_north = thatTile.pass_north;
-            thisTile.floor_tile = thatTile.floor_tile;
-            thisTile.wall_tile = thatTile.wall_tile;
+            tiles[x][y] = data[x][y];
         }
     }
 }

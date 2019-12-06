@@ -41,17 +41,18 @@ Walk::Walk(Game *game, Level *level, Direction direction) : Action(game, level, 
 }
 
 bool Walk::can_walk(sf::Vector2i from) {
+    auto &tile = level->tiles[from.x][from.y];
     switch (direction) {
         case SELF:
             return true;
         case NORTH:
-            return level->tiles[from.x][from.y].pass_north;
+            return tile.pass_north;
         case SOUTH:
-            return level->tiles[from.x][from.y + 1].pass_north;
+            return tile.pass_south;
         case EAST:
-            return level->tiles[from.x][from.y].pass_east;
+            return tile.pass_east;
         case WEST:
-            return level->tiles[from.x - 1][from.y].pass_east;
+            return tile.pass_west;
     }
 }
 
