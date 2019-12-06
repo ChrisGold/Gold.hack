@@ -1,6 +1,6 @@
 #include "Action.h"
 
-Action::Action(GamePtr game, LevelPtr level, Direction direction) : game(game), level(level), direction(direction) {}
+Action::Action(Level *level, Direction direction) : level(level), direction(direction) {}
 
 std::ostream &operator<<(std::ostream &out, const Action &action) {
     action.write_out(out);

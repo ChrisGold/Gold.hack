@@ -17,9 +17,8 @@ void Actor::enqueue(const std::shared_ptr<Action> &action) {
 
 int actor_counter = 0;
 
-Actor::Actor(GamePtr game, LevelPtr level, std::string name, int textureId, const sf::Vector2i &position) :
-        game(std::move(game)),
-        level(std::move(level)),
+Actor::Actor(Level *level, std::string name, int textureId, const sf::Vector2i &position) :
+        level(level),
         actions(),
         name(std::move(name)),
         facing(Direction::SOUTH),
@@ -27,9 +26,8 @@ Actor::Actor(GamePtr game, LevelPtr level, std::string name, int textureId, cons
         position(position) {
 }
 
-Actor::Actor(GamePtr game, LevelPtr level, int textureId, const sf::Vector2i &position) :
-        game(std::move(game)),
-        level(std::move(level)),
+Actor::Actor(Level *level, int textureId, const sf::Vector2i &position) :
+        level(level),
         actions(),
         name("MOB " + std::to_string(actor_counter++)),
         facing(Direction::SOUTH),

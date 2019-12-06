@@ -12,6 +12,6 @@ void Interact::execute(Actor *executor) {
 
 }
 
-Interact::Interact(GamePtr game, LevelPtr level, Direction direction) : Action(game, level, direction) {
+Interact::Interact(Level *level, Direction direction) : Action(level, direction) {
 
 }

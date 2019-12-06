@@ -10,6 +10,6 @@ protected:
     void write_out(std::ostream &out) const override;
 
 public:
-    Interact(GamePtr game, LevelPtr level, Direction direction);
+    Interact(Level *level, Direction direction);
 
 };

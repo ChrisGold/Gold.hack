@@ -7,11 +7,10 @@ class Actor;
 
 class Action {
 protected:
-    GamePtr game;
-    LevelPtr level;
+    Level *level;
     Direction direction = SELF;
 public:
-    Action(GamePtr game, LevelPtr level, Direction direction);
+    Action(Level *, Direction direction);
 
     virtual void write_out(std::ostream &out) const = 0;
 

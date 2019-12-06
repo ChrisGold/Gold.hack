@@ -8,13 +8,12 @@
 
 Game::Game()
 {
-    auto shared_this = std::shared_ptr<Game>(this);
     window.create(sf::VideoMode(LEVEL_WIDTH, LEVEL_HEIGHT), "Gold.hack");
     change_stage(0);
     tileSet = TileSet::init();
     textureSet = TextureSet::init();
-    levels = Level::make(shared_this);
-    inputController = new KeyboardController(shared_this);
+    levels = Level::make();
+    inputController = new KeyboardController(this);
 }
 
 Game::~Game() {
@@ -52,8 +51,8 @@ void Game::loop()
 
 void Game::draw_level(){
     int stage_id = std::get<int>(stage);
-    auto level = levels[stage_id];
-    level->draw(window, tileSet, textureSet);
+    auto &level = levels[stage_id];
+    level.draw(window, tileSet, textureSet);
 }
 
 void Game::change_stage(const GameStage &gs) {
@@ -65,11 +64,11 @@ void Game::tick() {
     currentLevel()->tick();
 }
 
-LevelPtr Game::currentLevel() {
+Level *Game::currentLevel() {
     if (stage == MENU) {
         return nullptr;
     } else {
-        return levels[std::get<int>(stage)];
+        return &levels[std::get<int>(stage)];
     }
 }
 

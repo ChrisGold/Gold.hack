@@ -15,8 +15,7 @@ void Level::draw(sf::RenderTarget &target, TileSet &tileset, TextureSet &texture
     textureset.render(target, playerrect, player->texture_id);
 }
 
-Level::Level(GamePtr gamePtr) : player(new Actor(gamePtr, std::shared_ptr<Level>(this), 0, sf::Vector2i(0, 0))) {
-    this->game = gamePtr;
+Level::Level() : player(new Actor(this, 0, sf::Vector2i(0, 0))) {
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
             LevelTile &t = tiles[x][y];
@@ -28,9 +27,8 @@ Level::Level(GamePtr gamePtr) : player(new Actor(gamePtr, std::shared_ptr<Level>
     }
 }
 
-Level::Level(GamePtr gamePtr, LevelTile data[LEVEL_X_SIZE][LEVEL_Y_SIZE]) : player(
-        new Actor(gamePtr, std::shared_ptr<Level>(this), "Player", 0, sf::Vector2i(0, 0))) {
-    this->game = gamePtr;
+Level::Level(LevelTile data[LEVEL_X_SIZE][LEVEL_Y_SIZE]) {
+    player = new Actor(this, "Player", 0, sf::Vector2i(0, 0));
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
             tiles[x][y] = data[x][y];
@@ -38,16 +36,16 @@ Level::Level(GamePtr gamePtr, LevelTile data[LEVEL_X_SIZE][LEVEL_Y_SIZE]) : play
     }
 }
 
-std::vector<LevelPtr> Level::make(GamePtr gamePtr) {
-    std::vector<LevelPtr> levels;
+std::vector<Level> Level::make() {
+    std::vector<Level> levels;
     LevelGenerator lg = LevelGenerator();
     lg.generate();
-    auto l = lg.export_level(gamePtr);
+    auto l = lg.export_level();
     levels.push_back(l);
     return levels;
 }
 
-void Level::enqueue(ActionPtr action) {
+void Level::enqueue(Action *action) {
     player->enqueue(std::shared_ptr<Action>(action));
 }
 

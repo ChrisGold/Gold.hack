@@ -11,11 +11,10 @@
 #include "../action/Actor.h"
 
 class Level {
-    GamePtr game;
 public:
-    explicit Level(GamePtr);
+    Level();
 
-    Level(GamePtr, LevelTile[LEVEL_X_SIZE][LEVEL_Y_SIZE]);
+    explicit Level(LevelTile[LEVEL_X_SIZE][LEVEL_Y_SIZE]);
 
     Actor *player;
 
@@ -23,9 +22,9 @@ public:
 
     bool tick();
 
-    static std::vector<std::shared_ptr<Level>> make(GamePtr gamePtr);
-
-    void enqueue(ActionPtr action);
+    void enqueue(Action *action);
 
     LevelTile tiles[LEVEL_X_SIZE][LEVEL_Y_SIZE];
+
+    static std::vector<Level> make();
 };

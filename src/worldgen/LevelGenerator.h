@@ -16,8 +16,7 @@ public:
 
     void generate();
 
-    std::shared_ptr<Level> export_level(GamePtr gamePtr);
-
+    Level export_level();
 };
 
 bool in_level(int x, int y);

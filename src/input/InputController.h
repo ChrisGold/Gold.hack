@@ -5,11 +5,11 @@
 
 class InputController {
 public:
-    explicit InputController(GamePtr game);
+    explicit InputController(Game *game);
     virtual ~InputController() = default;
 
     virtual Action *readInput(const sf::Event &event) = 0;
 
 protected:
-    GamePtr game;
+    Game *game;
 };

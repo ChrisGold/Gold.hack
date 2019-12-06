@@ -7,8 +7,8 @@
 class KeyboardController : public InputController{
 
 public:
-    explicit KeyboardController(GamePtr game);
+    explicit KeyboardController(Game *game);
     ~KeyboardController() override = default;
 
-    ActionPtr readInput(const sf::Event &event) override;
+    Action *readInput(const sf::Event &event) override;
 };

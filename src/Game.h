@@ -15,7 +15,7 @@ const GameStage MENU = std::monostate();
 
 class Game
 {
-    std::vector<std::shared_ptr<Level>> levels;
+    std::vector<Level> levels;
     sf::RenderWindow window;
     GameStage stage = MENU;
     TileSet tileSet;
@@ -27,7 +27,7 @@ public:
     ~Game();
     void loop();
 
-    LevelPtr currentLevel();
+    Level *currentLevel();
 
 private:
     void change_stage(const GameStage &stage);
