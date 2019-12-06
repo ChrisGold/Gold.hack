@@ -38,11 +38,11 @@ Level::Level(GamePtr gamePtr, LevelTile data[LEVEL_X_SIZE][LEVEL_Y_SIZE]) : play
     }
 }
 
-std::vector<Level> Level::make(GamePtr gamePtr) {
-    std::vector<Level> levels;
+std::vector<LevelPtr> Level::make(GamePtr gamePtr) {
+    std::vector<LevelPtr> levels;
     LevelGenerator lg = LevelGenerator();
     lg.generate();
-    Level l = lg.export_level(gamePtr);
+    auto l = lg.export_level(gamePtr);
     levels.push_back(l);
     return levels;
 }

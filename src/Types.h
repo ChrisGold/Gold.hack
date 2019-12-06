@@ -6,7 +6,8 @@ class Game;
 typedef Game* GamePtr;
 
 class Level;
-typedef Level* LevelPtr;
+
+typedef std::shared_ptr<Level> LevelPtr;
 
 class Action;
 typedef Action *ActionPtr;

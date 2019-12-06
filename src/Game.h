@@ -15,7 +15,7 @@ const GameStage MENU = std::monostate();
 
 class Game
 {
-    std::vector<Level> levels;
+    std::vector<std::shared_ptr<Level>> levels;
     sf::RenderWindow window;
     GameStage stage = MENU;
     TileSet tileSet;

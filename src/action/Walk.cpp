@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <utility>
 #include "Walk.h"
 #include "Actor.h"
 
@@ -36,7 +37,7 @@ void Walk::write_out(std::ostream &out) const {
     out << "walk " << direction;
 }
 
-Walk::Walk(Game *game, Level *level, Direction direction) : Action(game, level, direction) {
+Walk::Walk(Game *game, LevelPtr level, Direction direction) : Action(game, std::move(level), direction) {
 
 }
 

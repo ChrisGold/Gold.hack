@@ -14,8 +14,8 @@ void LevelGenerator::room(sf::IntRect rect, int floor_material, int wall_materia
     }
 }
 
-Level LevelGenerator::export_level(GamePtr gamePtr) {
-    return Level(gamePtr, level);
+LevelPtr LevelGenerator::export_level(GamePtr gamePtr) {
+    return std::make_shared<Level>(gamePtr, level);
 }
 
 void LevelGenerator::generate() {

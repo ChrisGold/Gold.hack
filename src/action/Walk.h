@@ -10,5 +10,5 @@ protected:
     void write_out(std::ostream &out) const override;
 
 public:
-    explicit Walk(Game *game, Level *level, Direction direction);
+    explicit Walk(Game *game, LevelPtr level, Direction direction);
 };

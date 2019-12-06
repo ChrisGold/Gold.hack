@@ -51,8 +51,8 @@ void Game::loop()
 
 void Game::draw_level(){
     int stage_id = std::get<int>(stage);
-    Level &level = levels[stage_id];
-    level.draw(window, tileSet, textureSet);
+    auto level = levels[stage_id];
+    level->draw(window, tileSet, textureSet);
 }
 
 void Game::change_stage(const GameStage &gs) {
@@ -68,7 +68,7 @@ LevelPtr Game::currentLevel() {
     if (stage == MENU) {
         return nullptr;
     } else {
-        return &levels[std::get<int>(stage)];
+        return levels[std::get<int>(stage)];
     }
 }
 

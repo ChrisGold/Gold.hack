@@ -23,7 +23,7 @@ public:
 
     bool tick();
 
-    static std::vector<Level> make(GamePtr gamePtr);
+    static std::vector<std::shared_ptr<Level>> make(GamePtr gamePtr);
 
     void enqueue(ActionPtr action);
 

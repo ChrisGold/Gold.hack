@@ -16,7 +16,7 @@ public:
 
     void generate();
 
-    Level export_level(GamePtr gamePtr);
+    std::shared_ptr<Level> export_level(GamePtr gamePtr);
 
 };
 
