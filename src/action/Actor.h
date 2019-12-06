@@ -15,6 +15,7 @@ public:
     Actor(GamePtr game, Level &level, int textureId,
           const sf::Vector2i &position);
     sf::Vector2i position;
+    Direction facing;
 
     int texture_id;
 

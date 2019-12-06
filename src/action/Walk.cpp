@@ -28,6 +28,7 @@ void Walk::execute(Actor *executor) {
             step.x = -1;
             break;
     }
+    executor->facing = direction;
     executor->position += step;
 }
 
