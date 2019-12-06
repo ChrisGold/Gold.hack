@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Action.h"
+#include "../Direction.h"
 
 class Interact : public Action {
 protected:

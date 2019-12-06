@@ -5,7 +5,6 @@
 #include <iostream>
 #include <utility>
 #include "Walk.h"
-#include "Actor.h"
 
 void Walk::execute(Actor *executor) {
     if (!can_walk(executor->position)) {

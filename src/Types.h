@@ -17,6 +17,3 @@ class Actor;
 
 typedef Actor *ActorPtr;
 
-enum Direction : char {
-    SELF, NORTH, SOUTH, EAST, WEST
-};

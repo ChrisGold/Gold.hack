@@ -1,5 +1,4 @@
 #include "Action.h"
-#include "Actor.h"
 
 Action::Action(GamePtr game, LevelPtr level, Direction direction) : game(game), level(level), direction(direction) {}
 

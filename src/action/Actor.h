@@ -5,6 +5,7 @@
 #include "../Game.h"
 #include "Action.h"
 #include "../Types.h"
+#include "../Direction.h"
 
 class Actor {
     GamePtr game;
