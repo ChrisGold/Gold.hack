@@ -3,7 +3,8 @@
 #include <memory>
 
 class Game;
-typedef Game* GamePtr;
+
+typedef std::shared_ptr<Game> GamePtr;
 
 class Level;
 

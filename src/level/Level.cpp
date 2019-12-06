@@ -15,7 +15,7 @@ void Level::draw(sf::RenderTarget &target, TileSet &tileset, TextureSet &texture
     textureset.render(target, playerrect, player->texture_id);
 }
 
-Level::Level(GamePtr gamePtr) : player(new Actor(gamePtr, *this, 0, sf::Vector2i(0, 0))) {
+Level::Level(GamePtr gamePtr) : player(new Actor(gamePtr, std::shared_ptr<Level>(this), 0, sf::Vector2i(0, 0))) {
     this->game = gamePtr;
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
@@ -29,7 +29,7 @@ Level::Level(GamePtr gamePtr) : player(new Actor(gamePtr, *this, 0, sf::Vector2i
 }
 
 Level::Level(GamePtr gamePtr, LevelTile data[LEVEL_X_SIZE][LEVEL_Y_SIZE]) : player(
-        new Actor(gamePtr, *this, 0, sf::Vector2i(0, 0))) {
+        new Actor(gamePtr, std::shared_ptr<Level>(this), 0, sf::Vector2i(0, 0))) {
     this->game = gamePtr;
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {

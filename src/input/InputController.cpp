@@ -4,4 +4,4 @@
 
 #include "InputController.h"
 
-InputController::InputController(Game* game) : game(game) {}
+InputController::InputController(GamePtr game) : game(game) {}

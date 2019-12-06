@@ -8,11 +8,11 @@
 
 class Actor {
     GamePtr game;
-    Level &level;
+    LevelPtr level;
     std::queue<std::shared_ptr<Action>> actions;
 public:
 
-    Actor(GamePtr game, Level &level, int textureId,
+    Actor(GamePtr game, LevelPtr level, int textureId,
           const sf::Vector2i &position);
     sf::Vector2i position;
     Direction facing;

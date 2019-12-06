@@ -9,5 +9,6 @@ protected:
     void write_out(std::ostream &out) const override;
 
 public:
-    explicit Interact(Game *game, LevelPtr level, Direction direction);
+    Interact(GamePtr game, LevelPtr level, Direction direction);
+
 };

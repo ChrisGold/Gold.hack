@@ -8,12 +8,13 @@
 
 Game::Game()
 {
+    auto shared_this = std::shared_ptr<Game>(this);
     window.create(sf::VideoMode(LEVEL_WIDTH, LEVEL_HEIGHT), "Gold.hack");
     change_stage(0);
     tileSet = TileSet::init();
     textureSet = TextureSet::init();
-    levels = Level::make(this);
-    inputController = new KeyboardController(this);
+    levels = Level::make(shared_this);
+    inputController = new KeyboardController(shared_this);
 }
 
 Game::~Game() {

@@ -7,7 +7,7 @@
 #include "../action/Walk.h"
 #include "../action/Interact.h"
 
-KeyboardController::KeyboardController(Game *game) : InputController(game) {
+KeyboardController::KeyboardController(GamePtr game) : InputController(game) {
 
 }
 

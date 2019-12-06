@@ -1,9 +1,8 @@
-#include <iostream>
 #include "src/Game.h"
 
 int main()
 {
-    Game g;
-    g.loop();
+    auto game = std::make_shared<Game>();
+    game->loop();
     return 0;
 }
