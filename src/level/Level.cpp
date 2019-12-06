@@ -29,6 +29,7 @@ Level::Level() : player(new Actor(this, 0, sf::Vector2i(0, 0))) {
 
 Level::Level(LevelTile data[LEVEL_X_SIZE][LEVEL_Y_SIZE]) {
     player = new Actor(this, "Player", 0, sf::Vector2i(0, 0));
+    npcs.push_back(new Actor(this, "Aurelian", 0, sf::Vector2i(3, 3)));
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
             tiles[x][y] = data[x][y];
