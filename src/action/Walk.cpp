@@ -3,8 +3,9 @@
 //
 
 #include <iostream>
-#include <utility>
 #include "Walk.h"
+#include "Actor.h"
+#include "../level/Level.h"
 
 void Walk::execute(Actor *executor) {
     std::cout << executor->name << " walking " << direction;

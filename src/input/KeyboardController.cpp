@@ -6,6 +6,7 @@
 #include "KeyboardController.h"
 #include "../action/Walk.h"
 #include "../action/Interact.h"
+#include "../Game.h"
 
 KeyboardController::KeyboardController(Game *game) : InputController(game) {
 

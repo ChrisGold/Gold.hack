@@ -1,9 +1,11 @@
 #pragma once
 
-#include "../Game.h"
+#include <SFML/System/Vector2.hpp>
 #include "../Direction.h"
 
 class Actor;
+
+class Level;
 
 class Action {
 protected:

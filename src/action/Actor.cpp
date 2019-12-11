@@ -11,7 +11,7 @@ bool Actor::act() {
     } else return false;
 }
 
-void Actor::enqueue(const std::shared_ptr<Action> &action) {
+void Actor::enqueue(Action *action) {
     actions.push(action);
 }
 

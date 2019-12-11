@@ -1,7 +1,10 @@
 #pragma once
 
 #include <SFML/Window/Event.hpp>
-#include "../Types.h"
+
+class Game;
+
+class Action;
 
 class InputController {
 public:

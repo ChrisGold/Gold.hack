@@ -3,7 +3,6 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <vector>
 
-#include "../Types.h"
 #include "LevelTile.h"
 #include "../resources/TileSet.h"
 #include "../Constants.h"

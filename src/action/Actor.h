@@ -1,16 +1,14 @@
 #pragma once
 
 #include <queue>
-#include "../level/Level.h"
-#include "../Game.h"
 #include "Action.h"
-#include "../Types.h"
 #include "../Direction.h"
 
+class Level;
 class Actor {
 
     Level *level;
-    std::queue<std::shared_ptr<Action>> actions;
+    std::queue<Action *> actions;
 public:
     Actor(Level *level, int textureId, const sf::Vector2i &position);
 
@@ -22,7 +20,7 @@ public:
 
     int texture_id;
 
-    void enqueue(const std::shared_ptr<Action> &action);
+    void enqueue(Action *action);
 
     bool act();
 

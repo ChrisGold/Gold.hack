@@ -47,7 +47,7 @@ std::vector<Level> Level::make() {
 }
 
 void Level::enqueue(Action *action) {
-    player->enqueue(std::shared_ptr<Action>(action));
+    player->enqueue(action);
 }
 
 bool Level::tick() {
