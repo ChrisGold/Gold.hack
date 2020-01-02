@@ -3,6 +3,7 @@
 #include <queue>
 #include "Action.h"
 #include "../Direction.h"
+#include "../TickContext.h"
 
 class Level;
 class Actor {
@@ -22,6 +23,6 @@ public:
 
     void enqueue(Action *action);
 
-    bool act();
+    bool act(const TickContext &ctx);
 
 };

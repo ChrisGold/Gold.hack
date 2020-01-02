@@ -1,5 +1,7 @@
 #include <ctime>
 
+#pragma once
+
 class Game;
 
 class Level;

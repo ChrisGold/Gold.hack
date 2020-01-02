@@ -8,7 +8,7 @@ void Interact::write_out(std::ostream &out) const {
     out << "Interacting...";
 }
 
-void Interact::execute(Actor *executor) {
+void Interact::execute(const TickContext &ctx, Actor *executor) {
 
 }
 

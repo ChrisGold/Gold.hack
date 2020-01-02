@@ -5,38 +5,36 @@
 
 #include "Game.h"
 #include "input/KeyboardController.h"
+#include "TickContext.h"
 
-Game::Game()
-{
+Game::Game() {
     window.create(sf::VideoMode(LEVEL_WIDTH, LEVEL_HEIGHT), "Gold.hack");
     change_stage(0);
     tileSet = TileSet::init();
     textureSet = TextureSet::init();
     levels = Level::make();
     inputController = new KeyboardController(this);
+    tick_count = 0;
 }
 
 Game::~Game() {
     delete inputController;
 }
 
-void Game::loop()
-{
+void Game::loop() {
     sf::Clock clock;
-    while (window.isOpen())
-    {
+    while (window.isOpen()) {
         if (clock.getElapsedTime().asMilliseconds() > MS_PER_TICK) {
             tick();
             clock.restart();
         }
         window.clear(sf::Color::White);
-        if(stage != MENU){
+        if (stage != MENU) {
             draw_level();
         }
 
         sf::Event event{};
-        while (window.pollEvent(event))
-        {
+        while (window.pollEvent(event)) {
             // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
                 window.close();
@@ -49,7 +47,7 @@ void Game::loop()
     }
 }
 
-void Game::draw_level(){
+void Game::draw_level() {
     int stage_id = std::get<int>(stage);
     auto &level = levels[stage_id];
     level.draw(window, tileSet, textureSet);
@@ -61,7 +59,9 @@ void Game::change_stage(const GameStage &gs) {
 }
 
 void Game::tick() {
-    currentLevel()->tick();
+    TickContext ctx = TickContext(this, currentLevel(), tick_count, time(0));
+    currentLevel()->tick(ctx);
+    tick_count++;
 }
 
 Level *Game::currentLevel() {
@@ -72,14 +72,10 @@ Level *Game::currentLevel() {
     }
 }
 
-std::string stage_name(const GameStage &stage)
-{
-    if (stage == MENU)
-    {
+std::string stage_name(const GameStage &stage) {
+    if (stage == MENU) {
         return std::string("Gold.hack: Menu");
-    }
-    else
-    {
+    } else {
         std::ostringstream ss;
         ss << "Gold.hack: Level ";
         ss << std::get<int>(stage);

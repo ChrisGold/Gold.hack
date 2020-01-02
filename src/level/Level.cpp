@@ -1,5 +1,6 @@
 #include "Level.h"
 #include "../worldgen/LevelGenerator.h"
+#include "../TickContext.h"
 #include <SFML/Graphics/RenderTexture.hpp>
 
 void Level::draw(sf::RenderTarget &target, TileSet &tileset, TextureSet &textureset) {
@@ -50,6 +51,6 @@ void Level::enqueue(Action *action) {
     player->enqueue(action);
 }
 
-bool Level::tick() {
-    return player->act();
+bool Level::tick(const TickContext &ctx) {
+    return player->act(ctx);
 }

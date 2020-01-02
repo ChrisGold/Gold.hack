@@ -2,10 +2,10 @@
 
 #include "Actor.h"
 
-bool Actor::act() {
+bool Actor::act(const TickContext &ctx) {
     if (!actions.empty()) {
         auto action = actions.front();
-        action->execute(this);
+        action->execute(ctx, this);
         actions.pop();
         return true;
     } else return false;

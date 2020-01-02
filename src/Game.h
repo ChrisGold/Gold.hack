@@ -21,7 +21,7 @@ class Game
     TileSet tileSet;
     TextureSet textureSet;
     InputController* inputController;
-
+    long tick_count;
 public:
     Game();
     ~Game();

@@ -5,7 +5,7 @@
 
 class Interact : public Action {
 protected:
-    void execute(Actor *executor) override;
+    void execute(const TickContext &ctx, Actor *executor) override;
 
     void write_out(std::ostream &out) const override;
 

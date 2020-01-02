@@ -8,6 +8,7 @@
 #include "../Constants.h"
 #include "../resources/TextureSet.h"
 #include "../action/Actor.h"
+#include "../TickContext.h"
 
 class Level {
 public:
@@ -20,7 +21,7 @@ public:
 
     void draw(sf::RenderTarget &target, TileSet &tileset, TextureSet &textureset);
 
-    bool tick();
+    bool tick(const TickContext &ctx);
 
     void enqueue(Action *action);
 

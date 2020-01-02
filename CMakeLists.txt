@@ -7,6 +7,7 @@ include(SFML.cmake)
 link_directories(SFML_LIBRARY_DIR)
 message(STATUS "2: SFML_INCLUDE_DIR: ${SFML_INCLUDE_DIR}")
 message(STATUS "2: SFML_LIBRARY_DIR: ${SFML_LIBRARY_DIR}")
+#message(Hello)
 file(GLOB_RECURSE SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "src/*.cpp" "src/*.h" "src/*.hpp" "src/**/*.cpp" "src/**/*.h" "src/**/*.hpp")
 
 add_executable(Gold_hack main.cpp ${SOURCES})

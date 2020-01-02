@@ -7,9 +7,9 @@
 #include "Actor.h"
 #include "../level/Level.h"
 
-void Walk::execute(Actor *executor) {
+void Walk::execute(const TickContext &ctx, Actor *executor) {
     std::cout << executor->name << " walking " << direction;
-    if (!can_walk(executor->position)) {
+    if (!can_walk(ctx, executor->position)) {
         std::cout << " ...boink" << std::endl;
         return;
     } else std::cout << std::endl;
@@ -42,8 +42,8 @@ Walk::Walk(Level *level, Direction direction) : Action(level, direction) {
 
 }
 
-bool Walk::can_walk(sf::Vector2i from) {
-    auto &tile = level->tiles[from.x][from.y];
+bool Walk::can_walk(const TickContext &ctx, sf::Vector2i from) {
+    auto &tile = ctx.level->tiles[from.x][from.y];
     switch (direction) {
         case SELF:
             return true;
