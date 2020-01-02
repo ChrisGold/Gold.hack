@@ -1,6 +1,7 @@
 #pragma once
 
 #include <queue>
+#include <SFML/Graphics/Rect.hpp>
 #include "Action.h"
 #include "../Direction.h"
 #include "../TickContext.h"
@@ -23,4 +24,5 @@ public:
 
     bool act(const TickContext &ctx);
 
+    sf::Rect<float> getRect();
 };

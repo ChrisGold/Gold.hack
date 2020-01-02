@@ -1,6 +1,8 @@
 #include <utility>
 
 #include "Actor.h"
+#include "../Constants.h"
+#include <SFML/Graphics/Rect.hpp>
 
 bool Actor::act(const TickContext &ctx) {
     if (!actions.empty()) {
@@ -31,4 +33,9 @@ Actor::Actor(int textureId, const sf::Vector2i &position) :
         facing(Direction::SOUTH),
         texture_id(textureId),
         position(position) {
+}
+
+sf::FloatRect Actor::getRect() {
+    return sf::FloatRect(position.x * TILE_X_SIZE, position.y * TILE_Y_SIZE, TILE_X_SIZE,
+                         TILE_Y_SIZE);
 }
