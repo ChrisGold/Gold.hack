@@ -22,7 +22,7 @@ public:
 
     void enqueue(Action *action);
 
-    bool act(const TickContext &ctx);
+    virtual bool act(const TickContext &ctx);
 
     sf::Rect<float> getRect();
 };

@@ -1,6 +1,7 @@
 #include "Level.h"
 #include "../worldgen/LevelGenerator.h"
 #include "../TickContext.h"
+#include "../action/character/Character.h"
 #include <SFML/Graphics/RenderTexture.hpp>
 
 void Level::draw(sf::RenderTarget &target, TileSet &tileset, TextureSet &textureset) {
@@ -31,7 +32,7 @@ Level::Level() : player(new Actor(0, sf::Vector2i(0, 0))) {
 
 Level::Level(LevelTile data[LEVEL_X_SIZE][LEVEL_Y_SIZE]) {
     player = new Actor("Player", 0, sf::Vector2i(0, 0));
-    npcs.push_back(new Actor("Aurelian", 0, sf::Vector2i(3, 3)));
+    npcs.push_back(new Character("Aurelian", 0, sf::Vector2i(3, 3)));
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
             tiles[x][y] = data[x][y];
@@ -53,5 +54,11 @@ void Level::enqueue(Action *action) {
 }
 
 bool Level::tick(const TickContext &ctx) {
-    return player->act(ctx);
+    auto turn = player->act(ctx);
+    if (turn) {
+        for (auto npc : npcs) {
+            npc->act(ctx);
+        }
+    }
+    return turn;
 }
