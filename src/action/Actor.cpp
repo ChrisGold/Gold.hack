@@ -5,12 +5,14 @@
 #include <SFML/Graphics/Rect.hpp>
 
 bool Actor::act(const TickContext &ctx) {
-    if (!actions.empty()) {
+    if (actions.empty()) return false;
+    else {
         auto action = actions.front();
         action->execute(ctx, this);
         actions.pop();
+        delete action;
         return true;
-    } else return false;
+    }
 }
 
 void Actor::enqueue(Action *action) {

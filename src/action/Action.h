@@ -14,6 +14,8 @@ protected:
 public:
     explicit Action(Direction direction);
 
+    virtual ~Action() = default;
+
     virtual void write_out(std::ostream &out) const = 0;
 
     friend std::ostream &operator<<(std::ostream &out, const Action &action);

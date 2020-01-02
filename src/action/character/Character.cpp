@@ -10,10 +10,3 @@ Character::Character(const std::string &name, int textureId, const sf::Vector2i 
 }
 
 int Character::counter = 0;
-
-bool Character::act(const TickContext &ctx) {
-    auto walk = new Walk(SOUTH);
-    walk->execute(ctx, this);
-    delete walk;
-    return true;
-}
