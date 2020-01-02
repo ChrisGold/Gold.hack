@@ -12,6 +12,6 @@ void Interact::execute(const TickContext &ctx, Actor *executor) {
 
 }
 
-Interact::Interact(Level *level, Direction direction) : Action(level, direction) {
+Interact::Interact(Direction direction) : Action(direction) {
 
 }

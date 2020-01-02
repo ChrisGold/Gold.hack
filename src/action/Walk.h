@@ -10,5 +10,5 @@ protected:
     void write_out(std::ostream &out) const override;
 
 public:
-    Walk(Level *level, Direction direction);
+    Walk(Direction direction);
 };

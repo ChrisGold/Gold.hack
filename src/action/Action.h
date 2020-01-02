@@ -12,7 +12,7 @@ class Action {
 protected:
     Direction direction = SELF;
 public:
-    Action(Level *, Direction direction);
+    explicit Action(Direction direction);
 
     virtual void write_out(std::ostream &out) const = 0;
 

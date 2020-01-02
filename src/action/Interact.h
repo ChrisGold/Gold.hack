@@ -10,6 +10,6 @@ protected:
     void write_out(std::ostream &out) const override;
 
 public:
-    Interact(Level *level, Direction direction);
+    Interact(Direction direction);
 
 };

@@ -38,7 +38,7 @@ void Walk::write_out(std::ostream &out) const {
     out << "walk " << direction;
 }
 
-Walk::Walk(Level *level, Direction direction) : Action(level, direction) {
+Walk::Walk(Direction direction) : Action(direction) {
 
 }
 

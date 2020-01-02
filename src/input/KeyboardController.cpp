@@ -16,16 +16,16 @@ Action *KeyboardController::readInput(const sf::Event &event) {
     Action *action = nullptr;
     if (event.type == sf::Event::KeyReleased) {
         if (event.key.code == UP) {
-            action = new Walk(this->game->currentLevel(), Direction::NORTH);
+            action = new Walk(Direction::NORTH);
         } else if (event.key.code == DOWN) {
-            action = new Walk(this->game->currentLevel(), Direction::SOUTH);
+            action = new Walk(Direction::SOUTH);
         } else if (event.key.code == LEFT) {
-            action = new Walk(this->game->currentLevel(), Direction::WEST);
+            action = new Walk(Direction::WEST);
         } else if (event.key.code == RIGHT) {
-            action = new Walk(this->game->currentLevel(), Direction::EAST);
+            action = new Walk(Direction::EAST);
         } else if (event.key.code == ATTACK) {
         } else if (event.key.code == INTERACT) {
-            action = new Interact(this->game->currentLevel(), this->game->currentLevel()->player->facing);
+            action = new Interact(this->game->currentLevel()->player->facing);
         }
     }
     return action;
