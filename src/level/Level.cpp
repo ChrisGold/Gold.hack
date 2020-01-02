@@ -12,6 +12,9 @@ void Level::draw(sf::RenderTarget &target, TileSet &tileset, TextureSet &texture
         }
     }
     textureset.render(target, player->getRect(), player->texture_id);
+    for (auto npc : npcs) {
+        textureset.render(target, npc->getRect(), npc->texture_id);
+    }
 }
 
 Level::Level() : player(new Actor(0, sf::Vector2i(0, 0))) {
