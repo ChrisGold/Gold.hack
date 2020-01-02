@@ -17,8 +17,7 @@ void Actor::enqueue(Action *action) {
 
 int actor_counter = 0;
 
-Actor::Actor(Level *level, std::string name, int textureId, const sf::Vector2i &position) :
-        level(level),
+Actor::Actor(std::string name, int textureId, const sf::Vector2i &position) :
         actions(),
         name(std::move(name)),
         facing(Direction::SOUTH),
@@ -26,8 +25,7 @@ Actor::Actor(Level *level, std::string name, int textureId, const sf::Vector2i &
         position(position) {
 }
 
-Actor::Actor(Level *level, int textureId, const sf::Vector2i &position) :
-        level(level),
+Actor::Actor(int textureId, const sf::Vector2i &position) :
         actions(),
         name("MOB " + std::to_string(actor_counter++)),
         facing(Direction::SOUTH),

@@ -5,15 +5,13 @@
 #include "../Direction.h"
 #include "../TickContext.h"
 
-class Level;
 class Actor {
 
-    Level *level;
     std::queue<Action *> actions;
 public:
-    Actor(Level *level, int textureId, const sf::Vector2i &position);
+    Actor(int textureId, const sf::Vector2i &position);
 
-    Actor(Level *level, std::string name, int textureId, const sf::Vector2i &position);
+    Actor(std::string name, int textureId, const sf::Vector2i &position);
 
     sf::Vector2i position;
     Direction facing;
