@@ -1,8 +1,8 @@
 #pragma once
 
-const int UP = 22;
-const int LEFT = 0;
-const int DOWN = 18;
-const int RIGHT = 3;
-const int ATTACK = 57;
-const int INTERACT = 58;
+const int UP = sf::Keyboard::W;
+const int LEFT = sf::Keyboard::A;
+const int DOWN = sf::Keyboard::S;
+const int RIGHT = sf::Keyboard::D;
+const int ATTACK = sf::Keyboard::E;
+const int INTERACT = sf::Keyboard::Q;
