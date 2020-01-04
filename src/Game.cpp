@@ -24,27 +24,47 @@ Game::~Game() {
 void Game::loop() {
     sf::Clock clock;
     while (window.isOpen()) {
-        if (clock.getElapsedTime().asMilliseconds() > MS_PER_TICK) {
-            tick();
-            clock.restart();
-        }
-        window.clear(sf::Color::White);
         if (stage != MENU) {
-            draw_level();
-        }
+            level_loop(clock);
+        } else menu_loop();
+        window.display();
 
         sf::Event event{};
         while (window.pollEvent(event)) {
             // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
                 window.close();
-            auto action = inputController->readInput(event);
-            if (action != nullptr) {
-                currentLevel()->enqueue(action);
-            }
+                //TODO: Handle GainFocus and LostFocus
+            else if (stage == MENU) {
+                menu_input(event);
+            } else level_input(event);
+
         }
-        window.display();
     }
+}
+
+void Game::level_loop(sf::Clock &clock) {
+    if (clock.getElapsedTime().asMilliseconds() > MS_PER_TICK) {
+        tick();
+        clock.restart();
+    }
+    window.clear(sf::Color::White);
+    draw_level();
+}
+
+void Game::level_input(sf::Event event) {
+    auto action = inputController->readInput(event);
+    if (action != nullptr) {
+        currentLevel()->enqueue(action);
+    }
+}
+
+void Game::menu_loop() {
+    menu.draw(window, tileSet, textureSet);
+}
+
+void Game::menu_input(sf::Event event) {
+
 }
 
 void Game::draw_level() {

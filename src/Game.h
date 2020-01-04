@@ -9,6 +9,7 @@
 #include "resources/TextureSet.h"
 #include "input/InputController.h"
 #include "action/Actor.h"
+#include "Menu.h"
 
 typedef std::variant<int, std::monostate> GameStage;
 const GameStage MENU = std::monostate();
@@ -16,6 +17,8 @@ const GameStage MENU = std::monostate();
 class Game
 {
     std::vector<Level> levels;
+    Menu menu;
+
     sf::RenderWindow window;
     GameStage stage = MENU;
     TileSet tileSet;
@@ -35,6 +38,13 @@ private:
 
     void tick();
 
+    void level_loop(sf::Clock &clock);
+
+    void menu_loop();
+
+    void menu_input(sf::Event event);
+
+    void level_input(sf::Event event);
 };
 
 std::string stage_name(const GameStage &stage);
