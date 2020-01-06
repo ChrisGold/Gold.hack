@@ -10,7 +10,11 @@ const int TPS = 20;
 const int MS_PER_TICK = 1000 / TPS;
 
 const int LEVEL_WIDTH = LEVEL_X_SIZE * TILE_X_SIZE;
-const int LEVEL_HEIGHT = LEVEL_Y_SIZE * TILE_Y_SIZE;
+const int TOTAL_HEIGHT = LEVEL_Y_SIZE * TILE_Y_SIZE;
+const int SIDEBAR_WIDTH = 8 * TILE_X_SIZE;
+const int TOTAL_WIDTH = LEVEL_WIDTH + SIDEBAR_WIDTH;
 
 const int VOID_ID = 0;
 const std::string VOID_NAME = "void";
+
+const std::string FONT_DEFAULT = "LiberationSerif-Regular";

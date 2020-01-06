@@ -5,16 +5,26 @@
 
 #include "Game.h"
 #include "input/KeyboardController.h"
-#include "TickContext.h"
 
 Game::Game() {
-    window.create(sf::VideoMode(LEVEL_WIDTH, LEVEL_HEIGHT), "Gold.hack");
-    change_stage(0);
+    window.create(sf::VideoMode(TOTAL_WIDTH, TOTAL_HEIGHT), "Gold.hack");
+
+    levelTexture.create(LEVEL_WIDTH, TOTAL_HEIGHT);
+    sidebarTexture.create(SIDEBAR_WIDTH, TOTAL_HEIGHT);
+    levelSprite = sf::Sprite(levelTexture.getTexture());
+    sidebarSprite = sf::Sprite(sidebarTexture.getTexture());
+    sidebarSprite.setPosition(LEVEL_WIDTH, 0);
+
     tileSet = TileSet::init();
     textureSet = TextureSet::init();
+    fonts = Fonts::init();
+
     levels = Level::make();
     inputController = new KeyboardController(this);
+    playerInventory = new Inventory("Player");
+
     tick_count = 0;
+    change_stage(0);
 }
 
 Game::~Game() {
@@ -70,7 +80,16 @@ void Game::menu_input(sf::Event event) {
 void Game::draw_level() {
     int stage_id = std::get<int>(stage);
     auto &level = levels[stage_id];
-    level.draw(window, tileSet, textureSet);
+    levelTexture.clear(sf::Color::Black);
+    sidebarTexture.clear(sf::Color(128, 128, 128));
+
+    level.draw(levelTexture, tileSet, textureSet);
+    playerInventory->draw(sidebarTexture, fonts);
+    sidebarTexture.display();
+    levelTexture.display();
+
+    window.draw(levelSprite);
+    window.draw(sidebarSprite);
 }
 
 void Game::change_stage(const GameStage &gs) {

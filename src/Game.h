@@ -3,31 +3,45 @@
 #include <vector>
 #include <variant>
 #include <SFML/Graphics/RenderWindow.hpp>
-
+#include <SFML/Graphics/RenderTexture.hpp>
 #include "level/Level.h"
 #include "resources/TileSet.h"
 #include "resources/TextureSet.h"
 #include "input/InputController.h"
 #include "action/Actor.h"
 #include "Menu.h"
+#include "inventory/Inventory.h"
+#include "resources/Fonts.h"
 
 typedef std::variant<int, std::monostate> GameStage;
 const GameStage MENU = std::monostate();
 
-class Game
-{
+class Game {
     std::vector<Level> levels;
     Menu menu;
 
     sf::RenderWindow window;
+
+    sf::Sprite levelSprite;
+    sf::RenderTexture levelTexture;
+
+    sf::Sprite sidebarSprite;
+    sf::RenderTexture sidebarTexture;
+
+
     GameStage stage = MENU;
     TileSet tileSet;
     TextureSet textureSet;
-    InputController* inputController;
+    Fonts fonts;
+    InputController *inputController;
+    Inventory *playerInventory;
+
     long tick_count;
 public:
     Game();
+
     ~Game();
+
     void loop();
 
     Level *currentLevel();
