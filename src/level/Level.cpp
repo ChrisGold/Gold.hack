@@ -1,7 +1,7 @@
 #include "Level.h"
 #include "../worldgen/LevelGenerator.h"
-#include "../TickContext.h"
 #include "../action/character/Character.h"
+#include "../action/character/Player.h"
 #include <SFML/Graphics/RenderTexture.hpp>
 
 void Level::draw(sf::RenderTarget &target, TileSet &tileset, TextureSet &textureset) {
@@ -18,20 +18,8 @@ void Level::draw(sf::RenderTarget &target, TileSet &tileset, TextureSet &texture
     }
 }
 
-Level::Level() : player(new Actor(0, sf::Vector2i(0, 0))) {
-    for (int x = 0; x < LEVEL_X_SIZE; x++) {
-        for (int y = 0; y < LEVEL_Y_SIZE; y++) {
-            LevelTile &t = tiles[x][y];
-            t.pass_east = false;
-            t.pass_north = false;
-            t.floor_tile = 0;
-            t.wall_tile = 0;
-        }
-    }
-}
-
 Level::Level(LevelTile data[LEVEL_X_SIZE][LEVEL_Y_SIZE]) {
-    player = new Actor("Player", 0, sf::Vector2i(0, 0));
+    player = new Player("Player", 0, sf::Vector2i(0, 0));
     npcs.push_back(new Character("Aurelian", 0, sf::Vector2i(3, 3)));
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {

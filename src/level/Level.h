@@ -9,14 +9,13 @@
 #include "../resources/TextureSet.h"
 #include "../action/Actor.h"
 #include "../TickContext.h"
+#include "../action/character/Player.h"
 
 class Level {
 public:
-    Level();
-
     explicit Level(LevelTile[LEVEL_X_SIZE][LEVEL_Y_SIZE]);
 
-    Actor *player;
+    Player *player;
     std::vector<Actor *> npcs;
 
     void draw(sf::RenderTarget &target, TileSet &tileset, TextureSet &textureset);
