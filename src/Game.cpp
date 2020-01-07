@@ -54,12 +54,12 @@ void Game::loop() {
 }
 
 void Game::level_loop(sf::Clock &clock) {
+    window.clear(sf::Color::White);
+    draw_level();
     if (clock.getElapsedTime().asMilliseconds() > MS_PER_TICK) {
         tick();
         clock.restart();
     }
-    window.clear(sf::Color::White);
-    draw_level();
 }
 
 void Game::level_input(sf::Event event) {
@@ -109,6 +109,19 @@ Level *Game::currentLevel() {
     } else {
         return &levels[std::get<int>(stage)];
     }
+}
+
+void Game::level_advance() {
+    if (stage == MENU) {
+        stage = 0;
+    } else {
+        stage = std::get<int>(stage) + 1;
+        if (std::get<int>(stage) >= levels.size()) {
+            //You won the game!
+            stage = MENU;
+        }
+    }
+
 }
 
 std::string stage_name(const GameStage &stage) {

@@ -34,10 +34,9 @@ std::vector<Level> Level::make() {
     std::vector<Level> levels;
     LevelGenerator lg = LevelGenerator();
     lg.generate();
-    auto l = lg.export_level();
-    levels.push_back(l);
-    levels.push_back(l);
-    levels.push_back(l);
+    levels.push_back(lg.export_level());
+    levels.push_back(lg.export_level());
+    levels.push_back(lg.export_level());
     return levels;
 }
 
@@ -45,7 +44,7 @@ void Level::enqueue(Action *action) {
     player->enqueue(action);
 }
 
-bool Level::tick(const TickContext &ctx) {
+bool Level::tick(TickContext &ctx) {
     auto turn = player->act(ctx);
     if (turn) {
         for (auto npc : npcs) {

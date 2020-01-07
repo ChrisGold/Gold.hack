@@ -4,7 +4,7 @@
 #include "../Constants.h"
 #include <SFML/Graphics/Rect.hpp>
 
-bool Actor::act(const TickContext &ctx) {
+bool Actor::act(TickContext &ctx) {
     if (actions.empty()) return false;
     else {
         auto action = actions.front();

@@ -23,6 +23,7 @@ void LevelGenerator::generate() {
     room(sf::IntRect(7, 1, 5, 5), 1, 2);
     room(sf::IntRect(6, 3, 1, 1), 2, 2);
     room(sf::IntRect(0, 0, 1, 8), 1, 2);
+    room(sf::IntRect(4, 4, 1, 1), 1, 0);
     calculate_walls();
     entryPosition = sf::Vector2i(0, 0);
     exitPosition = sf::Vector2i(4, 4);

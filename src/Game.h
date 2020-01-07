@@ -46,8 +46,11 @@ public:
 
     Level *currentLevel();
 
+    void level_advance();
+
 private:
     void change_stage(const GameStage &stage);
+
     void draw_level();
 
     void tick();

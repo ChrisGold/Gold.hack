@@ -5,9 +5,10 @@
 #include <iostream>
 #include "Walk.h"
 #include "Actor.h"
+#include "../Game.h"
 #include "../level/Level.h"
 
-void Walk::execute(const TickContext &ctx, Actor *executor) {
+void Walk::execute(TickContext &ctx, Actor *executor) {
     std::cout << executor->name << " walking " << direction;
     if (!can_walk(ctx, executor->position)) {
         std::cout << " ...boink" << std::endl;
@@ -34,6 +35,7 @@ void Walk::execute(const TickContext &ctx, Actor *executor) {
     executor->position += step;
     if (dynamic_cast<Player *>(executor) && on_exit(ctx, executor->position)) {
         std::cout << executor->name << " is on exit!" << std::endl;
+        ctx.game->level_advance();
     }
 }
 

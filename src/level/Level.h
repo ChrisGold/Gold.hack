@@ -20,7 +20,7 @@ public:
 
     void draw(sf::RenderTarget &target, TileSet &tileset, TextureSet &textureset);
 
-    bool tick(const TickContext &ctx);
+    bool tick(TickContext &ctx);
 
     void enqueue(Action *action);
 

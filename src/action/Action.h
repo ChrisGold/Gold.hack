@@ -20,5 +20,5 @@ public:
 
     friend std::ostream &operator<<(std::ostream &out, const Action &action);
 
-    virtual void execute(const TickContext &ctx, Actor *executor) = 0;
+    virtual void execute(TickContext &ctx, Actor *executor) = 0;
 };
