@@ -32,6 +32,9 @@ void Walk::execute(const TickContext &ctx, Actor *executor) {
     }
     executor->facing = direction;
     executor->position += step;
+    if (dynamic_cast<Player *>(executor) && on_exit(ctx, executor->position)) {
+        std::cout << executor->name << " is on exit!" << std::endl;
+    }
 }
 
 void Walk::write_out(std::ostream &out) const {
@@ -58,3 +61,6 @@ bool Walk::can_walk(const TickContext &ctx, sf::Vector2i from) {
     }
 }
 
+bool Walk::on_exit(const TickContext &ctx, sf::Vector2i on) {
+    return ctx.level->exitPosition == on;
+}

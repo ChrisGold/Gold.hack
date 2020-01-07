@@ -12,4 +12,6 @@ public:
     Walk(Direction direction);
 
     void execute(const TickContext &ctx, Actor *executor) override;
+
+    bool on_exit(const TickContext &ctx, sf::Vector2i on);
 };

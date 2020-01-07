@@ -18,8 +18,10 @@ void Level::draw(sf::RenderTarget &target, TileSet &tileset, TextureSet &texture
     }
 }
 
-Level::Level(LevelTile data[LEVEL_X_SIZE][LEVEL_Y_SIZE]) {
-    player = new Player("Player", 0, sf::Vector2i(0, 0));
+Level::Level(LevelTile data[14][14], sf::Vector2i entry, sf::Vector2i exit) {
+    this->entryPosition = entry;
+    this->exitPosition = exit;
+    player = new Player("Player", 0, entry);
     npcs.push_back(new Character("Aurelian", 0, sf::Vector2i(3, 3)));
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
@@ -33,6 +35,8 @@ std::vector<Level> Level::make() {
     LevelGenerator lg = LevelGenerator();
     lg.generate();
     auto l = lg.export_level();
+    levels.push_back(l);
+    levels.push_back(l);
     levels.push_back(l);
     return levels;
 }

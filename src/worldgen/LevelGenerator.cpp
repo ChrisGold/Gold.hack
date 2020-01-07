@@ -15,7 +15,7 @@ void LevelGenerator::room(sf::IntRect rect, int floor_material, int wall_materia
 }
 
 Level LevelGenerator::export_level() {
-    return Level(level);
+    return Level(level, entryPosition, exitPosition);
 }
 
 void LevelGenerator::generate() {
@@ -24,6 +24,8 @@ void LevelGenerator::generate() {
     room(sf::IntRect(6, 3, 1, 1), 2, 2);
     room(sf::IntRect(0, 0, 1, 8), 1, 2);
     calculate_walls();
+    entryPosition = sf::Vector2i(0, 0);
+    exitPosition = sf::Vector2i(4, 4);
 }
 
 LevelGenerator::LevelGenerator() {

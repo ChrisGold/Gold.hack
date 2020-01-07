@@ -13,7 +13,7 @@
 
 class Level {
 public:
-    explicit Level(LevelTile[LEVEL_X_SIZE][LEVEL_Y_SIZE]);
+    explicit Level(LevelTile data[14][14], sf::Vector2i entry, sf::Vector2i exit);
 
     Player *player;
     std::vector<Actor *> npcs;
@@ -25,6 +25,9 @@ public:
     void enqueue(Action *action);
 
     LevelTile tiles[LEVEL_X_SIZE][LEVEL_Y_SIZE];
+    sf::Vector2i entryPosition;
+    sf::Vector2i exitPosition;
+
 
     static std::vector<Level> make();
 };
