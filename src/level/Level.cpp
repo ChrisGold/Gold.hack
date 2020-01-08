@@ -22,7 +22,6 @@ Level::Level(LevelTile data[14][14], sf::Vector2i entry, sf::Vector2i exit) {
     this->entryPosition = entry;
     this->exitPosition = exit;
     player = new Player("Player", 0, entry);
-    npcs.push_back(new Character("Aurelian", 0, sf::Vector2i(3, 3)));
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
             tiles[x][y] = data[x][y];
@@ -33,9 +32,13 @@ Level::Level(LevelTile data[14][14], sf::Vector2i entry, sf::Vector2i exit) {
 std::vector<Level> Level::make() {
     std::vector<Level> levels;
     LevelGenerator lg = LevelGenerator();
-    lg.generate();
+    lg.generate(0);
     levels.push_back(lg.export_level());
+    lg = LevelGenerator();
+    lg.generate(1);
     levels.push_back(lg.export_level());
+    lg = LevelGenerator();
+    lg.generate(2);
     levels.push_back(lg.export_level());
     return levels;
 }

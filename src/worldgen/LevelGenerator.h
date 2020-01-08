@@ -17,7 +17,7 @@ public:
     sf::Vector2i entryPosition;
     sf::Vector2i exitPosition;
 
-    void generate();
+    void generate(int type);
 
     Level export_level();
 };

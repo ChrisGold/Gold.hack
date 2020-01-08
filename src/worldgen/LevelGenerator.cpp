@@ -18,15 +18,26 @@ Level LevelGenerator::export_level() {
     return Level(level, entryPosition, exitPosition);
 }
 
-void LevelGenerator::generate() {
-    room(sf::IntRect(1, 1, 5, 5), 2, 1);
-    room(sf::IntRect(7, 1, 5, 5), 1, 2);
-    room(sf::IntRect(6, 3, 1, 1), 2, 2);
-    room(sf::IntRect(0, 0, 1, 8), 1, 2);
-    room(sf::IntRect(4, 4, 1, 1), 1, 0);
+void LevelGenerator::generate(int type) {
+    if (type == 0) {
+        entryPosition = sf::Vector2i(0, 0);
+        exitPosition = sf::Vector2i(4, 4);
+        room(sf::IntRect(1, 1, 5, 5), 2, 1);
+        room(sf::IntRect(7, 1, 5, 5), 1, 2);
+        room(sf::IntRect(6, 3, 1, 1), 2, 2);
+        room(sf::IntRect(0, 0, 1, 8), 1, 2);
+        room(sf::IntRect(4, 4, 1, 1), 1, 0);
+    } else if (type == 1) {
+        entryPosition = sf::Vector2i(0, 4);
+        exitPosition = sf::Vector2i(2, 0);
+        room(sf::IntRect(0, 0, 3, 5), 1, 2);
+    } else if (type == 2) {
+        entryPosition = sf::Vector2i(8, 0);
+        exitPosition = sf::Vector2i(13, 13);
+        room(sf::IntRect(0, 13, 14, 1), 1, 2);
+        room(sf::IntRect(8, 0, 1, 14), 2, 1);
+    }
     calculate_walls();
-    entryPosition = sf::Vector2i(0, 0);
-    exitPosition = sf::Vector2i(4, 4);
 }
 
 LevelGenerator::LevelGenerator() {
