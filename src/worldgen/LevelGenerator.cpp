@@ -1,4 +1,5 @@
 #include "LevelGenerator.h"
+#include "../action/character/Character.h"
 
 void LevelGenerator::room(sf::IntRect rect, int floor_material, int wall_material) {
     for (int x = 0; x < rect.width; ++x) {
@@ -15,7 +16,10 @@ void LevelGenerator::room(sf::IntRect rect, int floor_material, int wall_materia
 }
 
 Level LevelGenerator::export_level() {
-    return Level(level, entryPosition, exitPosition);
+    auto l = Level(level, entryPosition, exitPosition);
+    Actor *npc = new Character("Aurelian", 0, exitPosition);
+    l.npcs.push_back(npc);
+    return l;
 }
 
 void LevelGenerator::generate(int type) {
@@ -34,8 +38,9 @@ void LevelGenerator::generate(int type) {
     } else if (type == 2) {
         entryPosition = sf::Vector2i(8, 0);
         exitPosition = sf::Vector2i(13, 13);
-        room(sf::IntRect(0, 13, 14, 1), 1, 2);
-        room(sf::IntRect(8, 0, 1, 14), 2, 1);
+        room(sf::IntRect(8, 0, 1, 13), 2, 1);
+        room(sf::IntRect(0, 13, 13, 1), 1, 2);
+        room(sf::IntRect(13, 13, 1, 1), 2, 1);
     }
     calculate_walls();
 }
