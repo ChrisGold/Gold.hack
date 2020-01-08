@@ -4,10 +4,11 @@
 #include "TickContext.h"
 #include "resources/TileSet.h"
 #include "resources/TextureSet.h"
+#include "resources/Fonts.h"
 
 class Menu {
 public:
-    void draw(sf::RenderTarget &target, TileSet &tileset, TextureSet &textureset);
+    void draw(sf::RenderTarget &target, TileSet &tileset, TextureSet &textureset, Fonts &fonts);
 
     void tick(TickContext &ctx);
 

@@ -70,7 +70,7 @@ void Game::level_input(sf::Event event) {
 }
 
 void Game::menu_loop() {
-    menu.draw(window, tileSet, textureSet);
+    menu.draw(window, tileSet, textureSet, fonts);
 }
 
 void Game::menu_input(sf::Event event) {

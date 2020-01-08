@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SFML/Graphics/Color.hpp>
+
 const int LEVEL_X_SIZE = 14;
 const int LEVEL_Y_SIZE = 14;
 
@@ -18,3 +20,5 @@ const int VOID_ID = 0;
 const std::string VOID_NAME = "void";
 
 const std::string FONT_DEFAULT = "LiberationSerif-Regular";
+const sf::Color goldenrod = sf::Color(0XDAA250FF);
+const sf::Color light_gray = sf::Color(0XAAAAAAFF);
