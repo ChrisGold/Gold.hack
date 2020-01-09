@@ -2,26 +2,27 @@
 #include "../worldgen/LevelGenerator.h"
 #include "../action/character/Character.h"
 #include "../action/character/Player.h"
+#include "../resources/Resources.h"
 #include <SFML/Graphics/RenderTexture.hpp>
 
-void Level::draw(sf::RenderTarget &target, TileSet &tileset, TextureSet &textureset) {
+void Level::draw(sf::RenderTarget &target, Resources &resources) {
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
             LevelTile t = tiles[x][y];
             auto rect = sf::FloatRect(x * TILE_X_SIZE, y * TILE_Y_SIZE, TILE_X_SIZE, TILE_Y_SIZE);
-            tileset.render(target, rect, t);
+            resources.render(target, rect, t);
         }
     }
-    textureset.render(target, player->getRect(), player->texture_id);
+    resources.render(target, player->getRect(), player->texture_id);
     for (auto npc : npcs) {
-        textureset.render(target, npc->getRect(), npc->texture_id);
+        resources.render(target, npc->getRect(), npc->texture_id);
     }
 }
 
 Level::Level(LevelTile data[14][14], sf::Vector2i entry, sf::Vector2i exit) {
     this->entryPosition = entry;
     this->exitPosition = exit;
-    player = new Player("Player", 0, entry);
+    player = new Player("Player", 1, entry);
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
             tiles[x][y] = data[x][y];

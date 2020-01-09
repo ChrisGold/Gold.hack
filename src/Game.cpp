@@ -15,9 +15,7 @@ Game::Game() {
     sidebarSprite = sf::Sprite(sidebarTexture.getTexture());
     sidebarSprite.setPosition(LEVEL_WIDTH, 0);
 
-    tileSet = TileSet::init();
-    textureSet = TextureSet::init();
-    fonts = Fonts::init();
+    resources = Resources::init();
 
     levels = Level::make();
     inputController = new KeyboardController(this);
@@ -70,7 +68,7 @@ void Game::level_input(sf::Event event) {
 }
 
 void Game::menu_loop() {
-    menu.draw(window, tileSet, textureSet, fonts);
+    menu.draw(window, resources);
 }
 
 void Game::menu_input(sf::Event event) {
@@ -83,8 +81,8 @@ void Game::draw_level() {
     levelTexture.clear(sf::Color::Black);
     sidebarTexture.clear(sf::Color(128, 128, 128));
 
-    level.draw(levelTexture, tileSet, textureSet);
-    playerInventory->draw(sidebarTexture, fonts);
+    level.draw(levelTexture, resources);
+    playerInventory->draw(sidebarTexture, resources);
     sidebarTexture.display();
     levelTexture.display();
 

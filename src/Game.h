@@ -12,6 +12,7 @@
 #include "Menu.h"
 #include "inventory/Inventory.h"
 #include "resources/Fonts.h"
+#include "resources/Resources.h"
 
 typedef std::variant<int, std::monostate> GameStage;
 const GameStage MENU = std::monostate();
@@ -30,9 +31,7 @@ class Game {
 
 
     GameStage stage = MENU;
-    TileSet tileSet;
-    TextureSet textureSet;
-    Fonts fonts;
+    Resources resources;
     InputController *inputController;
     Inventory *playerInventory;
 

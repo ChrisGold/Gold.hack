@@ -17,7 +17,7 @@ void LevelGenerator::room(sf::IntRect rect, int floor_material, int wall_materia
 
 Level LevelGenerator::export_level() {
     auto l = Level(level, entryPosition, exitPosition);
-    Actor *npc = new Character("Aurelian", 0, exitPosition);
+    Actor *npc = new Character("Aurelian", 1, exitPosition);
     l.npcs.push_back(npc);
     return l;
 }
@@ -26,21 +26,21 @@ void LevelGenerator::generate(int type) {
     if (type == 0) {
         entryPosition = sf::Vector2i(0, 0);
         exitPosition = sf::Vector2i(4, 4);
-        room(sf::IntRect(1, 1, 5, 5), 2, 1);
-        room(sf::IntRect(7, 1, 5, 5), 1, 2);
-        room(sf::IntRect(6, 3, 1, 1), 2, 2);
-        room(sf::IntRect(0, 0, 1, 8), 1, 2);
-        room(sf::IntRect(4, 4, 1, 1), 1, 0);
+        room(sf::IntRect(1, 1, 5, 5), 2, 3);
+        room(sf::IntRect(7, 1, 5, 5), 2, 3);
+        room(sf::IntRect(6, 3, 1, 1), 2, 3);
+        room(sf::IntRect(0, 0, 1, 8), 2, 3);
+        room(sf::IntRect(4, 4, 1, 1), 2, 3);
     } else if (type == 1) {
         entryPosition = sf::Vector2i(0, 4);
         exitPosition = sf::Vector2i(2, 0);
-        room(sf::IntRect(0, 0, 3, 5), 1, 2);
+        room(sf::IntRect(0, 0, 3, 5), 2, 3);
     } else if (type == 2) {
         entryPosition = sf::Vector2i(8, 0);
         exitPosition = sf::Vector2i(13, 13);
-        room(sf::IntRect(8, 0, 1, 13), 2, 1);
-        room(sf::IntRect(0, 13, 13, 1), 1, 2);
-        room(sf::IntRect(13, 13, 1, 1), 2, 1);
+        room(sf::IntRect(8, 0, 1, 13), 2, 3);
+        room(sf::IntRect(0, 13, 13, 1), 2, 3);
+        room(sf::IntRect(13, 13, 1, 1), 2, 3);
     }
     calculate_walls();
 }

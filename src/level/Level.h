@@ -10,6 +10,7 @@
 #include "../action/Actor.h"
 #include "../TickContext.h"
 #include "../action/character/Player.h"
+#include "../resources/Resources.h"
 
 class Level {
 public:
@@ -18,7 +19,7 @@ public:
     Player *player;
     std::vector<Actor *> npcs;
 
-    void draw(sf::RenderTarget &target, TileSet &tileset, TextureSet &textureset);
+    void draw(sf::RenderTarget &target, Resources &resources);
 
     bool tick(TickContext &ctx);
 
