@@ -5,8 +5,8 @@
 #include "../level/LevelTile.h"
 
 class Resources {
-    std::vector<sf::Font> fonts;
-    std::vector<sf::Texture> textures;
+    std::vector<sf::Font *> fonts;
+    std::vector<sf::Texture *> textures;
 
     void loadFont(const std::string &fontname);
 
@@ -15,9 +15,9 @@ class Resources {
 public:
     Resources();
 
-    sf::Font &getFont(int font_id);
+    sf::Font * getFont(int font_id);
 
-    sf::Texture &getTexture(int tile_id);
+    sf::Texture * getTexture(int tile_id);
 
     static Resources init();
 
