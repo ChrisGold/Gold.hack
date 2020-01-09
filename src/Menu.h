@@ -2,9 +2,6 @@
 
 #include <SFML/Graphics/RenderTarget.hpp>
 #include "TickContext.h"
-#include "resources/TileSet.h"
-#include "resources/TextureSet.h"
-#include "resources/Fonts.h"
 #include "resources/Resources.h"
 
 class Menu {

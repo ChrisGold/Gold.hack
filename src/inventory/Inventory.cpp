@@ -3,7 +3,6 @@
 #include <SFML/Graphics/Text.hpp>
 #include <utility>
 #include "Inventory.h"
-#include "../resources/Fonts.h"
 #include "../Constants.h"
 #include "../resources/Resources.h"
 

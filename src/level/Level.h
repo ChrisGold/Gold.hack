@@ -4,9 +4,7 @@
 #include <vector>
 
 #include "LevelTile.h"
-#include "../resources/TileSet.h"
 #include "../Constants.h"
-#include "../resources/TextureSet.h"
 #include "../action/Actor.h"
 #include "../TickContext.h"
 #include "../action/character/Player.h"

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string>
-#include "../resources/Fonts.h"
 #include "../resources/Resources.h"
 
 class Inventory {

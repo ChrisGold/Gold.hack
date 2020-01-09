@@ -4,14 +4,13 @@
 #include <variant>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/RenderTexture.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 #include "level/Level.h"
-#include "resources/TileSet.h"
-#include "resources/TextureSet.h"
 #include "input/InputController.h"
 #include "action/Actor.h"
 #include "Menu.h"
 #include "inventory/Inventory.h"
-#include "resources/Fonts.h"
+
 #include "resources/Resources.h"
 
 typedef std::variant<int, std::monostate> GameStage;
