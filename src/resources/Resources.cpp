@@ -13,20 +13,18 @@ Resources::Resources() : fonts(), textures() {
 
 }
 
-void Resources::loadFont(const std::string &fontname) {
-    std::string path = fontname + ".ttf";
+void Resources::loadFont(const std::string &fontname, const std::string &path) {
     std::cout << "Loading: " << path << std::endl;
     auto font = new sf::Font();
     font->loadFromFile(path);
-    fonts.push_back(std::move(font));
+    fonts.push_back(font);
 }
 
-void Resources::loadTexture(const std::string &filename) {
-    std::string path = filename + ".png";
+void Resources::loadTexture(const std::string &texture, const std::string &path) {
     std::cout << "Loading: " << path << std::endl;
     auto tex = new sf::Texture();
     tex->loadFromFile(path);
-    textures.push_back(std::move(tex));
+    textures.push_back(tex);
 }
 
 sf::Font * Resources::getFont(int font_id) {
@@ -94,12 +92,4 @@ void Resources::render(sf::RenderTarget &target, const sf::FloatRect &rect, cons
         target.draw(west);
     }
 
-}
-
-Resources Resources::init() {
-    Resources res;
-    std::vector<std::string> textures = {"void", "player", "wood", "stone", "halo"};
-    for (const auto &texture : textures) res.loadTexture(texture);
-    res.loadFont(FONT_DEFAULT);
-    return res;
 }

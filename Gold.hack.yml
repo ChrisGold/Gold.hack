@@ -1,0 +1,9 @@
+prefix: res
+textures:
+  - void.png
+  - player.png
+  - wood.png
+  - stone.png
+  - halo.png
+fonts:
+  - LiberationSerif-Regular.ttf
