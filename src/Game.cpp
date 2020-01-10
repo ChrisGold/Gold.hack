@@ -121,6 +121,10 @@ void Game::level_advance() {
         if (std::get<int>(stage) >= levels.size()) {
             //You won the game!
             stage = MENU;
+            auto cfg = Config::loadFromYAML("Gold.hack.yml");
+            resources = cfg.loadResources();
+
+            levels = cfg.generateLevels();
         }
     }
 
