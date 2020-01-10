@@ -57,6 +57,10 @@ LevelGenerator::LevelGenerator() {
     }
 }
 
+void LevelGenerator::reset() {
+    *this = LevelGenerator();
+}
+
 void LevelGenerator::calculate_walls() {
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
@@ -83,6 +87,17 @@ void LevelGenerator::calculate_walls() {
             } else t.pass_south = false;
         }
     }
+}
+
+void LevelGenerator::generate(LevelSpec &levelSpec, Config &config) {
+    for (auto roomSpec : levelSpec.rooms) {
+        int wallId = config.getTextureId(roomSpec.wall);
+        int floorId = config.getTextureId(roomSpec.floor);
+        room(sf::IntRect(roomSpec.position, roomSpec.size), floorId, wallId);
+    }
+    entryPosition = levelSpec.entry;
+    exitPosition = levelSpec.exit;
+    calculate_walls();
 }
 
 bool in_level(int x, int y) {

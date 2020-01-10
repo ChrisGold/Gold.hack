@@ -24,7 +24,7 @@ levels:
           width: 6
           height: 6
         wall: stone
-        floor: stone
+        floor: wood
     npcs:
       - a: b
         c: d

@@ -6,12 +6,19 @@
 #include "Resources.h"
 #include "../worldgen/LevelSpec.h"
 #include "ResourceSpec.h"
+#include "../level/Level.h"
 
 class Config {
 public:
     static Config loadFromYAML(const std::string &path);
 
+    int getFontId(std::string fontName);
+
+    int getTextureId(std::string textureName);
+
     Resources loadResources();
+
+    std::vector<Level> generateLevels();
 
 private:
     Config();
@@ -21,4 +28,5 @@ private:
     std::vector<ResourceSpec> textures;
     std::vector<ResourceSpec> fonts;
     std::vector<LevelSpec> levelSpecs;
+
 };

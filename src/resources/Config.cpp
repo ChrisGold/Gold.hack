@@ -4,6 +4,8 @@
 
 #include "Config.h"
 #include "yaml-cpp/yaml.h"
+#include "../level/Level.h"
+#include "../worldgen/LevelGenerator.h"
 #include <experimental/filesystem>
 #include <iostream>
 
@@ -22,12 +24,14 @@ void Config::initFromFile(const std::string &path) {
     YAML::Node resourceConfigYAML = YAML::LoadFile(path);
     fs::path resourcesFolder(resourceConfigYAML["prefix"].as<std::string>());
     for (const auto &textureFile : resourceConfigYAML["textures"]) {
-        fs::path tex = resourcesFolder / textureFile.as<std::string>();
-        textures.emplace_back(textureFile.as<std::string>(), tex);
+        fs::path file = textureFile.as<std::string>();
+        fs::path filepath = resourcesFolder / file;
+        textures.emplace_back(file.stem(), filepath);
     }
     for (const auto &fontFile : resourceConfigYAML["fonts"]) {
-        fs::path font = resourcesFolder / fontFile.as<std::string>();
-        fonts.emplace_back(fontFile.as<std::string>(), font);
+        fs::path file = fontFile.as<std::string>();
+        fs::path filepath = resourcesFolder / file;
+        fonts.emplace_back(file.stem(), filepath);
     }
     for (const auto &levelNode : resourceConfigYAML["levels"]) {
         auto l = LevelSpec::fromYAML(levelNode);
@@ -46,4 +50,26 @@ Resources Config::loadResources() {
         resources.loadFont(spec.stem(), spec);
     }
     return resources;
+}
+
+std::vector<Level> Config::generateLevels() {
+    LevelGenerator lg;
+    std::vector<Level> levels;
+    for (auto levelSpec: levelSpecs) {
+        lg.generate(levelSpec, *this);
+        levels.push_back(lg.export_level());
+        lg.reset();
+    }
+    return levels;
+}
+
+int Config::getFontId(std::string fontName) {
+    auto it = std::find_if(fonts.begin(), fonts.end(), [fontName](ResourceSpec rs) { return rs.name == fontName; });
+    return std::distance(fonts.begin(), it);
+}
+
+int Config::getTextureId(std::string textureName) {
+    auto it = std::find_if(textures.begin(), textures.end(),
+                           [textureName](ResourceSpec rs) { return rs.name == textureName; });
+    return std::distance(textures.begin(), it);
 }

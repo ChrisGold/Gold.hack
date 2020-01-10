@@ -16,9 +16,10 @@ Game::Game() {
     sidebarSprite = sf::Sprite(sidebarTexture.getTexture());
     sidebarSprite.setPosition(LEVEL_WIDTH, 0);
 
-    resources = Config::loadFromYAML("Gold.hack.yml").loadResources();
+    auto cfg = Config::loadFromYAML("Gold.hack.yml");
+    resources = cfg.loadResources();
 
-    levels = Level::make();
+    levels = cfg.generateLevels();
     inputController = new KeyboardController(this);
     playerInventory = new Inventory("Player");
 
