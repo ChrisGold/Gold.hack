@@ -1,5 +1,6 @@
 ---
 prefix: res
+name: Player
 textures:
   - void.png
   - player.png

@@ -21,7 +21,7 @@ Game::Game() {
 
     levels = cfg.generateLevels();
     inputController = new KeyboardController(this);
-    playerInventory = new Inventory("Player");
+    playerInventory = new Inventory(cfg.playerName);
 
     tick_count = 0;
     change_stage(MENU);
