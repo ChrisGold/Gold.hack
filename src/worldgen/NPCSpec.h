@@ -2,7 +2,6 @@
 
 #include <yaml-cpp/node/node.h>
 
-class NPCSpec {
-public:
+struct NPCSpec {
     static NPCSpec fromYAML(YAML::Node npcNode);
 };

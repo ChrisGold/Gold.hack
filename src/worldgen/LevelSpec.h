@@ -14,16 +14,16 @@ struct RoomSpec {
     static RoomSpec fromYAML(YAML::Node roomNode);
 };
 
-class LevelSpec {
+struct LevelSpec {
     sf::Vector2i entry;
     sf::Vector2i exit;
     std::vector<RoomSpec> rooms;
     std::vector<NPCSpec> npcs;
 
-    LevelSpec();
-
-public:
     static LevelSpec fromYAML(const YAML::Node &levelNode);
+
+private:
+    LevelSpec();
 };
 
 sf::Vector2i xyFromYAML(YAML::Node coords);

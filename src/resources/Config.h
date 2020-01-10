@@ -5,6 +5,7 @@
 #include <ostream>
 #include "Resources.h"
 #include "../worldgen/LevelSpec.h"
+#include "ResourceSpec.h"
 
 class Config {
 public:
@@ -17,7 +18,7 @@ private:
 
     void initFromFile(const std::string &path);
 
-    std::vector<std::string> textures;
-    std::vector<std::string> fonts;
+    std::vector<ResourceSpec> textures;
+    std::vector<ResourceSpec> fonts;
     std::vector<LevelSpec> levelSpecs;
 };

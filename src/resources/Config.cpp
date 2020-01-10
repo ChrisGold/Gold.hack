@@ -23,11 +23,11 @@ void Config::initFromFile(const std::string &path) {
     fs::path resourcesFolder(resourceConfigYAML["prefix"].as<std::string>());
     for (const auto &textureFile : resourceConfigYAML["textures"]) {
         fs::path tex = resourcesFolder / textureFile.as<std::string>();
-        textures.push_back(tex);
+        textures.emplace_back(textureFile.as<std::string>(), tex);
     }
     for (const auto &fontFile : resourceConfigYAML["fonts"]) {
         fs::path font = resourcesFolder / fontFile.as<std::string>();
-        fonts.push_back(font);
+        fonts.emplace_back(fontFile.as<std::string>(), font);
     }
     for (const auto &levelNode : resourceConfigYAML["levels"]) {
         auto l = LevelSpec::fromYAML(levelNode);
@@ -37,11 +37,13 @@ void Config::initFromFile(const std::string &path) {
 
 Resources Config::loadResources() {
     Resources resources{};
-    for (const fs::path texture : textures) {
+    for (auto texSpec : textures) {
+        const fs::path texture = texSpec.path;
         resources.loadTexture(texture.stem(), texture);
     }
-    for (const fs::path font : fonts) {
-        resources.loadFont(font.stem(), font);
+    for (auto fontSpec : fonts) {
+        const fs::path spec = fontSpec.path;
+        resources.loadFont(spec.stem(), spec);
     }
     return resources;
 }
