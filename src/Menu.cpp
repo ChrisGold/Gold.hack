@@ -1,13 +1,17 @@
 #include <SFML/Graphics/Text.hpp>
 #include "Menu.h"
 #include "Constants.h"
+#include "Game.h"
 
 void Menu::click(int x, int y) {
-
+    next = 0;
 }
 
 void Menu::tick(TickContext &ctx) {
-
+    if (next != MENU) {
+        ctx.game->level_advance();
+        reset();
+    }
 }
 
 void Menu::draw(sf::RenderTarget &target, Resources &resources) {
@@ -37,4 +41,8 @@ void Menu::draw(sf::RenderTarget &target, Resources &resources) {
     message.setFillColor(sf::Color::White);
 
     target.draw(message);
+}
+
+void Menu::reset() {
+    next = MENU;
 }

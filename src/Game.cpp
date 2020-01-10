@@ -34,8 +34,15 @@ void Game::loop() {
     sf::Clock clock;
     while (window.isOpen()) {
         if (stage != MENU) {
-            level_loop(clock);
-        } else menu_loop();
+            window.clear(sf::Color::White);
+            draw_level();
+        } else {
+            menu.draw(window, resources);
+        }
+        if (clock.getElapsedTime().asMilliseconds() > MS_PER_TICK) {
+            tick();
+            clock.restart();
+        }
         window.display();
 
         sf::Event event{};
@@ -52,15 +59,6 @@ void Game::loop() {
     }
 }
 
-void Game::level_loop(sf::Clock &clock) {
-    window.clear(sf::Color::White);
-    draw_level();
-    if (clock.getElapsedTime().asMilliseconds() > MS_PER_TICK) {
-        tick();
-        clock.restart();
-    }
-}
-
 void Game::level_input(sf::Event event) {
     auto action = inputController->readInput(event);
     if (action != nullptr) {
@@ -68,12 +66,12 @@ void Game::level_input(sf::Event event) {
     }
 }
 
-void Game::menu_loop() {
-    menu.draw(window, resources);
-}
-
 void Game::menu_input(sf::Event event) {
-
+    if (event.type == sf::Event::MouseButtonPressed) {
+        if (event.mouseButton.button == sf::Mouse::Button::Left) {
+            menu.click(event.mouseButton.x, event.mouseButton.y);
+        }
+    }
 }
 
 void Game::draw_level() {
@@ -98,7 +96,11 @@ void Game::change_stage(const GameStage &gs) {
 
 void Game::tick() {
     TickContext ctx = TickContext(this, currentLevel(), tick_count, time(0));
-    currentLevel()->tick(ctx);
+    if (stage == MENU) {
+        menu.tick(ctx);
+    } else {
+        currentLevel()->tick(ctx);
+    }
     tick_count++;
 }
 

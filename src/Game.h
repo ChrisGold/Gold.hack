@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include <variant>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
@@ -10,11 +9,8 @@
 #include "action/Actor.h"
 #include "Menu.h"
 #include "inventory/Inventory.h"
-
+#include "GameStage.h"
 #include "resources/Resources.h"
-
-typedef std::variant<int, std::monostate> GameStage;
-const GameStage MENU = std::monostate();
 
 class Game {
     std::vector<Level> levels;
@@ -52,10 +48,6 @@ private:
     void draw_level();
 
     void tick();
-
-    void level_loop(sf::Clock &clock);
-
-    void menu_loop();
 
     void menu_input(sf::Event event);
 
