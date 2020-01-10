@@ -25,6 +25,48 @@ levels:
           height: 6
         wall: stone
         floor: wood
+      - position:
+          x: 4
+          y: 6
+        size:
+          width: 4
+          height: 1
+        wall: stone
+        floor: wood
+    npcs:
+      - a: b
+        c: d
+  - entry:
+      x: 0
+      y: 0
+    exit:
+      x: 5
+      y: 9
+    rooms:
+      - position:
+          x: 0
+          y: 0
+        size:
+          width: 14
+          height: 2
+        wall: stone
+        floor: wood
+      - position:
+          x: 0
+          y: 2
+        size:
+          width: 1
+          height: 2
+        wall: stone
+        floor: wood
+      - position:
+          x: 0
+          y: 4
+        size:
+          width: 6
+          height: 6
+        wall: stone
+        floor: wood
     npcs:
       - a: b
         c: d
