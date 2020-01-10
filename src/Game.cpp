@@ -23,7 +23,7 @@ Game::Game() {
     playerInventory = new Inventory("Player");
 
     tick_count = 0;
-    change_stage(0);
+    change_stage(MENU);
 }
 
 Game::~Game() {

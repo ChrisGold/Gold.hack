@@ -21,4 +21,5 @@ const std::string VOID_NAME = "void";
 
 const std::string FONT_DEFAULT = "LiberationSerif-Regular";
 const sf::Color goldenrod = sf::Color(0XDAA250FF);
+const sf::Color gold = sf::Color(0xFFD700FF);
 const sf::Color light_gray = sf::Color(0XAAAAAAFF);
