@@ -2,23 +2,23 @@
 // Created by christian on 09.01.20.
 //
 
-#include "ResourceConfig.h"
+#include "Config.h"
 #include "yaml-cpp/yaml.h"
 #include <experimental/filesystem>
 #include <iostream>
 
 namespace fs = std::experimental::filesystem;
 
-ResourceConfig::ResourceConfig()
+Config::Config()
         : textures(), fonts() {}
 
-ResourceConfig ResourceConfig::loadFromYAML(const std::string &path) {
-    ResourceConfig res = ResourceConfig();
+Config Config::loadFromYAML(const std::string &path) {
+    Config res = Config();
     res.initFromFile(path);
     return res;
 }
 
-void ResourceConfig::initFromFile(const std::string &path) {
+void Config::initFromFile(const std::string &path) {
     YAML::Node resourceConfigYAML = YAML::LoadFile(path);
     fs::path resourcesFolder(resourceConfigYAML["prefix"].as<std::string>());
     for (const auto &textureFile : resourceConfigYAML["textures"]) {
@@ -29,9 +29,13 @@ void ResourceConfig::initFromFile(const std::string &path) {
         fs::path font = resourcesFolder / fontFile.as<std::string>();
         fonts.push_back(font);
     }
+    for (const auto &levelNode : resourceConfigYAML["levels"]) {
+        auto l = LevelSpec::fromYAML(levelNode);
+        levelSpecs.push_back(l);
+    }
 }
 
-Resources ResourceConfig::loadResources() {
+Resources Config::loadResources() {
     Resources resources{};
     for (const fs::path texture : textures) {
         resources.loadTexture(texture.stem(), texture);

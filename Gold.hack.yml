@@ -1,3 +1,4 @@
+---
 prefix: res
 textures:
   - void.png
@@ -8,3 +9,22 @@ textures:
 fonts:
   - LiberationSerif-Regular.ttf
   - BreeSerif-Regular.ttf
+levels:
+  - entry:
+      x: 0
+      y: 0
+    exit:
+      x: 5
+      y: 5
+    rooms:
+      - position:
+          x: 0
+          y: 0
+        size:
+          width: 6
+          height: 6
+        wall: stone
+        floor: stone
+    npcs:
+      - a: b
+        c: d

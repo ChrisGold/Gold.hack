@@ -5,7 +5,7 @@
 
 #include "Game.h"
 #include "input/KeyboardController.h"
-#include "resources/ResourceConfig.h"
+#include "resources/Config.h"
 
 Game::Game() {
     window.create(sf::VideoMode(TOTAL_WIDTH, TOTAL_HEIGHT), "Gold.hack");
@@ -16,7 +16,7 @@ Game::Game() {
     sidebarSprite = sf::Sprite(sidebarTexture.getTexture());
     sidebarSprite.setPosition(LEVEL_WIDTH, 0);
 
-    resources = ResourceConfig::loadFromYAML("Gold.hack.yml").loadResources();
+    resources = Config::loadFromYAML("Gold.hack.yml").loadResources();
 
     levels = Level::make();
     inputController = new KeyboardController(this);
