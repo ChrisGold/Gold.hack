@@ -4,7 +4,6 @@ project(Gold_hack)
 set(CMAKE_CXX_STANDARD 17)
 include(SFML.cmake)
 
-find_package(yaml-cpp PATHS lib/yaml-cpp/build)
 link_directories(SFML_LIBRARY_DIR)
 message(STATUS "2: SFML_INCLUDE_DIR: ${SFML_INCLUDE_DIR}")
 message(STATUS "2: SFML_LIBRARY_DIR: ${SFML_LIBRARY_DIR}")
