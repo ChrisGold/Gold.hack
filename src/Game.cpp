@@ -11,6 +11,9 @@ Game::Game() {
     window.create(sf::VideoMode(TOTAL_WIDTH, TOTAL_HEIGHT), "Gold.hack");
 
     levelTexture.create(LEVEL_WIDTH, TOTAL_HEIGHT);
+    levelView = sf::View(sf::FloatRect(0, 0, LEVEL_WIDTH, TOTAL_HEIGHT));
+    levelView.rotate(5.f);
+    levelTexture.setView(levelView);
     sidebarTexture.create(SIDEBAR_WIDTH, TOTAL_HEIGHT);
     levelSprite = sf::Sprite(levelTexture.getTexture());
     sidebarSprite = sf::Sprite(sidebarTexture.getTexture());
