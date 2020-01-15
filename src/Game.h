@@ -19,7 +19,6 @@ class Game {
     sf::RenderWindow window;
 
     sf::Sprite levelSprite;
-    sf::View levelView;
     sf::RenderTexture levelTexture;
 
     sf::Sprite sidebarSprite;

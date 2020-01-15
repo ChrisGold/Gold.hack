@@ -6,6 +6,7 @@
 #include <SFML/Graphics/RenderTexture.hpp>
 
 void Level::draw(sf::RenderTarget &target, Resources &resources) {
+    target.setView(getView());
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
             LevelTile t = tiles[x][y];
@@ -30,20 +31,6 @@ Level::Level(LevelTile data[14][14], sf::Vector2i entry, sf::Vector2i exit) {
     }
 }
 
-std::vector<Level> Level::make() {
-    std::vector<Level> levels;
-    LevelGenerator lg = LevelGenerator();
-    lg.generate(0);
-    levels.push_back(lg.export_level());
-    lg = LevelGenerator();
-    lg.generate(1);
-    levels.push_back(lg.export_level());
-    lg = LevelGenerator();
-    lg.generate(2);
-    levels.push_back(lg.export_level());
-    return levels;
-}
-
 void Level::enqueue(Action *action) {
     player->enqueue(action);
 }
@@ -56,4 +43,9 @@ bool Level::tick(TickContext &ctx) {
         }
     }
     return turn;
+}
+
+sf::View Level::getView() {
+    sf::View view{};
+    return view;
 }

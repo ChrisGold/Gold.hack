@@ -11,8 +11,9 @@
 #include "../resources/Resources.h"
 
 class Level {
+    sf::View getView();
 public:
-    explicit Level(LevelTile data[14][14], sf::Vector2i entry, sf::Vector2i exit);
+    Level(LevelTile data[14][14], sf::Vector2i entry, sf::Vector2i exit);
 
     Player *player;
     std::vector<Actor *> npcs;
@@ -28,5 +29,4 @@ public:
     sf::Vector2i exitPosition;
 
 
-    static std::vector<Level> make();
 };
