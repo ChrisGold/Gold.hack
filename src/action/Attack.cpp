@@ -6,16 +6,21 @@
 #include "../level/Level.h"
 
 void Attack::execute(TickContext &ctx, Actor *executor) {
+    std::cout << executor->name << " " << *this << " " << executor->facing << std::endl;
     sf::Vector2i delta;
     switch (executor->facing) {
         case NORTH:
             delta.y = -1;
+            break;
         case SOUTH:
             delta.y = 1;
+            break;
         case EAST:
             delta.x = -1;
+            break;
         case WEST:
             delta.x = 1;
+            break;
     }
     sf::Vector2i target = executor->position + delta;
     auto &npcs = ctx.level->npcs;
@@ -27,7 +32,7 @@ void Attack::execute(TickContext &ctx, Actor *executor) {
 }
 
 void Attack::write_out(std::ostream &out) const {
-    out << "Attacking...";
+    out << "attacking";
 }
 
 Attack::Attack(Direction direction) : Action(direction) {
