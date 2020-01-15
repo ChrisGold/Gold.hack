@@ -1,12 +1,11 @@
 #include "Level.h"
-#include "../worldgen/LevelGenerator.h"
 #include "../action/character/Character.h"
 #include "../action/character/Player.h"
 #include "../resources/Resources.h"
 #include <SFML/Graphics/RenderTexture.hpp>
 
 void Level::draw(sf::RenderTarget &target, Resources &resources) {
-    target.setView(getView());
+    target.setView(getView(target));
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
             LevelTile t = tiles[x][y];
@@ -45,7 +44,9 @@ bool Level::tick(TickContext &ctx) {
     return turn;
 }
 
-sf::View Level::getView() {
+sf::View Level::getView(sf::RenderTarget &target) {
     sf::View view{};
+    view.setCenter(player->position.x * TILE_X_SIZE, player->position.y * TILE_Y_SIZE);
+    view.setSize(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
     return view;
 }

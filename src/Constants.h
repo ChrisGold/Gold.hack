@@ -16,6 +16,9 @@ const int TOTAL_HEIGHT = LEVEL_Y_SIZE * TILE_Y_SIZE;
 const int SIDEBAR_WIDTH = 8 * TILE_X_SIZE;
 const int TOTAL_WIDTH = LEVEL_WIDTH + SIDEBAR_WIDTH;
 
+const int VIEWPORT_WIDTH = 400;
+const int VIEWPORT_HEIGHT = 400;
+
 const int VOID_ID = 0;
 const std::string VOID_NAME = "void";
 
