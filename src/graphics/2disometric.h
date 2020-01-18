@@ -147,7 +147,7 @@ protected:
 
 class IsometricMap {
 public:
-    IsometricMap(int w, int h, int nodesize);
+    IsometricMap(Resources &res, int w, int h, int nodesize);
 
     ~IsometricMap();
 
@@ -185,5 +185,5 @@ protected:
     float m_centerx, m_centery;
     std::list<IsometricMapSprite> m_mappieces;
     LightMap m_lightmap;
-    Resources resources;
+    Resources &resources;
 };

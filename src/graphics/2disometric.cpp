@@ -153,8 +153,10 @@ void IsometricMapNode::clear() {
 IsometricMap
 ***********************************************************************/
 
-IsometricMap::IsometricMap(int w, int h, int nodesize) : m_width(w), m_height(w), m_nodesize(nodesize), m_centerx(0),
-                                                         m_centery(0), m_lightmap(w, h, nodesize) {
+IsometricMap::IsometricMap(Resources &res, int w, int h, int nodesize) : m_width(w), m_height(w), m_nodesize(nodesize),
+                                                                         m_centerx(0),
+                                                                         m_centery(0), m_lightmap(w, h, nodesize),
+                                                                         resources(res) {
     m_nodes.resize(w * h);
 }
 
