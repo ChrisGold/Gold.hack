@@ -28,7 +28,8 @@ void IsometricMapNode::addRoof(IsometricMapSprite *s) {
 void IsometricMapNode::drawFloors(sf::RenderTarget *win, sf::Color &color) {
     for (auto iter = m_floors.begin(); iter != m_floors.end(); ++iter) {
         if ((*iter)->getUseLighting()) (*iter)->setColor(color);
-        win->draw(*(static_cast<sf::Sprite *>(*iter)));
+        sf::Drawable *sprite = *iter;
+        win->draw(*sprite);
     }
 }
 

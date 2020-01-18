@@ -210,10 +210,9 @@ void IsometricMap::addRightWall(int x, int y, int image_id) {
 }
 
 void IsometricMap::addFloor(int x, int y, int image_id) {
-    m_mappieces.push_front(IsometricMapSprite());
-    IsometricMapSprite *s = &(m_mappieces.front());
     sf::Texture *tex = resources.getTexture(image_id);
-    s->setTexture(*tex);
+    m_mappieces.emplace_front(tex);
+    IsometricMapSprite *s = &(m_mappieces.front());
 
     // Set the origin of the sprite
     // For floor it is (w/2,0)
