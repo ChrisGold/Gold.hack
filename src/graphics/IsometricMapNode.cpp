@@ -25,14 +25,14 @@ void IsometricMapNode::addRoof(IsometricMapSprite *s) {
     m_roofs.push_back(s);
 }
 
-void IsometricMapNode::drawFloors(sf::RenderWindow *win, sf::Color &color) {
+void IsometricMapNode::drawFloors(sf::RenderTarget *win, sf::Color &color) {
     for (auto iter = m_floors.begin(); iter != m_floors.end(); ++iter) {
         if ((*iter)->getUseLighting()) (*iter)->setColor(color);
         win->draw(*(static_cast<sf::Sprite *>(*iter)));
     }
 }
 
-void IsometricMapNode::drawObjects(sf::RenderWindow *win, sf::Color &color) {
+void IsometricMapNode::drawObjects(sf::RenderTarget *win, sf::Color &color) {
     for (auto iter = m_objects.begin(); iter != m_objects.end(); ++iter) {
         if ((*iter)->getUseLighting()) (*iter)->setColor(color);
         auto *s = static_cast<sf::Sprite *>(*iter);
@@ -40,14 +40,14 @@ void IsometricMapNode::drawObjects(sf::RenderWindow *win, sf::Color &color) {
     }
 }
 
-void IsometricMapNode::drawWalls(sf::RenderWindow *win, sf::Color &color) {
+void IsometricMapNode::drawWalls(sf::RenderTarget *win, sf::Color &color) {
     for (auto iter = m_walls.begin(); iter != m_walls.end(); ++iter) {
         if ((*iter)->getUseLighting()) (*iter)->setColor(color);
         win->draw(*(static_cast<sf::Sprite *>(*iter)));
     }
 }
 
-void IsometricMapNode::drawRoofs(sf::RenderWindow *win, sf::Color &color) {
+void IsometricMapNode::drawRoofs(sf::RenderTarget *win, sf::Color &color) {
     for (auto iter = m_roofs.begin(); iter != m_roofs.end(); ++iter) {
         if ((*iter)->getUseLighting()) (*iter)->setColor(color);
         win->draw(*(static_cast<sf::Sprite *>(*iter)));

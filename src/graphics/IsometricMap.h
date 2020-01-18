@@ -18,7 +18,7 @@ public:
 
     void removeSprite(IsometricMapSprite *s);
 
-    void draw(sf::RenderWindow *win);
+    void draw(sf::RenderTarget *win);
 
     sf::Vector2f projectMouseCoords(int mx, int my, sf::RenderWindow *win);
 

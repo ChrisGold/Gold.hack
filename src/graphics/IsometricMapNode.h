@@ -9,13 +9,13 @@ public:
 
     ~IsometricMapNode();
 
-    void drawFloors(sf::RenderWindow *win, sf::Color &color);
+    void drawFloors(sf::RenderTarget *win, sf::Color &color);
 
-    void drawObjects(sf::RenderWindow *win, sf::Color &color);
+    void drawObjects(sf::RenderTarget *win, sf::Color &color);
 
-    void drawWalls(sf::RenderWindow *win, sf::Color &color);
+    void drawWalls(sf::RenderTarget *win, sf::Color &color);
 
-    void drawRoofs(sf::RenderWindow *win, sf::Color &color);
+    void drawRoofs(sf::RenderTarget *win, sf::Color &color);
 
     void addFloor(IsometricMapSprite *s);
 

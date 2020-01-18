@@ -66,7 +66,7 @@ sf::Vector2f IsometricMap::projectMouseCoords(int mx, int my, sf::RenderWindow *
     return mousecoords;
 }
 
-void IsometricMap::draw(sf::RenderWindow *win) {
+void IsometricMap::draw(sf::RenderTarget *win) {
     // Do a brain dead whole-map scan for now
     // Set view
     sf::View view = win->getView();
