@@ -18,7 +18,7 @@ public:
 
     Resources loadResources();
 
-    std::vector<Level> generateLevels();
+    std::vector<Level> generateLevels(InitContext initContext);
     std::string playerName;
 
 private:

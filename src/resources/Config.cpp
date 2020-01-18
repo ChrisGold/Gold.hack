@@ -53,8 +53,8 @@ Resources Config::loadResources() {
     return resources;
 }
 
-std::vector<Level> Config::generateLevels() {
-    LevelGenerator lg;
+std::vector<Level> Config::generateLevels(InitContext initContext) {
+    LevelGenerator lg(initContext);
     std::vector<Level> levels;
     for (auto levelSpec: levelSpecs) {
         lg.generate(levelSpec, *this);

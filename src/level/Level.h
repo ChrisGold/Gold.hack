@@ -9,12 +9,17 @@
 #include "../TickContext.h"
 #include "../action/character/Player.h"
 #include "../resources/Resources.h"
+#include "../graphics/IsometricMap.h"
+#include "../InitContext.h"
 
 class Level {
     sf::View getView(sf::RenderTarget &target);
+
+    IsometricMap map;
 public:
 
-    Level(LevelTile data[14][14], sf::Vector2i entry, sf::Vector2i exit);
+    Level(LevelTile data[14][14], sf::Vector2i entry, sf::Vector2i exit, InitContext initContext);
+
     Player *player;
 
     std::vector<Actor *> npcs;
@@ -26,7 +31,6 @@ public:
     void enqueue(Action *action);
     LevelTile tiles[LEVEL_X_SIZE][LEVEL_Y_SIZE];
     sf::Vector2i entryPosition;
-
-
     sf::Vector2i exitPosition;
+
 };

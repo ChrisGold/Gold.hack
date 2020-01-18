@@ -19,9 +19,9 @@ Game::Game() {
     auto cfg = Config::loadFromYAML("Gold.hack.yml");
     resources = cfg.loadResources();
 
-    levels = cfg.generateLevels();
-    inputController = new KeyboardController(this);
     playerInventory = new Inventory(cfg.playerName);
+    levels = cfg.generateLevels(InitContext{this, &resources, playerInventory});
+    inputController = new KeyboardController(this);
 
     tick_count = 0;
     change_stage(MENU);

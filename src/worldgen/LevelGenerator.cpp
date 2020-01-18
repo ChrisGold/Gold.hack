@@ -16,7 +16,7 @@ void LevelGenerator::room(sf::IntRect rect, int floor_material, int wall_materia
 }
 
 Level LevelGenerator::export_level() {
-    auto l = Level(level, entryPosition, exitPosition);
+    auto l = Level(level, entryPosition, exitPosition, initContext);
     Actor *npc = new Character("Aurelian", 1, exitPosition);
     l.npcs.push_back(npc);
     return l;
@@ -45,7 +45,7 @@ void LevelGenerator::generate(int type) {
     calculate_walls();
 }
 
-LevelGenerator::LevelGenerator() {
+LevelGenerator::LevelGenerator(InitContext initContext) : initContext(initContext) {
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
             LevelTile &t = level[x][y];
@@ -58,7 +58,7 @@ LevelGenerator::LevelGenerator() {
 }
 
 void LevelGenerator::reset() {
-    *this = LevelGenerator();
+    *this = LevelGenerator(initContext);
 }
 
 void LevelGenerator::calculate_walls() {

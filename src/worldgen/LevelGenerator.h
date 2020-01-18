@@ -6,14 +6,17 @@
 #include "../level/Level.h"
 #include "LevelSpec.h"
 #include "../resources/Config.h"
+#include "../InitContext.h"
 
 class LevelGenerator {
     void room(sf::IntRect rect, int floor_material, int wall_material);
 
     void calculate_walls();
 
+    InitContext initContext;
+
 public:
-    LevelGenerator();
+    explicit LevelGenerator(InitContext initContext);
 
     LevelTile level[LEVEL_X_SIZE][LEVEL_Y_SIZE];
     sf::Vector2i entryPosition;

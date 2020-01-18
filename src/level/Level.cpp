@@ -19,13 +19,15 @@ void Level::draw(sf::RenderTarget &target, Resources &resources) {
     }
 }
 
-Level::Level(LevelTile data[14][14], sf::Vector2i entry, sf::Vector2i exit) {
+Level::Level(LevelTile data[14][14], sf::Vector2i entry, sf::Vector2i exit, InitContext initContext) : map(
+        *initContext.resources, LEVEL_X_SIZE, LEVEL_Y_SIZE, TILE_X_SIZE) {
     this->entryPosition = entry;
     this->exitPosition = exit;
     player = new Player("Player", 1, entry);
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
             tiles[x][y] = data[x][y];
+            map.addFloor(x, y, data[x][y].floor_tile);
         }
     }
 }
