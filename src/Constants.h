@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/Texture.hpp>
 
 const int LEVEL_X_SIZE = 14;
 const int LEVEL_Y_SIZE = 14;
@@ -26,3 +27,5 @@ const std::string FONT_DEFAULT = "LiberationSerif-Regular";
 const sf::Color goldenrod = sf::Color(0XDAA250FF);
 const sf::Color gold = sf::Color(0xFFD700FF);
 const sf::Color light_gray = sf::Color(0XAAAAAAFF);
+
+sf::Texture *const EMPTY_TEXTURE = new sf::Texture();

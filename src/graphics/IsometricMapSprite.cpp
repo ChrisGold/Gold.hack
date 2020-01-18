@@ -3,6 +3,7 @@
 #include "LightMap.h"
 #include "IsometricMapNode.h"
 #include "IsometricUtilities.h"
+#include "../Constants.h"
 #include <algorithm>
 #include <cmath>
 #include <iostream>
@@ -11,13 +12,12 @@
 /********************************************
 IsometricMapSprite
 *********************************************/
-IsometricMapSprite::IsometricMapSprite() : sf::Sprite(), m_worldpos(0, 0), m_texture() { m_uselighting = true; }
+IsometricMapSprite::IsometricMapSprite()
+        : sf::Sprite(), m_worldpos(0, 0), m_texture(EMPTY_TEXTURE) { m_uselighting = true; }
 
-IsometricMapSprite::IsometricMapSprite(const sf::Image &image, const sf::Vector2f &position,
+IsometricMapSprite::IsometricMapSprite(sf::Texture *texture, const sf::Vector2f &position,
                                        const sf::Vector2f &scale, float rotation, const sf::Color &color) :
-        sf::Sprite() {
-    m_texture = sf::Texture();
-    m_texture.loadFromImage(image);
+        sf::Sprite(), m_texture(texture) {
     setScale(scale.x, scale.y);
     setRotation(rotation);
     setColor(color);
