@@ -24,9 +24,23 @@ public:
     bool tick(TickContext &ctx);
 
     void enqueue(Action *action);
+
     LevelTile tiles[LEVEL_X_SIZE][LEVEL_Y_SIZE];
     sf::Vector2i entryPosition;
 
 
     sf::Vector2i exitPosition;
 };
+
+
+// Function to convert a screen (view) position to a world position
+// WorldX = (ScreenX + 2*ScreenY)/4
+// WorldY = (2*ScreenY - ScreenX)/4
+sf::Vector2f ScreenToWorld(sf::Vector2f v);
+
+// Function to convert a world position to a screen (view) position
+// ScreenX = 2*WorldX - 2*WorldY
+// ScreenY = WorldX + WorldY
+sf::Vector2f WorldToScreen(sf::Vector2f v);
+
+sf::FloatRect WorldToScreen(sf::FloatRect r);

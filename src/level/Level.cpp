@@ -5,17 +5,18 @@
 #include <SFML/Graphics/RenderTexture.hpp>
 
 void Level::draw(sf::RenderTarget &target, Resources &resources) {
-    target.setView(getView(target));
+    //target.setView(getView(target));
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
             LevelTile t = tiles[x][y];
             auto rect = sf::FloatRect(x * TILE_X_SIZE, y * TILE_Y_SIZE, TILE_X_SIZE, TILE_Y_SIZE);
-            resources.render(target, rect, t);
+            resources.render(target, WorldToScreen(rect), t);
         }
     }
-    resources.render(target, player->getRect(), player->texture_id);
+
+    resources.render(target, WorldToScreen(player->getRect()), player->texture_id);
     for (auto npc : npcs) {
-        resources.render(target, npc->getRect(), npc->texture_id);
+        resources.render(target, WorldToScreen(npc->getRect()), npc->texture_id);
     }
 }
 
@@ -49,4 +50,17 @@ sf::View Level::getView(sf::RenderTarget &target) {
     view.setCenter(player->position.x * TILE_X_SIZE, player->position.y * TILE_Y_SIZE);
     view.setSize(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
     return view;
+}
+
+
+sf::Vector2f WorldToScreen(sf::Vector2f v) {
+    return sf::Vector2f(2.0f * v.x - 2.0f * v.y, v.x + v.y);
+}
+
+sf::FloatRect WorldToScreen(sf::FloatRect r) {
+    return sf::FloatRect(WorldToScreen(r.getPosition()), WorldToScreen(r.getSize()));
+}
+
+sf::Vector2f ScreenToWorld(sf::Vector2f v) {
+    return sf::Vector2f((v.x + 2.0f * v.y) / 4.0f, (2.0f * v.y - v.x) / 4.0f);
 }
