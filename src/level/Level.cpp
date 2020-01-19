@@ -3,22 +3,14 @@
 #include "../action/character/Player.h"
 #include "../resources/Resources.h"
 #include <SFML/Graphics/RenderTexture.hpp>
-#include <cmath>
 #include <SFML/Graphics/RectangleShape.hpp>
 
 const float ISOMETRIC_TILE_SIZE = measureUnit(TILE_X_SIZE);
 
-void Level::drawTile(sf::RenderTarget
-                     &target,
-                     Resources &resources,
-                     int x,
-                     int y
-) {
+void Level::drawTile(sf::RenderTarget &target, Resources &resources, int x, int y) {
     LevelTile t = tiles[x][y];
     auto rect = sf::FloatRect(x * TILE_X_SIZE, y * TILE_Y_SIZE, ISOMETRIC_TILE_SIZE, ISOMETRIC_TILE_SIZE);
-    resources.
-            render(target, WorldToScreen(rect), t
-    );
+    resources.render(target, WorldToScreen(rect), t);
 }
 
 void Level::draw(sf::RenderTarget &target, Resources &resources) {
@@ -31,12 +23,6 @@ void Level::draw(sf::RenderTarget &target, Resources &resources) {
     }
 
     resources.render(target, WorldToScreen(player->getRect()), player->texture_id);
-    sf::RectangleShape marker(sf::Vector2f(ISOMETRIC_TILE_SIZE, ISOMETRIC_TILE_SIZE));
-    marker.setOutlineColor(sf::Color::White);
-    marker.setOutlineThickness(5.f);
-    marker.setFillColor(sf::Color::Transparent);
-    marker.setPosition(WorldToScreen(player->getRect().getPosition()));
-    target.draw(marker);
     for (auto npc : npcs) {
         resources.render(target, WorldToScreen(npc->getRect()), npc->texture_id);
     }
@@ -71,7 +57,7 @@ sf::View Level::getView(sf::RenderTarget &target) {
     sf::View view{};
     view.setCenter(WorldToScreen(sf::Vector2f(player->position.x * TILE_X_SIZE, player->position.y * TILE_Y_SIZE)));
     view.move(ISOMETRIC_TILE_SIZE / 2, ISOMETRIC_TILE_SIZE / 2);
-    view.setSize(ISOMETRIC_TILE_SIZE * 8, ISOMETRIC_TILE_SIZE * 8);
+    view.setSize(ISOMETRIC_TILE_SIZE * 6, ISOMETRIC_TILE_SIZE * 6);
     return view;
 }
 

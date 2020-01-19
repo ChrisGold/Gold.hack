@@ -4,8 +4,10 @@ name: Player
 textures:
   - void.png
   - player.png
-  - wood_f.png
   - stone_f.png
+  - stone_w.png
+  - wood_w.png
+  - wood_f.png
   - halo.png
 fonts:
   - LiberationSerif-Regular.ttf
@@ -24,16 +26,16 @@ levels:
         size:
           width: 6
           height: 6
-        wall: stone_f
-        floor: wood_f
+        wall: stone_w
+        floor: stone_f
       - position:
           x: 4
           y: 6
         size:
           width: 4
           height: 1
-        wall: stone_f
-        floor: wood_f
+        wall: stone_w
+        floor: stone_f
     npcs:
       - a: b
         c: d
@@ -50,24 +52,24 @@ levels:
         size:
           width: 14
           height: 2
-        wall: stone_f
-        floor: wood_f
+        wall: stone_w
+        floor: stone_f
       - position:
           x: 0
           y: 2
         size:
           width: 1
           height: 2
-        wall: stone_f
-        floor: wood_f
+        wall: stone_w
+        floor: stone_f
       - position:
           x: 0
           y: 4
         size:
           width: 6
           height: 6
-        wall: stone_f
-        floor: wood_f
+        wall: stone_w
+        floor: stone_f
     npcs:
       - a: b
         c: d

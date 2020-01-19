@@ -27,11 +27,11 @@ void Resources::loadTexture(const std::string &texture, const std::string &path)
     textures.push_back(tex);
 }
 
-sf::Font * Resources::getFont(int font_id) {
+sf::Font *Resources::getFont(int font_id) {
     return fonts[font_id];
 }
 
-sf::Texture * Resources::getTexture(int tile_id) {
+sf::Texture *Resources::getTexture(int tile_id) {
     return textures[tile_id];;
 }
 
@@ -63,38 +63,35 @@ void Resources::render(sf::RenderTarget &target, const sf::FloatRect &rect, cons
             height / floor.getLocalBounds().height
     );
     target.draw(floor);
-/*
+
     if (!levelTile.pass_north) {
         sf::Sprite north;
-        north.setTextureRect(sf::IntRect(0, 0, width, height / 10));
-        north.setTexture(*getTexture(levelTile.wall_tile));
-        north.setPosition(rect.left, rect.top);
+        auto tex = getTexture(levelTile.wall_tile);
+        north.setTexture(*tex);
+        north.setPosition(rect.left + (rect.width / 2), rect.top);
+        auto oldRect = north.getTextureRect();
+        north.setTextureRect(
+                sf::IntRect(oldRect.left + (oldRect.width / 2), oldRect.top, oldRect.width / 2, oldRect.height));
+        north.setScale(
+                width / north.getLocalBounds().width / 2,
+                height / north.getLocalBounds().height
+        );
         target.draw(north);
-    }
-
-    if (!levelTile.pass_east) {
-        sf::Sprite east;
-        east.setTextureRect(sf::IntRect(0, 0, width / 10, height));
-        east.setTexture(*getTexture(levelTile.wall_tile));
-        east.setPosition(rect.left + width - (width / 10.f), rect.top);
-        target.draw(east);
-    }
-
-    if (!levelTile.pass_south) {
-        sf::Sprite south;
-        south.setTextureRect(sf::IntRect(0, 0, width, height / 10));
-        south.setTexture(*getTexture(levelTile.wall_tile));
-        south.setPosition(rect.left, rect.top + height - (height / 10.f));
-        target.draw(south);
     }
 
     if (!levelTile.pass_west) {
         sf::Sprite west;
-        west.setTextureRect(sf::IntRect(0, 0, width / 10, height));
-        west.setTexture(*getTexture(levelTile.wall_tile));
+        auto tex = getTexture(levelTile.wall_tile);
+        west.setTexture(*tex);
         west.setPosition(rect.left, rect.top);
+        auto oldRect = west.getTextureRect();
+        oldRect.width = oldRect.width / 2;
+        west.setTextureRect(oldRect);
+        west.setScale(
+                width / west.getLocalBounds().width / 2,
+                height / west.getLocalBounds().height
+        );
         target.draw(west);
     }
-    */
 
 }
