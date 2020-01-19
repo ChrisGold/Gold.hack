@@ -5,7 +5,7 @@
 #include <SFML/Graphics/RenderTexture.hpp>
 
 void Level::draw(sf::RenderTarget &target, Resources &resources) {
-    //target.setView(getView(target));
+    target.setView(getView(target));
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
             LevelTile t = tiles[x][y];
@@ -47,7 +47,7 @@ bool Level::tick(TickContext &ctx) {
 
 sf::View Level::getView(sf::RenderTarget &target) {
     sf::View view{};
-    view.setCenter(player->position.x * TILE_X_SIZE, player->position.y * TILE_Y_SIZE);
+    view.setCenter(WorldToScreen(sf::Vector2f(player->position.x * TILE_X_SIZE, player->position.y * TILE_Y_SIZE)));
     view.setSize(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
     return view;
 }
