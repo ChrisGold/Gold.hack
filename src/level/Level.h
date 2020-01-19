@@ -46,3 +46,5 @@ sf::Vector2f ScreenToWorld(sf::Vector2f v);
 sf::Vector2f WorldToScreen(sf::Vector2f v);
 
 sf::FloatRect WorldToScreen(sf::FloatRect r);
+
+float measureUnit(float distance);

@@ -6,16 +6,23 @@
 #include <cmath>
 #include <SFML/Graphics/RectangleShape.hpp>
 
-const float ISOMETRIC_TILE_SIZE = 4 * (sqrt(3.0) / 2.0) * TILE_X_SIZE;
+const float ISOMETRIC_TILE_SIZE = measureUnit(TILE_X_SIZE);
 
-void Level::drawTile(sf::RenderTarget &target, Resources &resources, int x, int y) {
+void Level::drawTile(sf::RenderTarget
+                     &target,
+                     Resources &resources,
+                     int x,
+                     int y
+) {
     LevelTile t = tiles[x][y];
     auto rect = sf::FloatRect(x * TILE_X_SIZE, y * TILE_Y_SIZE, ISOMETRIC_TILE_SIZE, ISOMETRIC_TILE_SIZE);
-    resources.render(target, WorldToScreen(rect), t);
+    resources.
+            render(target, WorldToScreen(rect), t
+    );
 }
 
 void Level::draw(sf::RenderTarget &target, Resources &resources) {
-    //target.setView(getView(target));
+    target.setView(getView(target));
 
     for (int r = 0; r < LEVEL_X_SIZE; r++) {
         for (int y = 0; y < LEVEL_Y_SIZE && r - y >= 0; y++) {
@@ -24,6 +31,12 @@ void Level::draw(sf::RenderTarget &target, Resources &resources) {
     }
 
     resources.render(target, WorldToScreen(player->getRect()), player->texture_id);
+    sf::RectangleShape marker(sf::Vector2f(ISOMETRIC_TILE_SIZE, ISOMETRIC_TILE_SIZE));
+    marker.setOutlineColor(sf::Color::White);
+    marker.setOutlineThickness(5.f);
+    marker.setFillColor(sf::Color::Transparent);
+    marker.setPosition(WorldToScreen(player->getRect().getPosition()));
+    target.draw(marker);
     for (auto npc : npcs) {
         resources.render(target, WorldToScreen(npc->getRect()), npc->texture_id);
     }
@@ -57,7 +70,8 @@ bool Level::tick(TickContext &ctx) {
 sf::View Level::getView(sf::RenderTarget &target) {
     sf::View view{};
     view.setCenter(WorldToScreen(sf::Vector2f(player->position.x * TILE_X_SIZE, player->position.y * TILE_Y_SIZE)));
-    view.setSize(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+    view.move(ISOMETRIC_TILE_SIZE / 2, ISOMETRIC_TILE_SIZE / 2);
+    view.setSize(ISOMETRIC_TILE_SIZE * 8, ISOMETRIC_TILE_SIZE * 8);
     return view;
 }
 
@@ -66,7 +80,6 @@ sf::Vector2f WorldToScreen(sf::Vector2f v) {
     return sf::Vector2f(2.0f * v.x - 2.0f * v.y, v.x + v.y);
 }
 
-
 sf::FloatRect WorldToScreen(sf::FloatRect r) {
     return sf::FloatRect(WorldToScreen(r.getPosition()), sf::Vector2f(ISOMETRIC_TILE_SIZE, ISOMETRIC_TILE_SIZE));
 }
@@ -74,3 +87,9 @@ sf::FloatRect WorldToScreen(sf::FloatRect r) {
 sf::Vector2f ScreenToWorld(sf::Vector2f v) {
     return sf::Vector2f((v.x + 2.0f * v.y) / 4.0f, (2.0f * v.y - v.x) / 4.0f);
 }
+
+float measureUnit(float distance) {
+    auto bottomLeftCorner = WorldToScreen(sf::Vector2f(0, distance));
+    auto bottomRightCorner = WorldToScreen(sf::Vector2f(distance, 0));
+    return bottomRightCorner.x - bottomLeftCorner.x;
+};
