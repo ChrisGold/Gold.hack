@@ -55,11 +55,11 @@ void Resources::render(sf::RenderTarget &target, const sf::FloatRect &rect, cons
     floor.setTexture(*getTexture(levelTile.floor_tile));
     floor.setPosition(rect.left, rect.top);
     floor.setScale(
-            TILE_X_SIZE / floor.getLocalBounds().width,
-            TILE_Y_SIZE / floor.getLocalBounds().height
+            width / floor.getLocalBounds().width,
+            height / floor.getLocalBounds().height
     );
     target.draw(floor);
-
+/*
     if (!levelTile.pass_north) {
         sf::Sprite north;
         north.setTextureRect(sf::IntRect(0, 0, width, height / 10));
@@ -91,5 +91,6 @@ void Resources::render(sf::RenderTarget &target, const sf::FloatRect &rect, cons
         west.setPosition(rect.left, rect.top);
         target.draw(west);
     }
+    */
 
 }

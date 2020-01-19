@@ -3,13 +3,17 @@
 #include "../action/character/Player.h"
 #include "../resources/Resources.h"
 #include <SFML/Graphics/RenderTexture.hpp>
+#include <cmath>
+#include <SFML/Graphics/RectangleShape.hpp>
+
+const float ISOMETRIC_TILE_SIZE = 2 * (sqrt(3.0) / 2.0) * TILE_X_SIZE;
 
 void Level::draw(sf::RenderTarget &target, Resources &resources) {
     target.setView(getView(target));
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
             LevelTile t = tiles[x][y];
-            auto rect = sf::FloatRect(x * TILE_X_SIZE, y * TILE_Y_SIZE, TILE_X_SIZE, TILE_Y_SIZE);
+            auto rect = sf::FloatRect(x * TILE_X_SIZE, y * TILE_Y_SIZE, ISOMETRIC_TILE_SIZE, ISOMETRIC_TILE_SIZE);
             resources.render(target, WorldToScreen(rect), t);
         }
     }
@@ -57,8 +61,9 @@ sf::Vector2f WorldToScreen(sf::Vector2f v) {
     return sf::Vector2f(2.0f * v.x - 2.0f * v.y, v.x + v.y);
 }
 
+
 sf::FloatRect WorldToScreen(sf::FloatRect r) {
-    return sf::FloatRect(WorldToScreen(r.getPosition()), WorldToScreen(r.getSize()));
+    return sf::FloatRect(WorldToScreen(r.getPosition()), sf::Vector2f(ISOMETRIC_TILE_SIZE, ISOMETRIC_TILE_SIZE));
 }
 
 sf::Vector2f ScreenToWorld(sf::Vector2f v) {
