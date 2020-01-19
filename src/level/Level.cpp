@@ -6,15 +6,20 @@
 #include <cmath>
 #include <SFML/Graphics/RectangleShape.hpp>
 
-const float ISOMETRIC_TILE_SIZE = 2 * (sqrt(3.0) / 2.0) * TILE_X_SIZE;
+const float ISOMETRIC_TILE_SIZE = 4 * (sqrt(3.0) / 2.0) * TILE_X_SIZE;
+
+void Level::drawTile(sf::RenderTarget &target, Resources &resources, int x, int y) {
+    LevelTile t = tiles[x][y];
+    auto rect = sf::FloatRect(x * TILE_X_SIZE, y * TILE_Y_SIZE, ISOMETRIC_TILE_SIZE, ISOMETRIC_TILE_SIZE);
+    resources.render(target, WorldToScreen(rect), t);
+}
 
 void Level::draw(sf::RenderTarget &target, Resources &resources) {
-    target.setView(getView(target));
-    for (int x = 0; x < LEVEL_X_SIZE; x++) {
-        for (int y = 0; y < LEVEL_Y_SIZE; y++) {
-            LevelTile t = tiles[x][y];
-            auto rect = sf::FloatRect(x * TILE_X_SIZE, y * TILE_Y_SIZE, ISOMETRIC_TILE_SIZE, ISOMETRIC_TILE_SIZE);
-            resources.render(target, WorldToScreen(rect), t);
+    //target.setView(getView(target));
+
+    for (int r = 0; r < LEVEL_X_SIZE; r++) {
+        for (int y = 0; y < LEVEL_Y_SIZE && r - y >= 0; y++) {
+            drawTile(target, resources, r - y, y);
         }
     }
 

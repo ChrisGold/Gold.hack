@@ -30,6 +30,8 @@ public:
 
 
     sf::Vector2i exitPosition;
+
+    void drawTile(sf::RenderTarget &target, Resources &resources, int x, int y);
 };
 
 

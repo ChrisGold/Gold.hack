@@ -36,12 +36,16 @@ sf::Texture * Resources::getTexture(int tile_id) {
 }
 
 void Resources::render(sf::RenderTarget &target, const sf::FloatRect &rect, int obj_id) {
+    auto size = rect.getSize();
+    auto width = size.x;
+    auto height = size.y;
+
     sf::Sprite object;
     object.setTexture(*getTexture(obj_id));
     object.setPosition(rect.left, rect.top);
     object.setScale(
-            TILE_X_SIZE / object.getLocalBounds().width,
-            TILE_Y_SIZE / object.getLocalBounds().height
+            width / object.getLocalBounds().width,
+            height / object.getLocalBounds().height
     );
     target.draw(object);
 }
