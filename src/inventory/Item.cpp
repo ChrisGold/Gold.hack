@@ -4,7 +4,8 @@
 
 #include "Item.h"
 
-Item::Item(const std::string &name, int attack, int range, int durability, int toughness) : name(name), attack(attack),
+Item::Item(const std::string &name, int icon_texture_id, int tile_texture_id, int attack, int range, int durability,
+           int toughness) : name(name), attack(attack),
                                                                                             range(range),
                                                                                             durability(durability),
                                                                                             toughness(toughness) {}

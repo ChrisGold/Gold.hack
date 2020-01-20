@@ -9,7 +9,8 @@
 
 class Item {
 public:
-    Item(const std::string &name, int attack, int range, int durability, int toughness);
+    Item(const std::string &name, int icon_texture_id, int tile_texture_id, int attack, int range, int durability,
+         int toughness);
 
 private:
     std::string name;
@@ -17,6 +18,8 @@ public:
     [[nodiscard]] const std::string &getName() const;
 
 private:
+    int icon_texture_id;
+    int tile_texture_id;
     int attack;
     int range;
     int durability;
