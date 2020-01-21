@@ -1,5 +1,4 @@
 #include <SFML/Graphics/RenderTarget.hpp>
-#include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <utility>
 #include "Inventory.h"
@@ -18,4 +17,11 @@ void Inventory::draw(sf::RenderTarget &target, Resources &resources) {
     target.draw(nameText);
 }
 
-Inventory::Inventory(std::string name) : name(std::move(name)) {}
+Inventory::Inventory(std::string name) : name(std::move(name)) {
+    selected_item = 0;
+    items.emplace_back("Sword", 25, 1, 100, 10);
+}
+
+int Inventory::currentAttack() {
+    return this->items[this->selected_item].attack;
+}

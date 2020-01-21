@@ -6,7 +6,7 @@
 #include "../Walk.h"
 
 Character::Character(const std::string &name, int textureId, const sf::Vector2i &position) : Actor(name, textureId,
-                                                                                                   position) {
+                                                                                                   position, 100) {
 }
 
 int Character::counter = 0;

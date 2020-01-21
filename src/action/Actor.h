@@ -9,16 +9,30 @@
 class Actor {
 
     std::queue<Action *> actions;
-public:
-    Actor(int textureId, const sf::Vector2i &position);
+    int max_health;
+    int health;
 
-    Actor(std::string name, int textureId, const sf::Vector2i &position);
+public:
+    Actor(int textureId, const sf::Vector2i &position, int max_health);
+
+    Actor(std::string name, int textureId, const sf::Vector2i &position, int max_health);
 
     sf::Vector2i position;
     Direction facing;
     const std::string name;
 
     int texture_id;
+
+
+    const std::string &getName() const;
+
+    int getMaxHealth() const;
+
+    int getHealth() const;
+
+    bool isAlive() const;
+
+    int takeDamage(int hp);
 
     void enqueue(Action *action);
 

@@ -5,4 +5,4 @@
 #include "Player.h"
 
 Player::Player(const std::string &name, int textureId, const sf::Vector2i &position) : Actor(name, textureId,
-                                                                                             position) {}
+                                                                                             position, 100) {}

@@ -43,12 +43,17 @@ void Level::enqueue(Action *action) {
     player->enqueue(action);
 }
 
+bool isNPCDead(const Actor *npc) {
+    return !npc->isAlive();
+}
+
 bool Level::tick(TickContext &ctx) {
     auto turn = player->act(ctx);
     if (turn) {
         for (auto npc : npcs) {
             npc->act(ctx);
         }
+        npcs.erase(std::remove_if(npcs.begin(), npcs.end(), isNPCDead), npcs.end());
     }
     return turn;
 }

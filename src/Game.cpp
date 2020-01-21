@@ -96,7 +96,7 @@ void Game::change_stage(const GameStage &gs) {
 }
 
 void Game::tick() {
-    TickContext ctx = TickContext(this, currentLevel(), tick_count, time(0));
+    TickContext ctx = TickContext(this, currentLevel(), playerInventory, tick_count, time(0));
     if (stage == MENU) {
         menu.tick(ctx);
     } else {
