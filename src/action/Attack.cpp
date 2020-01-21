@@ -16,10 +16,10 @@ void Attack::execute(TickContext &ctx, Actor *executor) {
             delta.y = 1;
             break;
         case EAST:
-            delta.x = -1;
+            delta.x = 1;
             break;
         case WEST:
-            delta.x = 1;
+            delta.x = -1;
             break;
     }
     sf::Vector2i target = executor->position + delta;
