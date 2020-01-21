@@ -1,7 +1,7 @@
 #include "Level.h"
+#include "../action/Actor.h"
 #include "../action/character/Character.h"
 #include "../action/character/Player.h"
-#include "../resources/Resources.h"
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
 
@@ -64,6 +64,13 @@ sf::View Level::getView(sf::RenderTarget &target) {
     view.move(ISOMETRIC_TILE_SIZE / 2, ISOMETRIC_TILE_SIZE / 2);
     view.setSize(ISOMETRIC_TILE_SIZE * 6, ISOMETRIC_TILE_SIZE * 6);
     return view;
+}
+
+bool Level::isPositionFree(sf::Vector2i pos) {
+    bool freeGround = tiles[pos.x][pos.y].floor_tile != 0;
+    bool freeSpace =
+            std::find_if(npcs.begin(), npcs.end(), [pos](Actor *npc) { return npc->position == pos; }) == npcs.end();
+    return freeGround && freeSpace;
 }
 
 

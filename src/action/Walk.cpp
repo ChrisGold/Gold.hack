@@ -49,6 +49,9 @@ Walk::Walk(Direction direction) : Action(direction) {
 
 bool Walk::can_walk(const TickContext &ctx, sf::Vector2i from) {
     auto &tile = ctx.level->tiles[from.x][from.y];
+    if (!ctx.level->isPositionFree(from + toVector(direction))) {
+        return false;
+    }
     switch (direction) {
         case SELF:
             return true;

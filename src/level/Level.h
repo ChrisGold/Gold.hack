@@ -13,6 +13,7 @@
 class Level {
     sf::View getView(sf::RenderTarget &target);
 public:
+    bool isPositionFree(sf::Vector2i pos);
 
     Level(LevelTile data[14][14], sf::Vector2i entry, sf::Vector2i exit);
     Player *player;

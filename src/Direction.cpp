@@ -23,3 +23,24 @@ std::ostream &operator<<(std::ostream &out, const Direction &direction) {
             break;
     }
 }
+
+sf::Vector2i toVector(Direction direction) {
+    sf::Vector2i vec(0, 0);
+    switch (direction) {
+        case SELF:
+            break;
+        case NORTH:
+            vec.y = -1;
+            break;
+        case SOUTH:
+            vec.y = 1;
+            break;
+        case EAST:
+            vec.x = 1;
+            break;
+        case WEST:
+            vec.x = -1;
+            break;
+    }
+    return vec;
+}
