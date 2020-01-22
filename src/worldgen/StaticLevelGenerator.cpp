@@ -6,9 +6,7 @@
 
 void StaticLevelGenerator::generate(LevelSpec &levelSpec, Config &config) {
     for (auto roomSpec : levelSpec.rooms) {
-        int wallId = config.getTextureId(roomSpec.wall);
-        int floorId = config.getTextureId(roomSpec.floor);
-        room(sf::IntRect(roomSpec.position, roomSpec.size), floorId, wallId);
+        room(sf::IntRect(roomSpec.position, roomSpec.size), roomSpec.floor, roomSpec.wall);
     }
     for (auto npcSpec : levelSpec.npcs) {
         npc(npcSpec);

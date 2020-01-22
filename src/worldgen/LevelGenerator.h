@@ -9,7 +9,7 @@
 
 class LevelGenerator {
 protected:
-    void room(sf::IntRect rect, int floor_material, int wall_material);
+    void room(sf::IntRect rect, const std::string &floor_material, const std::string &wall_material);
 
     void calculate_outer_walls();
 

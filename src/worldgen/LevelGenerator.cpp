@@ -1,7 +1,7 @@
 #include "LevelGenerator.h"
 #include "../action/character/Character.h"
 
-void LevelGenerator::room(sf::IntRect rect, int floor_material, int wall_material) {
+void LevelGenerator::room(sf::IntRect rect, const std::string &floor_material, const std::string &wall_material) {
     for (int x = 0; x < rect.width; ++x) {
         for (int y = 0; y < rect.height; ++y) {
             if (in_level(rect.left + x, rect.top + y)) {
@@ -32,8 +32,8 @@ LevelGenerator::LevelGenerator() {
             LevelTile &t = level[x][y];
             t.pass_east = true;
             t.pass_north = true;
-            t.floor_tile = 0;
-            t.wall_tile = 0;
+            t.floor_tile = VOID_NAME;
+            t.wall_tile = VOID_NAME;
         }
     }
 }
@@ -49,22 +49,22 @@ void LevelGenerator::calculate_outer_walls() {
             //East
             if (in_level(x + 1, y)) {
                 LevelTile &east = level[x + 1][y];
-                t.pass_east = east.floor_tile != 0;
+                t.pass_east = east.floor_tile != VOID_NAME;
             } else t.pass_east = false;
             //North
             if (in_level(x, y - 1)) {
                 LevelTile &north = level[x][y - 1];
-                t.pass_north = north.floor_tile != 0;
+                t.pass_north = north.floor_tile != VOID_NAME;
             } else t.pass_north = false;
             //West
             if (in_level(x - 1, y)) {
                 LevelTile &west = level[x - 1][y];
-                t.pass_west = west.floor_tile != 0;
+                t.pass_west = west.floor_tile != VOID_NAME;
             } else t.pass_west = false;
             //South
             if (in_level(x, y + 1)) {
                 LevelTile &south = level[x][y + 1];
-                t.pass_south = south.floor_tile != 0;
+                t.pass_south = south.floor_tile != VOID_NAME;
             } else t.pass_south = false;
         }
     }
