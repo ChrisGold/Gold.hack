@@ -15,13 +15,35 @@ void Inventory::draw(sf::RenderTarget &target, Resources &resources) {
     nameText.setPosition(0, 0);
     nameText.setFillColor(sf::Color::White);
     target.draw(nameText);
+
+    auto top = nameText.getGlobalBounds().height + 25;
+    auto left = 5.f;
+    for (int i = 0; i < items.size(); i++) {
+        float size = 50;
+        float offset = 12.5;
+        if (i == selected_item) {
+            size = 75;
+            offset = 0;
+        }
+        auto itemRect = sf::FloatRect(left, top + offset, size, size);
+        resources.render(target, itemRect, currentItem().getIconTexture());
+        left += size;
+    }
 }
 
 Inventory::Inventory(std::string name) : name(std::move(name)) {
     selected_item = 0;
     items.emplace_back("Sword", 25, 1, 100, 10, "sword");
+    items.emplace_back("Sword", 25, 1, 100, 10, "sword");
+    items.emplace_back("Sword", 25, 1, 100, 10, "sword");
+    items.emplace_back("Sword", 25, 1, 100, 10, "sword");
+    items.emplace_back("Sword", 25, 1, 100, 10, "sword");
+}
+
+Item &Inventory::currentItem() {
+    return this->items[this->selected_item];
 }
 
 int Inventory::currentAttack() {
-    return this->items[this->selected_item].attack;
+    return currentItem().attack;
 }

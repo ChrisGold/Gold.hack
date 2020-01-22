@@ -52,6 +52,21 @@ void Resources::render(sf::RenderTarget &target, const sf::FloatRect &rect, int 
     target.draw(object);
 }
 
+void Resources::render(sf::RenderTarget &target, const sf::FloatRect &rect, const std::string &texture) {
+    auto size = rect.getSize();
+    auto width = size.x;
+    auto height = size.y;
+
+    sf::Sprite object;
+    object.setTexture(*getTexture(texture));
+    object.setPosition(rect.left, rect.top);
+    object.setScale(
+            width / object.getLocalBounds().width,
+            height / object.getLocalBounds().height
+    );
+    target.draw(object);
+}
+
 void Resources::render(sf::RenderTarget &target, const sf::FloatRect &rect, const LevelTile &levelTile) {
     auto size = rect.getSize();
     auto width = size.x;

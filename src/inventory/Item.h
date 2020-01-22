@@ -26,6 +26,8 @@ public:
     int toughness;
 
     const sf::Texture &getTexture(const Resources &resources);
+
+    const std::string &getIconTexture();
 };
 
 

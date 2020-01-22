@@ -22,3 +22,7 @@ const std::string &Item::getName() const {
 const sf::Texture &Item::getTexture(const Resources &resources) {
     return *resources.getTexture(this->icon);
 }
+
+const std::string &Item::getIconTexture() {
+    return icon;
+}

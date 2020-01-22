@@ -15,4 +15,6 @@ public:
     void draw(sf::RenderTarget &target, Resources &resources);
 
     int currentAttack();
+
+    Item &currentItem();
 };

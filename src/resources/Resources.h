@@ -28,4 +28,6 @@ public:
     void render(sf::RenderTarget &target, const sf::FloatRect &rect, int obj_id);
 
     void render(sf::RenderTarget &target, const sf::FloatRect &rect, const LevelTile &levelTile);
+
+    void render(sf::RenderTarget &target, const sf::FloatRect &rect, const std::string &texture);
 };

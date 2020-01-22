@@ -8,6 +8,7 @@ textures:
   - stone_w.png
   - wood_w.png
   - wood_f.png
+  - sword.png
   - halo.png
 fonts:
   - LiberationSerif-Regular.ttf
