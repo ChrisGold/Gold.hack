@@ -19,7 +19,7 @@ void Inventory::draw(sf::RenderTarget &target, Resources &resources) {
 
 Inventory::Inventory(std::string name) : name(std::move(name)) {
     selected_item = 0;
-    items.emplace_back("Sword", 25, 1, 100, 10);
+    items.emplace_back("Sword", 25, 1, 100, 10, "sword");
 }
 
 int Inventory::currentAttack() {
