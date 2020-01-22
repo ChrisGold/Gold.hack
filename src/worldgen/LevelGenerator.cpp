@@ -70,20 +70,6 @@ void LevelGenerator::calculate_outer_walls() {
     }
 }
 
-void LevelGenerator::generate(LevelSpec &levelSpec, Config &config) {
-    for (auto roomSpec : levelSpec.rooms) {
-        int wallId = config.getTextureId(roomSpec.wall);
-        int floorId = config.getTextureId(roomSpec.floor);
-        room(sf::IntRect(roomSpec.position, roomSpec.size), floorId, wallId);
-    }
-    for (auto npcSpec : levelSpec.npcs) {
-        npc(npcSpec);
-    }
-    entryPosition = levelSpec.entry;
-    exitPosition = levelSpec.exit;
-    calculate_outer_walls();
-}
-
 bool in_level(int x, int y) {
     return x >= 0 && x < LEVEL_X_SIZE && y >= 0 && y < LEVEL_Y_SIZE;
 }

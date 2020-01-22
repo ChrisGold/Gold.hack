@@ -2,6 +2,7 @@
 
 #include "LevelGenerator.h"
 
-class StaticLevelGenerator : LevelGenerator {
-
+class StaticLevelGenerator : public LevelGenerator {
+public:
+    void generate(LevelSpec &levelSpec, Config &config);
 };

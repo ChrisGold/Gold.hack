@@ -8,6 +8,7 @@
 #include "../resources/Config.h"
 
 class LevelGenerator {
+protected:
     void room(sf::IntRect rect, int floor_material, int wall_material);
 
     void calculate_outer_walls();
@@ -19,8 +20,6 @@ public:
     std::vector<Actor *> npcs;
     sf::Vector2i entryPosition;
     sf::Vector2i exitPosition;
-
-    void generate(LevelSpec &levelSpec, Config &config);
 
     Level export_level();
 

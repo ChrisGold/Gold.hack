@@ -6,6 +6,7 @@
 #include "yaml-cpp/yaml.h"
 #include "../level/Level.h"
 #include "../worldgen/LevelGenerator.h"
+#include "../worldgen/StaticLevelGenerator.h"
 #include <experimental/filesystem>
 #include <iostream>
 
@@ -54,7 +55,7 @@ Resources Config::loadResources() {
 }
 
 std::vector<Level> Config::generateLevels() {
-    LevelGenerator lg;
+    StaticLevelGenerator lg;
     std::vector<Level> levels;
     for (auto levelSpec: levelSpecs) {
         lg.generate(levelSpec, *this);
