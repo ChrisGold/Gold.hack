@@ -67,6 +67,15 @@ void Game::level_input(sf::Event event) {
         if (isGameAction(input)) {
             auto action = Action::from(input);
             this->currentLevel()->player->enqueue(action);
+        } else {
+            switch (input) {
+                case SCROLL_LEFT:
+                    playerInventory->scrollLeft();
+                    break;
+                case SCROLL_RIGHT:
+                    playerInventory->scrollRight();
+                    break;
+            }
         }
     }
 }

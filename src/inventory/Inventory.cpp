@@ -36,7 +36,7 @@ Inventory::Inventory(std::string name) : name(std::move(name)) {
     items.emplace_back("Sword", 25, 1, 100, 10, "sword");
     items.emplace_back("Sword", 25, 1, 100, 10, "sword");
     items.emplace_back("Sword", 25, 1, 100, 10, "sword");
-    items.emplace_back("Sword", 25, 1, 100, 10, "sword");
+    items.emplace_back("Sword", 100, 1, 100, 10, "sword");
     items.emplace_back("Sword", 25, 1, 100, 10, "sword");
 }
 
@@ -46,4 +46,14 @@ Item &Inventory::currentItem() {
 
 int Inventory::currentAttack() {
     return currentItem().attack;
+}
+
+void Inventory::scrollRight() {
+    selected_item++;
+    selected_item = selected_item % int(items.size());
+}
+
+void Inventory::scrollLeft() {
+    selected_item--;
+    selected_item = selected_item % int(items.size());
 }

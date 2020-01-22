@@ -17,4 +17,8 @@ public:
     int currentAttack();
 
     Item &currentItem();
+
+    void scrollLeft();
+
+    void scrollRight();
 };
