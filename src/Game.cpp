@@ -61,9 +61,13 @@ void Game::loop() {
 }
 
 void Game::level_input(sf::Event event) {
-    auto action = inputController->readInput(event);
-    if (action != nullptr) {
-        currentLevel()->enqueue(action);
+    auto inputOpt = inputController->readInput(event);
+    if (inputOpt) {
+        auto input = inputOpt.value();
+        if (isGameAction(input)) {
+            auto action = Action::from(input);
+            this->currentLevel()->player->enqueue(action);
+        }
     }
 }
 

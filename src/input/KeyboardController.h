@@ -10,5 +10,5 @@ public:
     explicit KeyboardController(Game *game);
     ~KeyboardController() override = default;
 
-    Action *readInput(const sf::Event &event) override;
+    std::optional<Input> readInput(const sf::Event &event) override;
 };
