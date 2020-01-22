@@ -10,9 +10,9 @@ void Interact::write_out(std::ostream &out) const {
 }
 
 void Interact::execute(TickContext &ctx, Actor *executor) {
-    std::cout << executor->name << " reaching " << direction << std::endl;
+    std::cout << executor->name << " reaching " << executor->facing << std::endl;
 }
 
-Interact::Interact(Direction direction) : Action(direction) {
+Interact::Interact() : Action() {
 
 }

@@ -3,8 +3,6 @@
 #include "Attack.h"
 #include "Interact.h"
 
-Action::Action(Direction direction) : direction(direction) {}
-
 std::ostream &operator<<(std::ostream &out, const Action &action) {
     action.write_out(out);
     return out;
@@ -21,9 +19,9 @@ Action *Action::from(Input input) {
         case RIGHT:
             return new Walk(Direction::EAST);
         case ACTION_1:
-            return new Attack(Direction::SELF);
+            return new Attack();
         case ACTION_2:
-            return new Interact(Direction::SELF);
+            return new Interact();
         default:
             return nullptr;
     }

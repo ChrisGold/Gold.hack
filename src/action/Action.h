@@ -10,10 +10,8 @@ class Actor;
 class Level;
 
 class Action {
-protected:
-    Direction direction = SELF;
 public:
-    explicit Action(Direction direction);
+    Action() = default;
 
     virtual ~Action() = default;
 

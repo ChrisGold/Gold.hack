@@ -44,6 +44,4 @@ void Attack::write_out(std::ostream &out) const {
     out << "attacking";
 }
 
-Attack::Attack(Direction direction) : Action(direction) {
-
-}
+Attack::Attack() = default;

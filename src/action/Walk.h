@@ -7,7 +7,7 @@ class Walk : public Action {
 
 protected:
     void write_out(std::ostream &out) const override;
-
+    Direction direction = SELF;
 public:
     Walk(Direction direction);
 

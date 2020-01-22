@@ -8,5 +8,5 @@ class Attack : public Action {
     void write_out(std::ostream &out) const;
 
 public:
-    Attack(Direction direction);
+    Attack();
 };
