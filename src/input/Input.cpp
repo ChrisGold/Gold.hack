@@ -6,6 +6,10 @@ bool isGameAction(Input i) {
         case DOWN:
         case LEFT:
         case RIGHT:
+        case TURN_UP:
+        case TURN_DOWN:
+        case TURN_LEFT:
+        case TURN_RIGHT:
         case ACTION_1:
         case ACTION_2:
             return true;
