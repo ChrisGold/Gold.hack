@@ -15,34 +15,15 @@ void LevelGenerator::room(sf::IntRect rect, int floor_material, int wall_materia
     }
 }
 
-Level LevelGenerator::export_level() {
-    auto l = Level(level, entryPosition, exitPosition);
-    Actor *npc = new Character("Aurelian", 1, exitPosition);
-    l.npcs.push_back(npc);
-    return l;
+void LevelGenerator::npc(NPCSpec spec) {
+    Actor *npc = new Character(spec.name, 1, spec.pos);
+    npcs.push_back(npc);
 }
 
-void LevelGenerator::generate(int type) {
-    if (type == 0) {
-        entryPosition = sf::Vector2i(0, 0);
-        exitPosition = sf::Vector2i(4, 4);
-        room(sf::IntRect(1, 1, 5, 5), 2, 3);
-        room(sf::IntRect(7, 1, 5, 5), 2, 3);
-        room(sf::IntRect(6, 3, 1, 1), 2, 3);
-        room(sf::IntRect(0, 0, 1, 8), 2, 3);
-        room(sf::IntRect(4, 4, 1, 1), 2, 3);
-    } else if (type == 1) {
-        entryPosition = sf::Vector2i(0, 4);
-        exitPosition = sf::Vector2i(2, 0);
-        room(sf::IntRect(0, 0, 3, 5), 2, 3);
-    } else if (type == 2) {
-        entryPosition = sf::Vector2i(8, 0);
-        exitPosition = sf::Vector2i(13, 13);
-        room(sf::IntRect(8, 0, 1, 13), 2, 3);
-        room(sf::IntRect(0, 13, 13, 1), 2, 3);
-        room(sf::IntRect(13, 13, 1, 1), 2, 3);
-    }
-    calculate_walls();
+Level LevelGenerator::export_level() {
+    auto l = Level(level, entryPosition, exitPosition);
+    l.npcs = npcs;
+    return l;
 }
 
 LevelGenerator::LevelGenerator() {
@@ -61,7 +42,7 @@ void LevelGenerator::reset() {
     *this = LevelGenerator();
 }
 
-void LevelGenerator::calculate_walls() {
+void LevelGenerator::calculate_outer_walls() {
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
             LevelTile &t = level[x][y];
@@ -95,9 +76,12 @@ void LevelGenerator::generate(LevelSpec &levelSpec, Config &config) {
         int floorId = config.getTextureId(roomSpec.floor);
         room(sf::IntRect(roomSpec.position, roomSpec.size), floorId, wallId);
     }
+    for (auto npcSpec : levelSpec.npcs) {
+        npc(npcSpec);
+    }
     entryPosition = levelSpec.entry;
     exitPosition = levelSpec.exit;
-    calculate_walls();
+    calculate_outer_walls();
 }
 
 bool in_level(int x, int y) {

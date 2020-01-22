@@ -26,6 +26,3 @@ private:
     LevelSpec();
 };
 
-sf::Vector2i xyFromYAML(YAML::Node coords);
-
-sf::Vector2i widthHeightFromYAML(YAML::Node coords);

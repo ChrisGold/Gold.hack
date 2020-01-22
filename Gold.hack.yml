@@ -38,8 +38,11 @@ levels:
         wall: stone_w
         floor: stone_f
     npcs:
-      - a: b
-        c: d
+      - name: Aurelian
+        health: 100
+        position:
+          x: 4
+          y: 5
   - entry:
       x: 0
       y: 0
@@ -72,5 +75,8 @@ levels:
         wall: stone_w
         floor: stone_f
     npcs:
-      - a: b
-        c: d
+      - name: Aurelian
+        health: 100
+        position:
+          x: 4
+          y: 5

@@ -4,6 +4,7 @@
 
 #include "LevelSpec.h"
 #include "NPCSpec.h"
+#include "../YamlUtils.h"
 
 LevelSpec::LevelSpec() = default;
 
@@ -18,18 +19,6 @@ LevelSpec LevelSpec::fromYAML(const YAML::Node &levelNode) {
     ls.entry = xyFromYAML(levelNode["entry"]);
     ls.exit = xyFromYAML(levelNode["exit"]);
     return ls;
-}
-
-sf::Vector2i widthHeightFromYAML(YAML::Node coords) {
-    int x = coords["width"].as<int>();
-    int y = coords["height"].as<int>();
-    return sf::Vector2i(x, y);
-}
-
-sf::Vector2i xyFromYAML(YAML::Node coords) {
-    int x = coords["x"].as<int>();
-    int y = coords["y"].as<int>();
-    return sf::Vector2i(x, y);
 }
 
 RoomSpec RoomSpec::fromYAML(YAML::Node roomNode) {
