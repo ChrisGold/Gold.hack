@@ -16,9 +16,12 @@ void Level::drawTile(sf::RenderTarget &target, Resources &resources, int x, int 
 void Level::draw(sf::RenderTarget &target, Resources &resources) {
     target.setView(getView(target));
 
-    for (int r = 0; r < LEVEL_X_SIZE; r++) {
-        for (int y = 0; y < LEVEL_Y_SIZE && r - y >= 0; y++) {
-            drawTile(target, resources, r - y, y);
+    for (int k = 0; k <= LEVEL_X_SIZE + LEVEL_Y_SIZE - 2; k++) {
+        for (int j = 0; j <= k; j++) {
+            int i = k - j;
+            if (i < LEVEL_Y_SIZE && j < LEVEL_X_SIZE) {
+                drawTile(target, resources, i, j);
+            }
         }
     }
 
