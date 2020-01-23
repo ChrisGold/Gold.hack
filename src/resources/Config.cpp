@@ -7,6 +7,7 @@
 #include "../level/Level.h"
 #include "../worldgen/LevelGenerator.h"
 #include "../worldgen/StaticLevelGenerator.h"
+#include "../worldgen/ProceduralLevelGenerator.h"
 #include <experimental/filesystem>
 #include <iostream>
 
@@ -55,13 +56,10 @@ Resources Config::loadResources() {
 }
 
 std::vector<Level> Config::generateLevels() {
-    StaticLevelGenerator lg;
     std::vector<Level> levels;
-    for (auto levelSpec: levelSpecs) {
-        lg.generate(levelSpec, *this);
-        levels.push_back(lg.export_level());
-        lg.reset();
-    }
+    ProceduralLevelGenerator plg;
+    plg.generate();
+    levels.push_back(plg.export_level());
     return levels;
 }
 
