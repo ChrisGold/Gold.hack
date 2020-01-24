@@ -66,7 +66,7 @@ void Game::level_input(sf::Event event) {
         auto input = inputOpt.value();
         if (isGameAction(input)) {
             auto action = Action::from(input);
-            this->currentLevel()->player->enqueue(action);
+            this->currentLevel()->enqueue(action);
         } else {
             switch (input) {
                 case SCROLL_LEFT:
