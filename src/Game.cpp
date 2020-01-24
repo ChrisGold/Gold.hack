@@ -140,6 +140,11 @@ void Game::level_advance() {
 
 }
 
+void Game::game_over() {
+    std::cout << "You died, " << playerInventory->name << ". Game Over." << std::endl;
+    window.close();
+}
+
 std::string stage_name(const GameStage &stage) {
     if (stage == MENU) {
         return std::string("Gold.hack: Menu");

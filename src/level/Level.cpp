@@ -1,3 +1,4 @@
+#include "../Game.h"
 #include "Level.h"
 #include "../action/character/Player.h"
 #include <SFML/Graphics/RenderTexture.hpp>
@@ -49,6 +50,10 @@ bool isNPCDead(const Actor *npc) {
 }
 
 bool Level::tick(TickContext &ctx) {
+    if (!player->isAlive()) {
+        ctx.game->game_over();
+        return true;
+    }
     auto turn = player->act(ctx);
     if (turn) {
         for (auto npc : npcs) {

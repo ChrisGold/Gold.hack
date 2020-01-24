@@ -42,6 +42,8 @@ public:
 
     void level_advance();
 
+    void game_over();
+
 private:
     void change_stage(const GameStage &stage);
 
@@ -52,6 +54,7 @@ private:
     void menu_input(sf::Event event);
 
     void level_input(sf::Event event);
+
 };
 
 std::string stage_name(const GameStage &stage);
