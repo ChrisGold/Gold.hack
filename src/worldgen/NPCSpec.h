@@ -5,8 +5,9 @@
 
 struct NPCSpec {
     std::string name;
+    std::string type;
 
-    NPCSpec(std::string name, int maxHealth, const sf::Vector2i &pos);
+    NPCSpec(std::string name, std::string type, int maxHealth, const sf::Vector2i &pos);
 
     int maxHealth;
     sf::Vector2i pos;

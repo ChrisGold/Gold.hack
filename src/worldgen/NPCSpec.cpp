@@ -14,9 +14,11 @@ NPCSpec NPCSpec::fromYAML(YAML::Node npcNode) {
     auto name = nameNode.as<std::string>();
     auto pos = xyFromYAML(npcNode["position"]);
     auto maxHealth = maxHealthNode.as<int>();
-    return NPCSpec(name, maxHealth, pos);
+    auto type = npcNode["type"].as<std::string>();
+    return NPCSpec(name, type, maxHealth, pos);
 }
 
-NPCSpec::NPCSpec(std::string name, int maxHealth, const sf::Vector2i &pos) : name(std::move(name)),
-                                                                             maxHealth(maxHealth),
-                                                                             pos(pos) {}
+NPCSpec::NPCSpec(std::string name, std::string type, int maxHealth, const sf::Vector2i &pos) : name(std::move(name)),
+                                                                                               maxHealth(maxHealth),
+                                                                                               pos(pos),
+                                                                                               type(std::move(type)) {}

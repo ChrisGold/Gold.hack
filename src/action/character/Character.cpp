@@ -7,6 +7,7 @@
 
 Character::Character(const std::string &name, int textureId, const sf::Vector2i &position) : Actor(name, textureId,
                                                                                                    position, 100) {
+    facing = Direction::NORTH;
 }
 
 int Character::counter = 0;

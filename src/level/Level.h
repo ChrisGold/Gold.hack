@@ -28,9 +28,9 @@ public:
 
     LevelTile tiles[LEVEL_X_SIZE][LEVEL_Y_SIZE];
     sf::Vector2i entryPosition;
-
-
     sf::Vector2i exitPosition;
+
+    Actor *at(sf::Vector2i);
 
     void drawTile(sf::RenderTarget &target, Resources &resources, int x, int y);
 };

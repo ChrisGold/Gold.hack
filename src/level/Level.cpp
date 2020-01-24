@@ -1,6 +1,4 @@
 #include "Level.h"
-#include "../action/Actor.h"
-#include "../action/character/Character.h"
 #include "../action/character/Player.h"
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
@@ -74,6 +72,18 @@ bool Level::isPositionFree(sf::Vector2i pos) {
     bool freeSpace =
             std::find_if(npcs.begin(), npcs.end(), [pos](Actor *npc) { return npc->position == pos; }) == npcs.end();
     return freeGround && freeSpace;
+}
+
+Actor *Level::at(sf::Vector2i pos) {
+    if (pos.x < 0 || pos.y < 0 || pos.x >= LEVEL_X_SIZE || pos.y >= LEVEL_Y_SIZE) {
+        return nullptr;
+    }
+    if (pos == player->position) {
+        return player;
+    }
+    auto it = std::find_if(npcs.begin(), npcs.end(), [pos](Actor *npc) { return npc->position == pos; });
+    if (it == npcs.end()) return nullptr;
+    else return *it;
 }
 
 

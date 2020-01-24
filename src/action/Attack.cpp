@@ -22,20 +22,16 @@ void Attack::execute(TickContext &ctx, Actor *executor) {
             delta.x = -1;
             break;
     }
-    sf::Vector2i target = executor->position + delta;
 
     int damage = 10;
     if (dynamic_cast<Player *>(executor)) {
         damage = ctx.playerInventory->currentAttack();
     }
 
-    auto &npcs = ctx.level->npcs;
-    auto it = std::find_if(npcs.begin(), npcs.end(),
-                           [target](Actor *a) { return a->position == target; });
-    if (it != npcs.end()) {
-        auto &npc = *it;
-        int left = npc->takeDamage(damage);
-        std::cout << "Hit " << npc->name << " for " << damage << " HP damage, leaving " << left << "."
+    auto target = ctx.level->at(executor->position + delta);
+    if (target != nullptr) {
+        int left = target->takeDamage(damage);
+        std::cout << "Hit " << target->name << " for " << damage << " HP damage, leaving " << left << "."
                   << std::endl;
     }
 }

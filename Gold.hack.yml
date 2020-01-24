@@ -38,7 +38,8 @@ levels:
         wall: stone_w
         floor: stone_f
     npcs:
-      - name: Aurelian
+      - name: Fighter One
+        type: fighter
         health: 100
         position:
           x: 4
@@ -75,7 +76,8 @@ levels:
         wall: stone_w
         floor: stone_f
     npcs:
-      - name: Aurelian
+      - name: Fighter Two
+        type: fighter
         health: 100
         position:
           x: 4

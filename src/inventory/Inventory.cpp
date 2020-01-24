@@ -55,5 +55,6 @@ void Inventory::scrollRight() {
 
 void Inventory::scrollLeft() {
     selected_item--;
+    selected_item += items.size();
     selected_item = selected_item % int(items.size());
 }

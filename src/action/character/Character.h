@@ -1,4 +1,5 @@
 #include "../Actor.h"
+#pragma once
 
 class Character : public Actor {
     static int counter;
