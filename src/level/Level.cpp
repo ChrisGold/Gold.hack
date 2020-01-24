@@ -76,7 +76,7 @@ bool Level::isPositionFree(sf::Vector2i pos) {
     bool freeGround = tiles[pos.x][pos.y].floor_tile != VOID_NAME;
     bool freeSpace =
             std::find_if(npcs.begin(), npcs.end(), [pos](Actor *npc) { return npc->position == pos; }) == npcs.end();
-    return freeGround && freeSpace;
+    return freeGround && freeSpace && player->position != pos;
 }
 
 Actor *Level::at(sf::Vector2i pos) {
