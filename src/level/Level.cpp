@@ -14,19 +14,26 @@ void Level::drawTile(sf::RenderTarget &target, Resources &resources, int x, int 
 
 void Level::draw(sf::RenderTarget &target, Resources &resources) {
     target.setView(getView(target));
+    Actor *npcsArray[LEVEL_X_SIZE][LEVEL_Y_SIZE] = {};
+
+    for (auto npc : npcs) {
+        npcsArray[npc->position.x][npc->position.y] = npc;
+    }
 
     for (int k = 0; k <= LEVEL_X_SIZE + LEVEL_Y_SIZE - 2; k++) {
         for (int j = 0; j <= k; j++) {
             int i = k - j;
-            if (i < LEVEL_Y_SIZE && j < LEVEL_X_SIZE) {
+            if (i < LEVEL_X_SIZE && j < LEVEL_Y_SIZE) {
+                auto npc = npcsArray[i][j];
+                if (npc != nullptr) {
+                    resources.render(target, WorldToScreen(npc->getRect()), npc->texture_id);
+                }
+                if (player->position == sf::Vector2i(i, j)) {
+                    resources.render(target, WorldToScreen(player->getRect()), player->texture_id);
+                }
                 drawTile(target, resources, i, j);
             }
         }
-    }
-
-    resources.render(target, WorldToScreen(player->getRect()), player->texture_id);
-    for (auto npc : npcs) {
-        resources.render(target, WorldToScreen(npc->getRect()), npc->texture_id);
     }
 }
 
