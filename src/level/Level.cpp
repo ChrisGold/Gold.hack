@@ -81,7 +81,7 @@ void Level::debugOutput() {
             } else {
                 std::cout << "|";
             }
-            if (player->position.x == j && player->position.x == i) {
+            if (player->position.x == j && player->position.y == i) {
                 std::cout << " X ";
             } else {
                 std::cout << "   ";
