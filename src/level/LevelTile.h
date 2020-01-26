@@ -4,10 +4,10 @@
 #include "../Constants.h"
 
 struct LevelTile {
-    bool pass_north = true;
-    bool pass_east = true;
-    bool pass_south = true;
-    bool pass_west = true;
+    bool pass_north = false;
+    bool pass_east = false;
+    bool pass_south = false;
+    bool pass_west = false;
     std::string floor_tile = VOID_NAME;
     std::string wall_tile = VOID_NAME;
 };

@@ -30,7 +30,7 @@ void Level::draw(sf::RenderTarget &target, Resources &resources) {
     }
 }
 
-Level::Level(LevelTile data[14][14], sf::Vector2i entry, sf::Vector2i exit) {
+Level::Level(LevelTile data[LEVEL_X_SIZE][LEVEL_Y_SIZE], sf::Vector2i entry, sf::Vector2i exit) {
     this->entryPosition = entry;
     this->exitPosition = exit;
     player = new Player("Player", 1, entry);

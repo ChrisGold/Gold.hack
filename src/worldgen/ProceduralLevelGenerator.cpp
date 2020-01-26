@@ -15,18 +15,45 @@ void ProceduralLevelGenerator::generate() {
     debugOutput(entryPosition.x, entryPosition.y);
 }
 
+void ProceduralLevelGenerator::expandMaze() {
+    for (int m_x = 0; m_x < MAZE_X_SIZE; m_x++) {
+        for (int m_y = 0; m_y < MAZE_Y_SIZE; m_y++) {
+            auto &tile = maze[m_x][m_y];
+            level[m_x * 2][m_y * 2] = tile;
+            if (tile.pass_south) {
+                auto &south = level[m_x * 2][m_y * 2 + 1];
+                south = tile;
+                south.pass_north = true;
+                south.pass_south = true;
+                south.pass_east = false;
+                south.pass_west = false;
+
+            }
+            if (tile.pass_east) {
+                auto &east = level[m_x * 2 + 1][m_y * 2];
+                east = tile;
+                east.pass_north = false;
+                east.pass_south = false;
+                east.pass_west = true;
+                east.pass_east = true;
+            }
+        }
+    }
+}
+
 void ProceduralLevelGenerator::dfsGenerate() {
     std::vector<sf::Vector2i> visited;
     dfsGenerate(entryPosition, visited);
+    expandMaze();
 }
 
 void ProceduralLevelGenerator::dfsGenerate(sf::Vector2i cell, std::vector<sf::Vector2i> &visited) {
     visited.push_back(cell);
-    for (auto neighborDirection : neighborsRandomOrder(cell)) {
+    for (auto neighborDirection : neighborsRandomOrder(cell, MAZE_X_SIZE, MAZE_Y_SIZE)) {
         auto neighborPos = cell + toVector(neighborDirection);
         if (std::find(visited.begin(), visited.end(), neighborPos) == visited.end()) {
-            auto &tile = level[cell.x][cell.y];
-            auto &neighbor = level[neighborPos.x][neighborPos.y];
+            auto &tile = maze[cell.x][cell.y];
+            auto &neighbor = maze[neighborPos.x][neighborPos.y];
             tile.wall_tile = currentWall;
             tile.floor_tile = currentFloor;
             switch (neighborDirection) {
@@ -84,14 +111,14 @@ void ProceduralLevelGenerator::debugOutput(int x, int y) {
     std::cout << "+" << std::endl;
 }
 
-std::vector<Direction> neighborsRandomOrder(sf::Vector2i cell) {
+std::vector<Direction> neighborsRandomOrder(sf::Vector2i cell, int x_max, int y_max) {
     std::vector<Direction> directions = {Direction::NORTH, Direction::SOUTH, Direction::EAST, Direction::WEST};
     std::shuffle(directions.begin(), directions.end(), std::random_device());
     auto neighbors = std::vector<Direction>();
     neighbors.reserve(4);
     for (Direction d : directions) {
         auto neighbor = cell + toVector(d);
-        if (neighbor.x >= 0 && neighbor.x < LEVEL_X_SIZE && neighbor.y >= 0 && neighbor.y < LEVEL_Y_SIZE) {
+        if (neighbor.x >= 0 && neighbor.x < x_max && neighbor.y >= 0 && neighbor.y < y_max) {
             neighbors.push_back(d);
         }
     }
@@ -100,4 +127,12 @@ std::vector<Direction> neighborsRandomOrder(sf::Vector2i cell) {
 
 void ProceduralLevelGenerator::plotRoom(int x, int y, int width, int height) {
     room(sf::IntRect(x, y, width, height), currentFloor, currentWall);
+}
+
+ProceduralLevelGenerator::ProceduralLevelGenerator() {
+    for (int x = 0; x < MAZE_X_SIZE; x++) {
+        for (int y = 0; y < MAZE_Y_SIZE; y++) {
+            auto &tile = maze[x][y];
+        }
+    }
 }

@@ -15,7 +15,7 @@ class Level {
 public:
     bool isPositionFree(sf::Vector2i pos);
 
-    Level(LevelTile data[14][14], sf::Vector2i entry, sf::Vector2i exit);
+    Level(LevelTile data[LEVEL_X_SIZE][LEVEL_Y_SIZE], sf::Vector2i entry, sf::Vector2i exit);
     Player *player;
 
     std::vector<Actor *> npcs;

@@ -2,8 +2,11 @@
 
 #include <SFML/Graphics/Color.hpp>
 
-const int LEVEL_X_SIZE = 14;
-const int LEVEL_Y_SIZE = 14;
+const int LEVEL_X_SIZE = 16;
+const int LEVEL_Y_SIZE = 16;
+
+const int MAZE_X_SIZE = 8;
+const int MAZE_Y_SIZE = 8;
 
 const int TILE_X_SIZE = 50;
 const int TILE_Y_SIZE = 50;
