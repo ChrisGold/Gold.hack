@@ -33,6 +33,8 @@ public:
     Actor *at(sf::Vector2i);
 
     void drawTile(sf::RenderTarget &target, Resources &resources, int x, int y);
+
+    void debugOutput();
 };
 
 
