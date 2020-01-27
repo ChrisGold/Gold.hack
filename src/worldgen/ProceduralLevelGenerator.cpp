@@ -12,7 +12,7 @@ void ProceduralLevelGenerator::generate() {
     currentWall = "stone_w";
     currentFloor = "stone_f";
     dfsGenerate();
-    debugOutput(entryPosition.x, entryPosition.y);
+    createRooms();
 }
 
 void ProceduralLevelGenerator::expandMaze() {
@@ -79,6 +79,19 @@ void ProceduralLevelGenerator::dfsGenerate(sf::Vector2i cell, std::vector<sf::Ve
             dfsGenerate(neighborPos, visited);
         }
     }
+}
+
+typedef std::uniform_int_distribution<int> dice;
+
+void ProceduralLevelGenerator::createRooms() {
+    std::random_device rand;
+    auto xSize = dice(3, 5);
+    auto ySize = dice(3, 5);
+    auto xCorner = dice(0, LEVEL_X_SIZE);
+    auto yCorner = dice(0, LEVEL_Y_SIZE);
+
+    auto bounds = sf::IntRect(xCorner(rand), yCorner(rand), xSize(rand), ySize(rand));
+    room(bounds, currentFloor, currentWall);
 }
 
 void ProceduralLevelGenerator::debugOutput(int x, int y) {

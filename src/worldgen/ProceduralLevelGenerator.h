@@ -22,6 +22,8 @@ public:
     void debugOutput(int x, int y);
 
     void expandMaze();
+
+    void createRooms();
 };
 
 std::vector<Direction> neighborsRandomOrder(sf::Vector2i cell, int x_max, int y_max);

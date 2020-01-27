@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics/Color.hpp>
+#include <random>
 
 const int LEVEL_X_SIZE = 16;
 const int LEVEL_Y_SIZE = 16;

@@ -59,8 +59,8 @@ std::vector<Level> Config::generateLevels() {
     std::vector<Level> levels;
 
     ProceduralLevelGenerator plg;
-    plg.generate();
-    levels.push_back(plg.export_level());
+    //plg.generate();
+    //levels.push_back(plg.export_level());
 
     StaticLevelGenerator lg;
     for (auto levelSpec: levelSpecs) {
