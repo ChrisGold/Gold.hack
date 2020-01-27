@@ -1,10 +1,12 @@
+#include <utility>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Text.hpp>
-#include <utility>
+#include <SFML/Graphics/RectangleShape.hpp>
 #include "Inventory.h"
 #include "../resources/Resources.h"
+#include "../Game.h"
 
-void Inventory::draw(sf::RenderTarget &target, Resources &resources) {
+void Inventory::draw(sf::RenderTarget &target, Resources &resources, Game *game) {
     target.clear();
     //Draw name
     sf::Text nameText;
@@ -28,6 +30,12 @@ void Inventory::draw(sf::RenderTarget &target, Resources &resources) {
         resources.render(target, itemRect, currentItem().getIconTexture());
         left += size;
     }
+
+    top = top + 100;
+    sf::RectangleShape healthBar{sf::Vector2f(game->currentLevel()->player->getHealth(), 20)};
+    healthBar.setFillColor(sf::Color::Red);
+    healthBar.setPosition(0, top);
+    target.draw(healthBar);
 }
 
 Inventory::Inventory(std::string name) : name(std::move(name)) {

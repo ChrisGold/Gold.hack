@@ -95,7 +95,7 @@ void Game::draw_level() {
     sidebarTexture.clear(sf::Color(128, 128, 128));
 
     level.draw(levelTexture, resources);
-    playerInventory->draw(sidebarTexture, resources);
+    playerInventory->draw(sidebarTexture, resources, this);
     sidebarTexture.display();
     levelTexture.display();
 

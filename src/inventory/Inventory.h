@@ -4,6 +4,8 @@
 #include "../resources/Resources.h"
 #include "Item.h"
 
+class Game;
+
 class Inventory {
     std::vector<Item> items;
     int selected_item;
@@ -12,7 +14,7 @@ public:
 
     std::string name;
 
-    void draw(sf::RenderTarget &target, Resources &resources);
+    void draw(sf::RenderTarget &target, Resources &resources, Game *game);
 
     int currentAttack();
 
