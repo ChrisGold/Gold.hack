@@ -2,8 +2,11 @@
 
 #include <SFML/Graphics/Color.hpp>
 
-const int LEVEL_X_SIZE = 14;
-const int LEVEL_Y_SIZE = 14;
+const int LEVEL_X_SIZE = 16;
+const int LEVEL_Y_SIZE = 16;
+
+const int MAZE_X_SIZE = 8;
+const int MAZE_Y_SIZE = 8;
 
 const int TILE_X_SIZE = 50;
 const int TILE_Y_SIZE = 50;
@@ -26,3 +29,5 @@ const std::string FONT_DEFAULT = "LiberationSerif-Regular";
 const sf::Color goldenrod = sf::Color(0XDAA250FF);
 const sf::Color gold = sf::Color(0xFFD700FF);
 const sf::Color light_gray = sf::Color(0XAAAAAAFF);
+
+const bool DRAW_WALLS = false;

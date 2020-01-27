@@ -81,6 +81,8 @@ void Resources::render(sf::RenderTarget &target, const sf::FloatRect &rect, cons
     );
     target.draw(floor);
 
+    if (!DRAW_WALLS) return;
+
     if (!levelTile.pass_north) {
         sf::Sprite north;
         auto tex = getTexture(levelTile.wall_tile);

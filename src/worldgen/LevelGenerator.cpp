@@ -29,6 +29,7 @@ void LevelGenerator::npc(NPCSpec spec) {
 Level LevelGenerator::export_level() {
     auto l = Level(level, entryPosition, exitPosition);
     l.npcs = npcs;
+    l.debugOutput();
     return l;
 }
 
@@ -36,8 +37,10 @@ LevelGenerator::LevelGenerator() {
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
             LevelTile &t = level[x][y];
-            t.pass_east = true;
-            t.pass_north = true;
+            t.pass_north = false;
+            t.pass_south = false;
+            t.pass_east = false;
+            t.pass_west = false;
             t.floor_tile = VOID_NAME;
             t.wall_tile = VOID_NAME;
         }

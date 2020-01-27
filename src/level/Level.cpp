@@ -30,7 +30,7 @@ void Level::draw(sf::RenderTarget &target, Resources &resources) {
     }
 }
 
-Level::Level(LevelTile data[14][14], sf::Vector2i entry, sf::Vector2i exit) {
+Level::Level(LevelTile data[LEVEL_X_SIZE][LEVEL_Y_SIZE], sf::Vector2i entry, sf::Vector2i exit) {
     this->entryPosition = entry;
     this->exitPosition = exit;
     player = new Player("Player", 1, entry);
@@ -56,12 +56,43 @@ bool Level::tick(TickContext &ctx) {
     }
     auto turn = player->act(ctx);
     if (turn) {
+        debugOutput();
         for (auto npc : npcs) {
             npc->act(ctx);
         }
         npcs.erase(std::remove_if(npcs.begin(), npcs.end(), isNPCDead), npcs.end());
     }
     return turn;
+}
+
+void Level::debugOutput() {
+    for (int i = 0; i < LEVEL_Y_SIZE; i++) {
+        for (int j = 0; j < LEVEL_X_SIZE; j++) {
+            if (tiles[j][i].pass_north) {
+                std::cout << "+   ";
+            } else {
+                std::cout << "+---";
+            }
+        }
+        std::cout << "+" << std::endl;
+        for (int j = 0; j < LEVEL_X_SIZE; j++) {
+            if (tiles[j][i].pass_west) {
+                std::cout << " ";
+            } else {
+                std::cout << "|";
+            }
+            if (player->position.x == j && player->position.y == i) {
+                std::cout << " X ";
+            } else {
+                std::cout << "   ";
+            }
+        }
+        std::cout << "|" << std::endl;
+    }
+    for (int j = 0; j < LEVEL_X_SIZE; j++) {
+        std::cout << "+---";
+    }
+    std::cout << "+" << std::endl;
 }
 
 sf::View Level::getView(sf::RenderTarget &target) {

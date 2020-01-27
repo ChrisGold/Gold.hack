@@ -58,17 +58,16 @@ Resources Config::loadResources() {
 std::vector<Level> Config::generateLevels() {
     std::vector<Level> levels;
 
+    ProceduralLevelGenerator plg;
+    plg.generate();
+    levels.push_back(plg.export_level());
+
     StaticLevelGenerator lg;
     for (auto levelSpec: levelSpecs) {
         lg.generate(levelSpec, *this);
         levels.push_back(lg.export_level());
         lg.reset();
     }
-
-    ProceduralLevelGenerator plg;
-    plg.generate();
-    levels.push_back(plg.export_level());
-
     return levels;
 }
 
