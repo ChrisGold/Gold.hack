@@ -27,24 +27,18 @@ Handlungen sind:
 * Menü
 * Sound
 * 3+ Level
-* Speichern / Laden des Fortschritts
 * Schwierigkeitsgrade
 
 ### Schwierigkeitsgrad B
 
-* Controllerunterstützung
-* Ingame chat
 * Levelgeneration aus einer Textdatei
 * Betriebsystemunabhängig
 
 ### Schwierigkeitsgrad A
 
-* Netzwerk-Multiplayer
 * Charakter-Entwicklung
-* Quest-Management
 * Levelgeneration im Spiel
 
 ### Schwierigkeitsgrad S
 
-* Eigene Shader
 * prozedural generierte Welt
