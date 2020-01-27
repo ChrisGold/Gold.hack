@@ -32,7 +32,9 @@ void Inventory::draw(sf::RenderTarget &target, Resources &resources, Game *game)
     }
 
     top = top + 100;
-    sf::RectangleShape healthBar{sf::Vector2f(game->currentLevel()->player->getHealth(), 20)};
+    int health = game->currentLevel()->player->getHealth();
+    int maxHealth = game->currentLevel()->player->getMaxHealth();
+    sf::RectangleShape healthBar{sf::Vector2f((200.0 / maxHealth) * health, 20)};
     healthBar.setFillColor(sf::Color::Red);
     healthBar.setPosition(0, top);
     target.draw(healthBar);
