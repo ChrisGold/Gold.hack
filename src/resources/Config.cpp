@@ -7,7 +7,7 @@
 #include "../level/Level.h"
 #include "../worldgen/LevelGenerator.h"
 #include "../worldgen/static/StaticLevelGenerator.h"
-#include "../worldgen/ProceduralLevelGenerator.h"
+#include "../worldgen/procedural/ProceduralLevelGenerator.h"
 #include <experimental/filesystem>
 #include <iostream>
 
@@ -37,8 +37,14 @@ void Config::initFromFile(const std::string &path) {
         fonts.emplace_back(file.stem(), filepath);
     }
     for (const auto &levelNode : resourceConfigYAML["levels"]) {
-        auto l = LevelSpec::fromYAML(levelNode);
-        levelSpecs.push_back(l);
+        auto type = levelNode["type"].as<std::string>();
+        if (type == "static") {
+            auto l = LevelSpec::fromYAML(levelNode);
+            levelSpecs.emplace_back(l);
+        } else if (type == "gen") {
+            auto l = ProceduralLevelSpec::fromYAML(levelNode);
+            levelSpecs.emplace_back(l);
+        }
     }
 }
 
@@ -58,15 +64,19 @@ Resources Config::loadResources() {
 std::vector<Level> Config::generateLevels() {
     std::vector<Level> levels;
 
-    ProceduralLevelGenerator plg;
-    plg.generate();
-    levels.push_back(plg.export_level());
-
     StaticLevelGenerator lg;
+    ProceduralLevelGenerator plg;
+
     for (auto levelSpec: levelSpecs) {
-        lg.generate(levelSpec, *this);
-        levels.push_back(lg.export_level());
-        lg.reset();
+        if (std::holds_alternative<LevelSpec>(levelSpec)) {
+            lg.generate(std::get<LevelSpec>(levelSpec), *this);
+            levels.push_back(lg.export_level());
+            lg.reset();
+        } else {
+            plg.generate(std::get<ProceduralLevelSpec>(levelSpec));
+            levels.push_back(plg.export_level());
+            plg.reset();
+        }
     }
     return levels;
 }

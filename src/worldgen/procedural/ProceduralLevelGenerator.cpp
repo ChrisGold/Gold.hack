@@ -3,10 +3,10 @@
 //
 
 #include <random>
-#include "../Direction.h"
+#include "../../Direction.h"
 #include "ProceduralLevelGenerator.h"
 
-void ProceduralLevelGenerator::generate() {
+void ProceduralLevelGenerator::generate(ProceduralLevelSpec spec) {
     entryPosition = sf::Vector2i(0, 0);
     exitPosition = sf::Vector2i(LEVEL_X_SIZE - 1, LEVEL_Y_SIZE - 1);
     currentWall = VOID_NAME;

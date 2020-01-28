@@ -12,11 +12,13 @@ textures:
   - halo.png
   - ztone.png
   - stonez.png
+  - exit.png
 fonts:
   - LiberationSerif-Regular.ttf
   - BreeSerif-Regular.ttf
 levels:
-  - entry:
+  - type: static
+    entry:
       x: 0
       y: 0
     exit:
@@ -46,7 +48,8 @@ levels:
         position:
           x: 4
           y: 5
-  - entry:
+  - type: static
+    entry:
       x: 0
       y: 0
     exit:
@@ -84,3 +87,15 @@ levels:
         position:
           x: 4
           y: 5
+  - type: gen
+    exit: exit
+    floor: ztone
+    rooms:
+      - size:
+          width: 3
+          height: 4
+        floor: ztone
+      - size:
+          width: 5
+          height: 5
+        floor: stonez

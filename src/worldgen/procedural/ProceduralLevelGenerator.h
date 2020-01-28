@@ -1,6 +1,6 @@
 #pragma once
 
-#include "LevelGenerator.h"
+#include "../LevelGenerator.h"
 
 class ProceduralLevelGenerator : public LevelGenerator {
     std::string currentWall;
@@ -11,7 +11,7 @@ public:
 
     ProceduralLevelGenerator();
 
-    void generate();
+    void generate(ProceduralLevelSpec spec);
 
     void plotRoom(int x, int y, int width, int height);
 

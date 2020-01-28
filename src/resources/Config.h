@@ -3,10 +3,12 @@
 #include <vector>
 #include <string>
 #include <ostream>
+#include <variant>
 #include "Resources.h"
 #include "../worldgen/static/LevelSpec.h"
 #include "ResourceSpec.h"
 #include "../level/Level.h"
+#include "../worldgen/procedural/ProceduralLevelSpec.h"
 
 class Config {
 public:
@@ -28,6 +30,6 @@ private:
 
     std::vector<ResourceSpec> textures;
     std::vector<ResourceSpec> fonts;
-    std::vector<LevelSpec> levelSpecs;
+    std::vector<std::variant<LevelSpec, ProceduralLevelSpec>> levelSpecs;
 
 };
