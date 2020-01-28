@@ -9,9 +9,10 @@
 void ProceduralLevelGenerator::generate() {
     entryPosition = sf::Vector2i(0, 0);
     exitPosition = sf::Vector2i(LEVEL_X_SIZE - 1, LEVEL_Y_SIZE - 1);
-    currentWall = "stone_w";
-    currentFloor = "stone_f";
+    currentWall = VOID_NAME;
+    currentFloor = "ztone";
     dfsGenerate();
+    currentFloor = "stonez";
     createRooms();
     calculate_outer_walls();
 }

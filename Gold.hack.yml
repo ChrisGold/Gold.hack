@@ -10,6 +10,8 @@ textures:
   - wood_f.png
   - sword.png
   - halo.png
+  - ztone.png
+  - stonez.png
 fonts:
   - LiberationSerif-Regular.ttf
   - BreeSerif-Regular.ttf
@@ -27,7 +29,7 @@ levels:
         size:
           width: 6
           height: 6
-        wall: stone_w
+        wall: void
         floor: stone_f
       - position:
           x: 4
@@ -35,7 +37,7 @@ levels:
         size:
           width: 4
           height: 1
-        wall: stone_w
+        wall: void
         floor: stone_f
     npcs:
       - name: Fighter One
@@ -57,7 +59,7 @@ levels:
         size:
           width: 14
           height: 2
-        wall: stone_w
+        wall: void
         floor: stone_f
       - position:
           x: 0
@@ -65,7 +67,7 @@ levels:
         size:
           width: 1
           height: 2
-        wall: stone_w
+        wall: void
         floor: stone_f
       - position:
           x: 0
@@ -73,7 +75,7 @@ levels:
         size:
           width: 6
           height: 6
-        wall: stone_w
+        wall: void
         floor: stone_f
     npcs:
       - name: Fighter Two
