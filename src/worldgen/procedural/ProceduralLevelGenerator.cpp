@@ -10,10 +10,13 @@ void ProceduralLevelGenerator::generate(ProceduralLevelSpec spec) {
     entryPosition = sf::Vector2i(0, 0);
     exitPosition = sf::Vector2i(LEVEL_X_SIZE - 1, LEVEL_Y_SIZE - 1);
     currentWall = VOID_NAME;
-    currentFloor = "ztone";
+    currentFloor = spec.floor;
     dfsGenerate();
-    currentFloor = "stonez";
-    createRooms();
+    std::random_device r;
+
+    for (auto roomSpec: spec.rooms) {
+        createRoom(r, roomSpec);
+    }
     calculate_outer_walls();
 }
 
@@ -85,25 +88,14 @@ void ProceduralLevelGenerator::dfsGenerate(sf::Vector2i cell, std::vector<sf::Ve
 
 typedef std::uniform_int_distribution<int> dice;
 
-void ProceduralLevelGenerator::createRooms() {
-    std::random_device rand;
+void ProceduralLevelGenerator::createRoom(std::random_device &rand, const ProceduralRoomSpec &roomSpec) {
+    auto xCorner = dice(0, LEVEL_X_SIZE - roomSpec.size.x);
+    auto yCorner = dice(0, LEVEL_Y_SIZE - roomSpec.size.y);
 
-    for (int i = 0; i < 3; i++) {
-        createRoom(rand);
-    }
-}
-
-void ProceduralLevelGenerator::createRoom(std::random_device &rand) {
-    auto xSize = dice(3, 5);
-    auto ySize = dice(3, 5);
-    auto xCorner = dice(0, LEVEL_X_SIZE);
-    auto yCorner = dice(0, LEVEL_Y_SIZE);
-
-    auto bounds = sf::IntRect(xCorner(rand), yCorner(rand), xSize(rand), ySize(rand));
+    auto bounds = sf::IntRect(xCorner(rand), yCorner(rand), roomSpec.size.x, roomSpec.size.y);
     std::cout << "Generating room: x=" << bounds.left << ", y=" << bounds.top << ", w=" << bounds.width << ", h"
               << bounds.height << std::endl;
-    room(bounds, currentFloor, currentWall);
-
+    room(bounds, roomSpec.floor, VOID_NAME);
 }
 
 void ProceduralLevelGenerator::debugOutput(int x, int y) {
