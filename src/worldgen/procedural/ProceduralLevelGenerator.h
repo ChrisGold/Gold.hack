@@ -11,7 +11,7 @@ public:
 
     ProceduralLevelGenerator();
 
-    void generate(ProceduralLevelSpec spec);
+    void generate(const ProceduralLevelSpec &spec);
 
     void plotRoom(int x, int y, int width, int height);
 
@@ -24,6 +24,8 @@ public:
     void expandMaze();
 
     void createRoom(std::random_device &rand, const ProceduralRoomSpec &roomSpec);
+
+    std::vector<sf::Vector2i> freePositions();
 };
 
 std::vector<Direction> neighborsRandomOrder(sf::Vector2i cell, int x_max, int y_max);

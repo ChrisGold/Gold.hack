@@ -11,7 +11,9 @@
 struct ProceduralNPCSpec {
     std::string name;
     std::string texture;
+    std::string type;
     int maxHealth;
+    int count;
 
     static ProceduralNPCSpec fromYAML(YAML::Node npcNode);
 };

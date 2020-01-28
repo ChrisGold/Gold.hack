@@ -6,18 +6,34 @@
 #include "../../Direction.h"
 #include "ProceduralLevelGenerator.h"
 
-void ProceduralLevelGenerator::generate(ProceduralLevelSpec spec) {
-    entryPosition = sf::Vector2i(0, 0);
-    exitPosition = sf::Vector2i(LEVEL_X_SIZE - 1, LEVEL_Y_SIZE - 1);
+void ProceduralLevelGenerator::generate(const ProceduralLevelSpec &spec) {
     currentWall = VOID_NAME;
     currentFloor = spec.floor;
     dfsGenerate();
     std::random_device r;
 
-    for (auto roomSpec: spec.rooms) {
+    for (const auto &roomSpec: spec.rooms) {
         createRoom(r, roomSpec);
     }
+
     calculate_outer_walls();
+
+    std::vector<sf::Vector2i> positions = freePositions();
+    std::shuffle(positions.begin(), positions.end(), r);
+
+    entryPosition = positions.back();
+    positions.pop_back();
+    exitPosition = positions.back();
+    positions.pop_back();
+
+    for (const auto &npcSpec: spec.npcs) {
+        for (int i = 0; i < npcSpec.count; i++) {
+            NPCSpec singleSpec(npcSpec.name, npcSpec.type, npcSpec.maxHealth, positions.back());
+            positions.pop_back();
+            npc(singleSpec);
+        }
+    }
+    level[exitPosition.x][exitPosition.y].floor_tile = spec.exit_tile;
 }
 
 void ProceduralLevelGenerator::expandMaze() {
@@ -146,10 +162,23 @@ void ProceduralLevelGenerator::plotRoom(int x, int y, int width, int height) {
     room(sf::IntRect(x, y, width, height), currentFloor, currentWall);
 }
 
-ProceduralLevelGenerator::ProceduralLevelGenerator() {
+ProceduralLevelGenerator::ProceduralLevelGenerator() : LevelGenerator() {
     for (int x = 0; x < MAZE_X_SIZE; x++) {
         for (int y = 0; y < MAZE_Y_SIZE; y++) {
             auto &tile = maze[x][y];
         }
     }
+}
+
+std::vector<sf::Vector2i> ProceduralLevelGenerator::freePositions() {
+    std::vector<sf::Vector2i> pos;
+    for (int x = 0; x < LEVEL_X_SIZE; x++) {
+        for (int y = 0; y < LEVEL_Y_SIZE; y++) {
+            if (level[x][y].floor_tile != VOID_NAME) {
+                pos.emplace_back(x, y);
+            }
+        }
+    }
+    return pos;
+
 }

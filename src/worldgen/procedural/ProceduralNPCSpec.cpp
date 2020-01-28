@@ -9,5 +9,7 @@ ProceduralNPCSpec ProceduralNPCSpec::fromYAML(YAML::Node npcNode) {
     spec.name = npcNode["name"].as<std::string>();
     spec.maxHealth = npcNode["health"].as<int>();
     spec.texture = npcNode["texture"].as<std::string>();
+    spec.count = npcNode["count"].as<int>();
+    spec.type = npcNode["type"].as<std::string>();
     return spec;
 }
