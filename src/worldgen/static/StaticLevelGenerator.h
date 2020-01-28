@@ -1,6 +1,6 @@
 #pragma once
 
-#include "LevelGenerator.h"
+#include "../LevelGenerator.h"
 
 class StaticLevelGenerator : public LevelGenerator {
 public:

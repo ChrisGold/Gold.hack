@@ -4,7 +4,7 @@
 #include <string>
 #include <ostream>
 #include "Resources.h"
-#include "../worldgen/LevelSpec.h"
+#include "../worldgen/static/LevelSpec.h"
 #include "ResourceSpec.h"
 #include "../level/Level.h"
 

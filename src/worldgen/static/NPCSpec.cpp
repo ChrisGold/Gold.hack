@@ -5,7 +5,7 @@
 #include "NPCSpec.h"
 
 #include <utility>
-#include "../YamlUtils.h"
+#include "../../YamlUtils.h"
 
 NPCSpec NPCSpec::fromYAML(YAML::Node npcNode) {
     auto nameNode = npcNode["name"];

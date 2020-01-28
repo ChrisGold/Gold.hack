@@ -2,8 +2,8 @@
 // Created by christian on 23.01.20.
 //
 
-#include "worldgen/NPCSpec.h"
-#include "worldgen/LevelSpec.h"
+#include "worldgen/static/NPCSpec.h"
+#include "worldgen/static/LevelSpec.h"
 #include "YamlUtils.h"
 
 sf::Vector2i widthHeightFromYAML(YAML::Node coords) {

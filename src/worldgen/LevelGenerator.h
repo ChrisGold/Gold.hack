@@ -4,7 +4,7 @@
 #include "../Constants.h"
 #include "../level/LevelTile.h"
 #include "../level/Level.h"
-#include "LevelSpec.h"
+#include "static/LevelSpec.h"
 #include "../resources/Config.h"
 
 class LevelGenerator {

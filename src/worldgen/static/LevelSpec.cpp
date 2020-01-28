@@ -4,7 +4,7 @@
 
 #include "LevelSpec.h"
 #include "NPCSpec.h"
-#include "../YamlUtils.h"
+#include "../../YamlUtils.h"
 
 LevelSpec::LevelSpec() = default;
 

@@ -6,7 +6,7 @@
 #include "yaml-cpp/yaml.h"
 #include "../level/Level.h"
 #include "../worldgen/LevelGenerator.h"
-#include "../worldgen/StaticLevelGenerator.h"
+#include "../worldgen/static/StaticLevelGenerator.h"
 #include "../worldgen/ProceduralLevelGenerator.h"
 #include <experimental/filesystem>
 #include <iostream>
