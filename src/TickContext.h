@@ -13,13 +13,16 @@ struct TickContext {
     Inventory *playerInventory;
     const long tick_nr;
     const time_t wall_time;
+    float difficulty;
 
-    TickContext(Game *game, Level *level, Inventory *playerInventory, const long tickNr, const time_t wallTime)
+    TickContext(Game *game, Level *level, Inventory *playerInventory, const long tickNr, const time_t wallTime,
+                float difficulty)
             : game(game),
               level(level),
               playerInventory(playerInventory),
               tick_nr(tickNr),
-              wall_time(wallTime) {}
+              wall_time(wallTime),
+              difficulty(difficulty) {}
 
     virtual ~TickContext() = default;
 };

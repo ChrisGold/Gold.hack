@@ -7,6 +7,13 @@
 
 class Menu {
     GameStage next = MENU;
+    float difficulty = 1.0f;
+    sf::FloatRect alphaBox;
+    sf::FloatRect betaBox;
+    sf::FloatRect gammaBox;
+public:
+    float getDifficulty() const;
+
 public:
     void draw(sf::RenderTarget &target, Resources &resources);
 
@@ -15,4 +22,6 @@ public:
     void tick(TickContext &ctx);
 
     void click(int x, int y);
+
+    sf::Text textbox(sf::RenderTarget &target, Resources &resources, std::string msg, sf::Vector2f pos, int char_size);
 };

@@ -31,6 +31,7 @@ class Game {
     Inventory *playerInventory;
 
     long tick_count;
+    float difficulty;
 public:
     Game();
 

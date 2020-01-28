@@ -54,6 +54,7 @@ void Game::loop() {
                 //TODO: Handle GainFocus and LostFocus
             else if (stage == MENU) {
                 menu_input(event);
+                difficulty = menu.getDifficulty();
             } else level_input(event);
 
         }
@@ -109,7 +110,7 @@ void Game::change_stage(const GameStage &gs) {
 }
 
 void Game::tick() {
-    TickContext ctx = TickContext(this, currentLevel(), playerInventory, tick_count, time(0));
+    TickContext ctx = TickContext(this, currentLevel(), playerInventory, tick_count, time(0), difficulty);
     if (stage == MENU) {
         menu.tick(ctx);
     } else {
