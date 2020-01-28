@@ -56,7 +56,6 @@ bool Level::tick(TickContext &ctx) {
     }
     auto turn = player->act(ctx);
     if (turn) {
-        debugOutput();
         for (auto npc : npcs) {
             npc->act(ctx);
         }

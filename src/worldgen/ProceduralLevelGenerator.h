@@ -25,8 +25,6 @@ public:
 
     void createRooms();
 
-    void createRoom();
-
     void createRoom(std::random_device &rand);
 };
 
