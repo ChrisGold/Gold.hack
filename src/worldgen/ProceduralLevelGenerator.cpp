@@ -13,6 +13,7 @@ void ProceduralLevelGenerator::generate() {
     currentFloor = "stone_f";
     dfsGenerate();
     createRooms();
+    calculate_outer_walls();
 }
 
 void ProceduralLevelGenerator::expandMaze() {
@@ -85,13 +86,23 @@ typedef std::uniform_int_distribution<int> dice;
 
 void ProceduralLevelGenerator::createRooms() {
     std::random_device rand;
+
+    for (int i = 0; i < 3; i++) {
+        createRoom(rand);
+    }
+}
+
+void ProceduralLevelGenerator::createRoom(std::random_device &rand) {
     auto xSize = dice(3, 5);
     auto ySize = dice(3, 5);
     auto xCorner = dice(0, LEVEL_X_SIZE);
     auto yCorner = dice(0, LEVEL_Y_SIZE);
 
     auto bounds = sf::IntRect(xCorner(rand), yCorner(rand), xSize(rand), ySize(rand));
+    std::cout << "Generating room: x=" << bounds.left << ", y=" << bounds.top << ", w=" << bounds.width << ", h"
+              << bounds.height << std::endl;
     room(bounds, currentFloor, currentWall);
+
 }
 
 void ProceduralLevelGenerator::debugOutput(int x, int y) {

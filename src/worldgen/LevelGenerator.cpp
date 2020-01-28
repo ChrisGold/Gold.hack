@@ -3,10 +3,16 @@
 #include "../action/character/Fighter.h"
 
 void LevelGenerator::room(sf::IntRect rect, const std::string &floor_material, const std::string &wall_material) {
-    for (int x = 0; x < rect.width; ++x) {
-        for (int y = 0; y < rect.height; ++y) {
-            if (in_level(rect.left + x, rect.top + y)) {
-                LevelTile &t = this->level[rect.left + x][rect.top + y];
+    int width = rect.width;
+    int height = rect.height;
+    int xOffset = rect.left;
+    int yOffset = rect.top;
+    for (int x = 0; x < width; ++x) {
+        for (int y = 0; y < height; ++y) {
+            int xPos = xOffset + x;
+            int yPos = yOffset + y;
+            if (in_level(xPos, yPos)) {
+                LevelTile &t = this->level[xPos][yPos];
                 t.pass_north = y != 0;
                 t.pass_east = x != rect.width - 1;
                 t.floor_tile = floor_material;
@@ -29,7 +35,7 @@ void LevelGenerator::npc(NPCSpec spec) {
 Level LevelGenerator::export_level() {
     auto l = Level(level, entryPosition, exitPosition);
     l.npcs = npcs;
-    l.debugOutput();
+    //l.debugOutput();
     return l;
 }
 
