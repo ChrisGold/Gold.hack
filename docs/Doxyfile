@@ -1,0 +1,6 @@
+PROJECT_NAME     = Gold.HACK
+OUTPUT_DIRECTORY = html
+WARNINGS         = YES
+INPUT            = main.cpp src
+FILE_PATTERNS    = *.cc *.h *.hpp
+SEARCHENGINE     = YES
