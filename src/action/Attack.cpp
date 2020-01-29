@@ -28,6 +28,10 @@ void Attack::execute(TickContext &ctx, Actor *executor) {
     int damage = 10;
     bool isPlayer = dynamic_cast<Player *>(executor);
     if (isPlayer) {
+        if (!ctx.playerInventory->useEnergy(ctx.playerInventory->currentItem().durability)) {
+            ctx.messageQueue->push_back("Not enough energy.");
+            return;
+        }
         damage = ctx.playerInventory->currentAttack() / ctx.difficulty;
     }
 

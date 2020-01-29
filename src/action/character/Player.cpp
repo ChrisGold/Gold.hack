@@ -20,3 +20,11 @@ std::string Player::getTexture() const {
             return texture + "_w";
     }
 }
+
+bool Player::act(TickContext &ctx) {
+    bool act = Actor::act(ctx);
+    if (act) {
+        ctx.playerInventory->recharge();
+    }
+    return act;
+}

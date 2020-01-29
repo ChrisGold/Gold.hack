@@ -12,10 +12,14 @@ class Inventory {
     int selected_item;
     int message_limit = 5;
     int score = 0;
+    int energy = 100;
 public:
     int getScore() const;
 
-public:
+    bool useEnergy(int e);
+
+    void recharge();
+
     Inventory(std::string name);
 
     std::string name;

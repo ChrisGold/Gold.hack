@@ -15,6 +15,10 @@ void Interact::execute(TickContext &ctx, Actor *executor) {
     Player *player = dynamic_cast<Player *>(executor);
     if (player) {
         int hp = ctx.playerInventory->currentAttack();
+        if (!ctx.playerInventory->useEnergy(ctx.playerInventory->currentItem().durability)) {
+            ctx.messageQueue->push_back("Not enough energy.");
+            return;
+        }
         if (hp < 0 && player->getHealth() != player->getMaxHealth()) {
             player->takeDamage(hp);
             std::stringstream output;

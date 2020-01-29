@@ -40,6 +40,13 @@ void Inventory::draw(sf::RenderTarget &target, Resources &resources, Game *game)
     target.draw(healthBar);
 
     top = top + 100;
+    int maxEnergy = 100;
+    sf::RectangleShape energyBar{sf::Vector2f((200.0 / maxEnergy) * energy, 20)};
+    energyBar.setFillColor(sf::Color::Blue);
+    energyBar.setPosition(50, top);
+    target.draw(energyBar);
+
+    top = top + 100;
 
     auto scoreText = textbox(target, resources, "Score: " + std::to_string(score), sf::Vector2f(20.f, top), 30);
     target.draw(scoreText);
@@ -71,9 +78,9 @@ Inventory::textbox(sf::RenderTarget &target, Resources &resources, std::string m
 
 Inventory::Inventory(std::string name) : name(std::move(name)) {
     selected_item = 0;
-    items.emplace_back("Alpha Strike", 25, 1, 100, 10, "item1");
-    items.emplace_back("Beta Strike", 1000, 1, 100, 10, "item2");
-    items.emplace_back("Gamma Strike", -25, 1, 100, 10, "item3");
+    items.emplace_back("Alpha Strike", 25, 1, 10, 100, "item1");
+    items.emplace_back("Beta Strike", 1000, 1, 100, 100, "item2");
+    items.emplace_back("Gamma Strike", -25, 1, 20, 100, "item3");
 }
 
 Item &Inventory::currentItem() {
@@ -102,4 +109,16 @@ int Inventory::addScore(int points) {
 
 int Inventory::getScore() const {
     return score;
+}
+
+void Inventory::recharge() {
+    energy = energy + 10;
+    energy = std::clamp(energy, 0, 100);
+}
+
+bool Inventory::useEnergy(int e) {
+    if (energy - e >= 0) {
+        energy = energy - e;
+        return true;
+    } else return false;
 }
