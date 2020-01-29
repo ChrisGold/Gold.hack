@@ -27,7 +27,7 @@ void Inventory::draw(sf::RenderTarget &target, Resources &resources, Game *game)
             offset = 0;
         }
         auto itemRect = sf::FloatRect(left, top + offset, size, size);
-        resources.render(target, itemRect, currentItem().getIconTexture());
+        resources.render(target, itemRect, items[i].getIconTexture());
         left += size;
     }
 
@@ -42,11 +42,9 @@ void Inventory::draw(sf::RenderTarget &target, Resources &resources, Game *game)
 
 Inventory::Inventory(std::string name) : name(std::move(name)) {
     selected_item = 0;
-    items.emplace_back("Sword", 25, 1, 100, 10, "sword");
-    items.emplace_back("Sword", 25, 1, 100, 10, "sword");
-    items.emplace_back("Sword", 25, 1, 100, 10, "sword");
-    items.emplace_back("Sword", 100, 1, 100, 10, "sword");
-    items.emplace_back("Sword", 25, 1, 100, 10, "sword");
+    items.emplace_back("Alpha Strike", 25, 1, 100, 10, "item1");
+    items.emplace_back("Beta Strike", 25, 1, 100, 10, "item2");
+    items.emplace_back("Gamma Strike", 25, 1, 100, 10, "item3");
 }
 
 Item &Inventory::currentItem() {

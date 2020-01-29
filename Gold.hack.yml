@@ -21,6 +21,9 @@ textures:
   - ztone.png
   - stonez.png
   - exit.png
+  - item1.png
+  - item2.png
+  - item3.png
 fonts:
   - LiberationSerif-Regular.ttf
   - BreeSerif-Regular.ttf
