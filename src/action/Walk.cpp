@@ -10,6 +10,7 @@
 
 void Walk::execute(TickContext &ctx, Actor *executor) {
     std::cout << executor->name << " walking " << direction;
+    executor->facing = direction;
     if (!can_walk(ctx, executor->position)) {
         std::cout << " ...boink" << std::endl;
         return;
@@ -31,7 +32,6 @@ void Walk::execute(TickContext &ctx, Actor *executor) {
             step.x = -1;
             break;
     }
-    executor->facing = direction;
     executor->position += step;
     if (dynamic_cast<Player *>(executor) && on_exit(ctx, executor->position)) {
         std::cout << executor->name << " is on exit!" << std::endl;
