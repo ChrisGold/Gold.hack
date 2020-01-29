@@ -33,7 +33,7 @@ void Level::draw(sf::RenderTarget &target, Resources &resources) {
 Level::Level(LevelTile data[LEVEL_X_SIZE][LEVEL_Y_SIZE], sf::Vector2i entry, sf::Vector2i exit) {
     this->entryPosition = entry;
     this->exitPosition = exit;
-    player = new Player("Player", "cylinder", entry);
+    player = new Player("Player", "player", entry);
     for (int x = 0; x < LEVEL_X_SIZE; x++) {
         for (int y = 0; y < LEVEL_Y_SIZE; y++) {
             tiles[x][y] = data[x][y];

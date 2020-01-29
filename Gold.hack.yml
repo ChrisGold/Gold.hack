@@ -8,6 +8,10 @@ textures:
   - cylinder_w.png
   - cylinder_s.png
   - cylinder_e.png
+  - player_n.png
+  - player_w.png
+  - player_s.png
+  - player_e.png
   - stone_f.png
   - stone_w.png
   - wood_w.png
