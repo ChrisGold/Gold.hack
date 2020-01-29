@@ -34,7 +34,7 @@ void Attack::execute(TickContext &ctx, Actor *executor) {
     auto target = ctx.level->at(executor->position + delta);
     if (target != nullptr) {
         int left = target->takeDamage(damage);
-        output << "Hit " << target->name << " for " << damage << " HP damage, leaving " << left << "."
+        output << "Hit " << target->name << " for " << damage << " HP damage" << std::endl << "leaving " << left << "."
                << std::endl;
         if (isPlayer && !target->isAlive()) {
             ctx.playerInventory->addScore(target->getMaxHealth());
