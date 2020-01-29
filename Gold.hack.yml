@@ -52,37 +52,6 @@ levels:
       y: 0
     exit:
       x: 5
-      y: 5
-    rooms:
-      - position:
-          x: 0
-          y: 0
-        size:
-          width: 6
-          height: 6
-        wall: void
-        floor: stone_f
-      - position:
-          x: 4
-          y: 6
-        size:
-          width: 4
-          height: 1
-        wall: void
-        floor: stone_f
-    npcs:
-      - name: Fighter One
-        type: fighter
-        health: 100
-        position:
-          x: 4
-          y: 5
-  - type: static
-    entry:
-      x: 0
-      y: 0
-    exit:
-      x: 5
       y: 9
     rooms:
       - position:
@@ -115,6 +84,12 @@ levels:
         health: 100
         position:
           x: 4
+          y: 5
+      - name: Fighter Three
+        type: fighter
+        health: 100
+        position:
+          x: 5
           y: 5
   - type: gen
     exit: exit
