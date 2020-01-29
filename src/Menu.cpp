@@ -21,6 +21,7 @@ void Menu::click(int x, int y) {
 }
 
 void Menu::tick(TickContext &ctx) {
+    this->score = ctx.playerInventory->getScore();
     if (next != MENU) {
         ctx.game->level_advance();
         reset();
@@ -41,7 +42,12 @@ void Menu::draw(sf::RenderTarget &target, Resources &resources) {
     float standoff = 30.f;
     sf::Vector2f pos = sf::Vector2f(target.getSize().x / 2.0f,
                                     title.getGlobalBounds().height + title.getGlobalBounds().top + 2 * standoff);
-    sf::Text alpha = textbox(target, resources, "<<click to close>>", pos, 40);
+    sf::Text scoreMessage = textbox(target, resources, "Score: " + std::to_string(score), pos, 60);
+    target.draw(scoreMessage);
+
+    pos.y = pos.y + scoreMessage.getGlobalBounds().height + 20.f;
+    sf::Text closeMessage = textbox(target, resources, "<<click to close>>", pos, 40);
+    target.draw(closeMessage);
 }
 
 sf::Text Menu::drawTitle(sf::RenderTarget &target, Resources &resources, std::string titleText) {

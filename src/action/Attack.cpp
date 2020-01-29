@@ -26,7 +26,8 @@ void Attack::execute(TickContext &ctx, Actor *executor) {
     }
 
     int damage = 10;
-    if (dynamic_cast<Player *>(executor)) {
+    bool isPlayer = dynamic_cast<Player *>(executor);
+    if (isPlayer) {
         damage = ctx.playerInventory->currentAttack() * ctx.difficulty;
     }
 
@@ -35,6 +36,9 @@ void Attack::execute(TickContext &ctx, Actor *executor) {
         int left = target->takeDamage(damage);
         output << "Hit " << target->name << " for " << damage << " HP damage, leaving " << left << "."
                << std::endl;
+        if (isPlayer && !target->isAlive()) {
+            ctx.playerInventory->addScore(target->getMaxHealth());
+        }
     }
     std::cout << output.str();
     ctx.messageQueue->push_back(output.str());

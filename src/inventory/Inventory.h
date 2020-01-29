@@ -11,6 +11,10 @@ class Inventory {
     std::vector<Item> items;
     int selected_item;
     int message_limit = 5;
+    int score = 0;
+public:
+    int getScore() const;
+
 public:
     Inventory(std::string name);
 
@@ -31,4 +35,6 @@ public:
     sf::Text textbox(sf::RenderTarget &target, Resources &resources, std::string msg, sf::Vector2f pos, int char_size);
 
     std::vector<std::string> messages;
+
+    int addScore(int points);
 };

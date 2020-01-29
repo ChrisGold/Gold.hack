@@ -136,6 +136,7 @@ void Game::level_advance() {
         stage = 0;
     } else {
         stage = std::get<int>(stage) + 1;
+        playerInventory->addScore(1000);
         if (std::get<int>(stage) >= levels.size()) {
             //You won the game!
             stage = MENU;

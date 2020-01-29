@@ -23,6 +23,7 @@ private:
     sf::FloatRect alphaBox;
     sf::FloatRect betaBox;
     sf::FloatRect gammaBox;
+    int score = 0;
 public:
     float getDifficulty() const;
 

@@ -36,8 +36,13 @@ void Inventory::draw(sf::RenderTarget &target, Resources &resources, Game *game)
     int maxHealth = game->currentLevel()->player->getMaxHealth();
     sf::RectangleShape healthBar{sf::Vector2f((200.0 / maxHealth) * health, 20)};
     healthBar.setFillColor(sf::Color::Red);
-    healthBar.setPosition(0, top);
+    healthBar.setPosition(50, top);
     target.draw(healthBar);
+
+    top = top + 100;
+
+    auto scoreText = textbox(target, resources, "Score: " + std::to_string(score), sf::Vector2f(20.f, top), 30);
+    target.draw(scoreText);
 
     while (messages.size() >= message_limit) {
         messages.erase(messages.begin());
@@ -88,4 +93,13 @@ void Inventory::scrollLeft() {
     selected_item--;
     selected_item += items.size();
     selected_item = selected_item % int(items.size());
+}
+
+int Inventory::addScore(int points) {
+    score += points;
+    return score;
+}
+
+int Inventory::getScore() const {
+    return score;
 }
