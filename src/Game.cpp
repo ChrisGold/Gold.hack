@@ -13,8 +13,9 @@ Game::Game() {
     levelTexture.create(LEVEL_WIDTH, TOTAL_HEIGHT);
     sidebarTexture.create(SIDEBAR_WIDTH, TOTAL_HEIGHT);
     levelSprite = sf::Sprite(levelTexture.getTexture());
+    levelSprite.setPosition(BORDER_WIDTH, BORDER_WIDTH);
     sidebarSprite = sf::Sprite(sidebarTexture.getTexture());
-    sidebarSprite.setPosition(LEVEL_WIDTH, 0);
+    sidebarSprite.setPosition(BORDER_WIDTH + LEVEL_WIDTH + BORDER_WIDTH, BORDER_WIDTH);
 
     auto cfg = Config::loadFromYAML("Gold.hack.yml");
     resources = cfg.loadResources();
@@ -35,7 +36,7 @@ void Game::loop() {
     sf::Clock clock;
     while (window.isOpen()) {
         if (stage != MENU) {
-            window.clear(sf::Color::White);
+            window.clear(gold);
             draw_level();
         } else {
             menu.draw(window, resources);
