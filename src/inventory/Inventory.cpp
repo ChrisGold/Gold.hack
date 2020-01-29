@@ -73,7 +73,7 @@ Inventory::Inventory(std::string name) : name(std::move(name)) {
     selected_item = 0;
     items.emplace_back("Alpha Strike", 25, 1, 100, 10, "item1");
     items.emplace_back("Beta Strike", 1000, 1, 100, 10, "item2");
-    items.emplace_back("Gamma Strike", -10, 1, 100, 10, "item3");
+    items.emplace_back("Gamma Strike", -25, 1, 100, 10, "item3");
 }
 
 Item &Inventory::currentItem() {

@@ -45,7 +45,7 @@ levels:
         type: fighter
         health: 100
         texture: player
-        count: 3
+        count: 10
   - type: static
     entry:
       x: 0
@@ -128,3 +128,9 @@ levels:
           width: 5
           height: 5
         floor: stonez
+    npcs:
+      - name: Fighter Two
+        type: fighter
+        health: 100
+        texture: player
+        count: 3
