@@ -7,7 +7,7 @@
 #include "../Game.h"
 
 void Inventory::draw(sf::RenderTarget &target, Resources &resources, Game *game) {
-    target.clear();
+    target.clear(dark_grey);
     //Draw name
     sf::Text nameText;
     nameText.setFont(*resources.getFont("LiberationSerif-Regular"));
