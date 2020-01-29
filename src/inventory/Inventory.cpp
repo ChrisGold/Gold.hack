@@ -39,14 +39,14 @@ void Inventory::draw(sf::RenderTarget &target, Resources &resources, Game *game)
     healthBar.setPosition(50, top);
     target.draw(healthBar);
 
-    top = top + 100;
+    top = top + 40;
     int maxEnergy = 100;
     sf::RectangleShape energyBar{sf::Vector2f((200.0 / maxEnergy) * energy, 20)};
     energyBar.setFillColor(sf::Color::Blue);
     energyBar.setPosition(50, top);
     target.draw(energyBar);
 
-    top = top + 100;
+    top = top + 40;
 
     auto scoreText = textbox(target, resources, "Score: " + std::to_string(score), sf::Vector2f(20.f, top), 30);
     target.draw(scoreText);
