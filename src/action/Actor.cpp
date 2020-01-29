@@ -19,23 +19,11 @@ void Actor::enqueue(Action *action) {
     actions.push(action);
 }
 
-int actor_counter = 0;
-
-Actor::Actor(std::string name, int textureId, const sf::Vector2i &position, int max_health = 0) :
+Actor::Actor(std::string name, std::string texture, const sf::Vector2i &position, int max_health = 0) :
         actions(),
         name(std::move(name)),
         facing(Direction::SOUTH),
-        texture_id(textureId),
-        position(position),
-        max_health(max_health),
-        health(max_health) {
-}
-
-Actor::Actor(int textureId, const sf::Vector2i &position, int max_health = 0) :
-        actions(),
-        name("MOB " + std::to_string(actor_counter++)),
-        facing(Direction::SOUTH),
-        texture_id(textureId),
+        texture(std::move(texture)),
         position(position),
         max_health(max_health),
         health(max_health) {
@@ -69,4 +57,8 @@ int Actor::getMaxHealth() const {
 
 int Actor::getHealth() const {
     return health;
+}
+
+std::string Actor::getTexture() const {
+    return texture;
 }

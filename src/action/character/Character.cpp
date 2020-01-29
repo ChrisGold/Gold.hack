@@ -5,8 +5,8 @@
 #include "Character.h"
 #include "../Walk.h"
 
-Character::Character(const std::string &name, int textureId, const sf::Vector2i &position) : Actor(name, textureId,
-                                                                                                   position, 100) {
+Character::Character(const std::string &name, std::string texture, const sf::Vector2i &position) : Actor(name, texture,
+                                                                                                         position, 100) {
     facing = Direction::NORTH;
 }
 

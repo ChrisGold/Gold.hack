@@ -4,6 +4,10 @@ name: Player
 textures:
   - void.png
   - player.png
+  - cylinder_n.png
+  - cylinder_w.png
+  - cylinder_s.png
+  - cylinder_e.png
   - stone_f.png
   - stone_w.png
   - wood_w.png

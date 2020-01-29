@@ -25,9 +25,9 @@ void LevelGenerator::room(sf::IntRect rect, const std::string &floor_material, c
 void LevelGenerator::npc(NPCSpec spec) {
     Actor *npc;
     if (spec.type == "fighter") {
-        npc = new Fighter(spec.name, 1, spec.pos);
+        npc = new Fighter(spec.name, "player", spec.pos);
     } else {
-        npc = new Character(spec.name, 1, spec.pos);
+        npc = new Character(spec.name, "player", spec.pos);
     }
     npcs.push_back(npc);
 }

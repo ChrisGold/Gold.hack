@@ -12,17 +12,18 @@ class Actor {
     int max_health;
     int health;
 
+protected:
+    std::string texture;
 public:
-    Actor(int textureId, const sf::Vector2i &position, int max_health);
 
-    Actor(std::string name, int textureId, const sf::Vector2i &position, int max_health);
+    Actor(std::string name, std::string texture, const sf::Vector2i &position, int max_health);
 
     sf::Vector2i position;
     Direction facing;
+
     const std::string name;
 
-    int texture_id;
-
+    virtual std::string getTexture() const;
 
     const std::string &getName() const;
 

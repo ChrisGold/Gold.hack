@@ -56,5 +56,5 @@ Direction advanceDirection(sf::Vector2f exact) {
     return ALL_DIRECTIONS[bestDirection];
 }
 
-Fighter::Fighter(const std::string &name, int textureId, const sf::Vector2i &position) : Character(name, textureId,
-                                                                                                   position) {}
+Fighter::Fighter(const std::string &name, std::string texture, const sf::Vector2i &position) : Character(name, texture,
+                                                                                                         position) {}

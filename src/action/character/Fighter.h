@@ -9,7 +9,7 @@ public:
 
     bool act(TickContext &ctx) override;
 
-    Fighter(const std::string &name, int textureId, const sf::Vector2i &position);
+    Fighter(const std::string &name, std::string texture, const sf::Vector2i &position);
 
     bool tryAdvance(TickContext &ctx);
 };
