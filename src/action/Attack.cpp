@@ -2,11 +2,13 @@
 // Created by christian on 10.01.20.
 //
 
+#include <sstream>
 #include "Attack.h"
 #include "../level/Level.h"
 
 void Attack::execute(TickContext &ctx, Actor *executor) {
-    std::cout << executor->name << " " << *this << " " << executor->facing << std::endl;
+    std::stringstream output;
+    output << executor->name << " " << *this << " " << executor->facing << std::endl;
     sf::Vector2i delta;
     switch (executor->facing) {
         case NORTH:
@@ -31,9 +33,11 @@ void Attack::execute(TickContext &ctx, Actor *executor) {
     auto target = ctx.level->at(executor->position + delta);
     if (target != nullptr) {
         int left = target->takeDamage(damage);
-        std::cout << "Hit " << target->name << " for " << damage << " HP damage, leaving " << left << "."
-                  << std::endl;
+        output << "Hit " << target->name << " for " << damage << " HP damage, leaving " << left << "."
+               << std::endl;
     }
+    std::cout << output.str();
+    ctx.messageQueue->push_back(output.str());
 }
 
 void Attack::write_out(std::ostream &out) const {

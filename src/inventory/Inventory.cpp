@@ -38,6 +38,30 @@ void Inventory::draw(sf::RenderTarget &target, Resources &resources, Game *game)
     healthBar.setFillColor(sf::Color::Red);
     healthBar.setPosition(0, top);
     target.draw(healthBar);
+
+    while (messages.size() >= message_limit) {
+        messages.erase(messages.begin());
+    }
+
+    top += 50;
+    for (auto msg : messages) {
+        auto line = textbox(target, resources, msg, sf::Vector2f(20, top), 20);
+        top += line.getGlobalBounds().height + 20.f;
+        target.draw(line);
+    }
+}
+
+sf::Text
+Inventory::textbox(sf::RenderTarget &target, Resources &resources, std::string msg, sf::Vector2f pos, int char_size) {
+    sf::Text message;
+    message.setFont(*resources.getFont(1));
+    message.setString(msg);
+    message.setCharacterSize(char_size);
+
+    message.setPosition(pos);
+    message.setFillColor(sf::Color::White);
+
+    return message;
 }
 
 Inventory::Inventory(std::string name) : name(std::move(name)) {
