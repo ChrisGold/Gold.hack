@@ -4,16 +4,20 @@
 #include "Game.h"
 
 void Menu::click(int x, int y) {
-    std::cout << "Click: x=" << x << ", y=" << y << std::endl;
-    next = 0;
-    if (alphaBox.contains(x, y)) {
-        difficulty = 0.8f;
-    } else if (betaBox.contains(x, y)) {
-        difficulty = 1.0f;
-    } else if (gammaBox.contains(x, y)) {
-        difficulty = 1.5f;
-    } else next = MENU;
-    std::cout << "Difficulty:" << difficulty << std::endl;
+    if (state == MenuState::PREGAME) {
+        std::cout << "Click: x=" << x << ", y=" << y << std::endl;
+        next = 0;
+        if (alphaBox.contains(x, y)) {
+            difficulty = 0.8f;
+        } else if (betaBox.contains(x, y)) {
+            difficulty = 1.0f;
+        } else if (gammaBox.contains(x, y)) {
+            difficulty = 1.5f;
+        } else next = MENU;
+        std::cout << "Difficulty:" << difficulty << std::endl;
+    } else {
+        state = OVER;
+    }
 }
 
 void Menu::tick(TickContext &ctx) {
@@ -26,8 +30,24 @@ void Menu::tick(TickContext &ctx) {
 void Menu::draw(sf::RenderTarget &target, Resources &resources) {
     target.clear(gold);
     sf::Text title;
+    if (this->state == MenuState::PREGAME) {
+        drawPregame(target, resources);
+        return;
+    } else if (this->state == MenuState::LOSS) {
+        title = drawTitle(target, resources, "Game over");
+    } else if (this->state == MenuState::WIN) {
+        title = drawTitle(target, resources, "Victory!");
+    }
+    float standoff = 30.f;
+    sf::Vector2f pos = sf::Vector2f(target.getSize().x / 2.0f,
+                                    title.getGlobalBounds().height + title.getGlobalBounds().top + 2 * standoff);
+    sf::Text alpha = textbox(target, resources, "<<click to close>>", pos, 40);
+}
+
+sf::Text Menu::drawTitle(sf::RenderTarget &target, Resources &resources, std::string titleText) {
+    sf::Text title;
     title.setFont(*resources.getFont(1));
-    title.setString("Gold.HACK");
+    title.setString(titleText);
     title.setCharacterSize(100);
 
     sf::FloatRect textRect = title.getLocalBounds();
@@ -37,7 +57,11 @@ void Menu::draw(sf::RenderTarget &target, Resources &resources) {
     title.setFillColor(sf::Color::White);
 
     target.draw(title);
+    return title;
+}
 
+void Menu::drawPregame(sf::RenderTarget &target, Resources &resources) {
+    sf::Text title = drawTitle(target, resources, "Gold.HACK");
     float standoff = 30.f;
     sf::Vector2f pos = sf::Vector2f(target.getSize().x / 2.0f,
                                     title.getGlobalBounds().height + title.getGlobalBounds().top + 2 * standoff);
@@ -77,4 +101,12 @@ void Menu::reset() {
 
 float Menu::getDifficulty() const {
     return difficulty;
+}
+
+void Menu::setState(MenuState state) {
+    Menu::state = state;
+}
+
+MenuState Menu::getState() const {
+    return state;
 }

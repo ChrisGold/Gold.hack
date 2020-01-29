@@ -35,6 +35,9 @@ Game::~Game() {
 void Game::loop() {
     sf::Clock clock;
     while (window.isOpen()) {
+        if (menu.getState() == MenuState::OVER) {
+            window.close();
+        }
         if (stage != MENU) {
             window.clear(gold);
             draw_level();
@@ -136,7 +139,7 @@ void Game::level_advance() {
         if (std::get<int>(stage) >= levels.size()) {
             //You won the game!
             stage = MENU;
-            window.close();
+            menu.setState(MenuState::WIN);
         }
     }
 
@@ -144,7 +147,8 @@ void Game::level_advance() {
 
 void Game::game_over() {
     std::cout << "You died, " << playerInventory->name << ". Game Over." << std::endl;
-    window.close();
+    menu.setState(MenuState::LOSS);
+    stage = MENU;
 }
 
 std::string stage_name(const GameStage &stage) {
