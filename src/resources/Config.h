@@ -21,7 +21,6 @@ public:
     Resources loadResources();
 
     std::vector<Level> generateLevels();
-    std::string playerName;
 
 private:
     Config();

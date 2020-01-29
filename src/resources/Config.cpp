@@ -25,7 +25,6 @@ Config Config::loadFromYAML(const std::string &path) {
 void Config::initFromFile(const std::string &path) {
     YAML::Node resourceConfigYAML = YAML::LoadFile(path);
     fs::path resourcesFolder(resourceConfigYAML["prefix"].as<std::string>());
-    playerName = resourceConfigYAML["name"].as<std::string>();
     for (const auto &textureFile : resourceConfigYAML["textures"]) {
         fs::path file = textureFile.as<std::string>();
         fs::path filepath = resourcesFolder / file;

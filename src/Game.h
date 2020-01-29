@@ -76,3 +76,5 @@ private:
 };
 
 std::string stage_name(const GameStage &stage);
+
+std::string getUserName();

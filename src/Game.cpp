@@ -22,7 +22,7 @@ Game::Game() {
 
     levels = cfg.generateLevels();
     inputController = new KeyboardController(this);
-    playerInventory = new Inventory(cfg.playerName);
+    playerInventory = new Inventory(getUserName());
 
     tick_count = 0;
     change_stage(MENU);
@@ -161,4 +161,8 @@ std::string stage_name(const GameStage &stage) {
         ss << std::get<int>(stage);
         return ss.str();
     }
+}
+
+std::string getUserName() {
+    return getenv("USERNAME");
 }
