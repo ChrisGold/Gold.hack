@@ -13,11 +13,11 @@ void Inventory::draw(sf::RenderTarget &target, Resources &resources, Game *game)
     nameText.setFont(*resources.getFont("LiberationSerif-Regular"));
     nameText.setString(name);
     nameText.setCharacterSize(30);
-    nameText.setPosition(0, 0);
+    nameText.setPosition(20, 20);
     nameText.setFillColor(sf::Color::White);
     target.draw(nameText);
 
-    auto top = nameText.getGlobalBounds().height + 25;
+    auto top = nameText.getGlobalBounds().height + 50;
     auto left = 5.f;
     for (int i = 0; i < items.size(); i++) {
         float size = 50;
@@ -72,8 +72,8 @@ Inventory::textbox(sf::RenderTarget &target, Resources &resources, std::string m
 Inventory::Inventory(std::string name) : name(std::move(name)) {
     selected_item = 0;
     items.emplace_back("Alpha Strike", 25, 1, 100, 10, "item1");
-    items.emplace_back("Beta Strike", 25, 1, 100, 10, "item2");
-    items.emplace_back("Gamma Strike", 25, 1, 100, 10, "item3");
+    items.emplace_back("Beta Strike", 1000, 1, 100, 10, "item2");
+    items.emplace_back("Gamma Strike", -10, 1, 100, 10, "item3");
 }
 
 Item &Inventory::currentItem() {

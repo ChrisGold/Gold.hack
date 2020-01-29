@@ -28,7 +28,7 @@ void Attack::execute(TickContext &ctx, Actor *executor) {
     int damage = 10;
     bool isPlayer = dynamic_cast<Player *>(executor);
     if (isPlayer) {
-        damage = ctx.playerInventory->currentAttack() * ctx.difficulty;
+        damage = ctx.playerInventory->currentAttack() / ctx.difficulty;
     }
 
     auto target = ctx.level->at(executor->position + delta);
