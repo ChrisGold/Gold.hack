@@ -25,6 +25,7 @@ const int VIEWPORT_HEIGHT = 400;
 
 const int VOID_ID = 0;
 const std::string VOID_NAME = "void";
+const std::string EXIT_TILE = "exit";
 
 const std::string FONT_DEFAULT = "LiberationSerif-Regular";
 const sf::Color goldenrod = sf::Color(0XDAA250FF);
