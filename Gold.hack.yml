@@ -24,7 +24,6 @@ textures:
   - item2.png
   - item3.png
 fonts:
-  - LiberationSerif-Regular.ttf
   - BreeSerif-Regular.ttf
 levels:
   - type: gen

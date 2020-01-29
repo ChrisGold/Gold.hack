@@ -10,7 +10,7 @@ void Inventory::draw(sf::RenderTarget &target, Resources &resources, Game *game)
     target.clear(dark_grey);
     //Draw name
     sf::Text nameText;
-    nameText.setFont(*resources.getFont("LiberationSerif-Regular"));
+    nameText.setFont(*resources.getFont(0));
     nameText.setString(name);
     nameText.setCharacterSize(30);
     nameText.setPosition(20, 20);
@@ -66,7 +66,7 @@ void Inventory::draw(sf::RenderTarget &target, Resources &resources, Game *game)
 sf::Text
 Inventory::textbox(sf::RenderTarget &target, Resources &resources, std::string msg, sf::Vector2f pos, int char_size) {
     sf::Text message;
-    message.setFont(*resources.getFont(1));
+    message.setFont(*resources.getFont(0));
     message.setString(msg);
     message.setCharacterSize(char_size);
 

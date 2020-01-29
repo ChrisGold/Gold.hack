@@ -52,7 +52,7 @@ void Menu::draw(sf::RenderTarget &target, Resources &resources) {
 
 sf::Text Menu::drawTitle(sf::RenderTarget &target, Resources &resources, std::string titleText) {
     sf::Text title;
-    title.setFont(*resources.getFont(1));
+    title.setFont(*resources.getFont(0));
     title.setString(titleText);
     title.setCharacterSize(100);
 
@@ -88,7 +88,7 @@ void Menu::drawPregame(sf::RenderTarget &target, Resources &resources) {
 sf::Text
 Menu::textbox(sf::RenderTarget &target, Resources &resources, std::string msg, sf::Vector2f pos, int char_size) {
     sf::Text message;
-    message.setFont(*resources.getFont(1));
+    message.setFont(*resources.getFont(0));
     message.setString(msg);
     message.setCharacterSize(char_size);
 
