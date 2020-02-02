@@ -25,7 +25,6 @@ Handlungen sind:
 
 * Singleplayer
 * Menü
-* Sound
 * 3+ Level
 * Schwierigkeitsgrade
 
@@ -36,7 +35,6 @@ Handlungen sind:
 
 ### Schwierigkeitsgrad A
 
-* Charakter-Entwicklung
 * Levelgeneration im Spiel
 
 ### Schwierigkeitsgrad S
